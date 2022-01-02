@@ -4,10 +4,6 @@ require("dotenv").config({
 
 const googleAnalyticsId = process.env.GOOGLE_ANALYTICS_ID;
 
-console.log("****************************************");
-console.log(googleAnalyticsId);
-console.log("****************************************");
-
 module.exports = {
   siteMetadata: {
     title: `Deep Dev`,
