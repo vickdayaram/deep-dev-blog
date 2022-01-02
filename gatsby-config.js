@@ -1,5 +1,5 @@
 module.exports = {
-  pathPrefix: "deep-dev-blog",
+  pathPrefix: "/deep-dev-blog",
   siteMetadata: {
     title: `Deep Dev`,
     author: {
