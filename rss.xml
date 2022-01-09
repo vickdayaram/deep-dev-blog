@@ -1,4 +1,98 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Deep Dev RSS Feed]]></title><description><![CDATA[A developer experience and learnings]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 02 Jan 2022 21:18:31 GMT</lastBuildDate><item><title><![CDATA[Hello World]]></title><description><![CDATA[My first post on my new blog! Learning Gatsby, very cool stuff. I am creating this blog to write about my experience as a developer.
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Deep Dev RSS Feed]]></title><description><![CDATA[A developer experience and learnings]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 09 Jan 2022 22:17:49 GMT</lastBuildDate><item><title><![CDATA[LeetCode 424. Longest Repeating Character Replacement]]></title><description><![CDATA[Solving LeetCode 424. Longest Repeating Character Replacement, with a Sliding Window approach. Click here to try it out your self! LeetCode…]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io/longest-repeating-character-replacement/</link><guid isPermaLink="false">https://gatsbystarterblogsource.gatsbyjs.io/longest-repeating-character-replacement/</guid><pubDate>Sat, 08 Jan 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Solving LeetCode 424. Longest Repeating Character Replacement, with a Sliding Window approach. &lt;a href=&quot;https://leetcode.com/problems/longest-repeating-character-replacement/&quot;&gt;Click here&lt;/a&gt; to try it out your self!&lt;/p&gt;
+&lt;h3&gt;LeetCode Problem Statement&lt;/h3&gt;
+&lt;p&gt;You are given a string s and an integer k. You can choose any character of the string and change it to any other uppercase English character. You can perform this operation at most k times.&lt;/p&gt;
+&lt;p&gt;Return the length of the longest substring containing the same letter you can get after performing the above operations&lt;/p&gt;
+&lt;p&gt;Examples:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Input: s = &quot;ABAB&quot;, k = 2
+Output: 4
+Explanation: Replace the two &apos;A&apos;s with two &apos;B&apos;s or vice versa.
+
+Input: s = &quot;AABABBA&quot;, k = 1
+Output: 4
+Explanation: Replace the one &apos;A&apos; in the middle with &apos;B&apos; and form &quot;AABBBBA&quot;.
+The substring &quot;BBBB&quot; has the longest repeating letters, which is 4.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This was a tough problem for me to wrap my head around. The key for me was getting a better insight into what I was looking for…&lt;/p&gt;
+&lt;h3&gt;Working backwards, what does our solution look like?&lt;/h3&gt;
+&lt;p&gt;We are looking for the longest substring that contains the same characters after substituting up to K times.&lt;/p&gt;
+&lt;p&gt;In other words we are looking for a substring that contains the max alike letters plus K substitutions. So in any given window our answer should work out to be:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; solution &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; maxLetterCountInWindow &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; k&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Where solution must be less than the length of the string.&lt;/p&gt;
+&lt;p&gt;Example 1:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Input: s = &quot;ABAB&quot;, k = 2
+Output: 4
+
+window = {A: 2, B: 2} from index 0 to 3;
+maxLetterCount = 2;
+k = 2;
+
+solution = maxLetterCount + k
+solution = 4&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;In the above example we can either have a window where the maxLetter is A, or B. In either case we can delete the other letter up to K times, which in this case is 2.&lt;/p&gt;
+&lt;p&gt;Example 2:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Input: s = &quot;AABABBA&quot;, k = 1
+Output: 4
+
+Solution 1
+window = {A: 3, B: 1} from index 0 to 3
+maxLetterCount = 3
+k = 1
+
+solution = maxLetterCount + k
+solution = 4
+
+Solution 2
+window = {A: 1, B: 3} fro index 2 to 5
+maxLetterCount = 3
+k = 1
+
+solution = maxLetterCount + k
+solution = 4&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Understanding this insight turned this hard problem into a manageable one. Let’s look at the code and see how we can apply this.&lt;/p&gt;
+&lt;h3&gt;Code&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;findLengthOfLongestSubStringWithMaxDeletes&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;str&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; k&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; maxLength &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;Infinity&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; maxLetterCount &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; 
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; frequencyMap &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// for the given window&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; windowStart &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    
+    &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; windowEnd &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; windowEnd &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; s&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; windowEnd&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; rightChar &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; s&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;windowEnd&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;frequencyMap&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;rightChar&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            frequencyMap&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;rightChar&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+        &lt;span class=&quot;token comment&quot;&gt;// Keep track of the char frequency in the currentWindow&lt;/span&gt;
+        frequencyMap&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;rightChar&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+        &lt;span class=&quot;token comment&quot;&gt;// Update the maxLetterCount for the window&lt;/span&gt;
+        maxLetterCount &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; Math&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;maxLetterCount&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; frequencyMap&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;rightChar&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; 
+        
+        &lt;span class=&quot;token comment&quot;&gt;// Validate the current window to make sure we satisfy the constraints &lt;/span&gt;
+        &lt;span class=&quot;token comment&quot;&gt;// If the currentLength - maxLetterCount &gt; k &lt;/span&gt;
+        &lt;span class=&quot;token comment&quot;&gt;// shrink the window since we don&apos;t have substitutions left. &lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; currentLength &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; windowEnd &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; windowStart &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;currentLength &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; maxLetterCount&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; k&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; leftChar &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; s&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;windowStart&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;token comment&quot;&gt;// Remember to decrement the frequencyMap with the character &lt;/span&gt;
+            &lt;span class=&quot;token comment&quot;&gt;// that is going out of the window&lt;/span&gt;
+            frequencyMap&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;leftChar&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+            windowStart&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+        
+        &lt;span class=&quot;token comment&quot;&gt;// Now we have a valid window, so check if we have &lt;/span&gt;
+        &lt;span class=&quot;token comment&quot;&gt;// found a better answer&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; validLength &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; windowEnd &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; windowStart &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        maxLength &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; Math&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;validLength&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; maxLength&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; maxLength&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Summary&lt;/h3&gt;
+&lt;p&gt;This algorithm runs in O(n) time and O(1) space. Given that we only have 26 letters in the english language, that’s a fixed space we would keep in the hashmap which is equivalent to O(1).&lt;/p&gt;
+&lt;p&gt;I struggled when solving this problem. Understanding that the length of the substring would equal the maxNumberOfCharacters + k, was the key insight I needed to make a break through.&lt;/p&gt;
+&lt;p&gt;Shout out to &lt;a href=&quot;https://www.educative.io/learn&quot;&gt;educative.io&lt;/a&gt;, specifically their course Grokking the coding interview: Pattern for coding questions. Their course has been tremendously helpful in my development when tackling these questions. Highly recommend them if you are looking to sharpen your skills here.&lt;/p&gt;
+&lt;p&gt;Hope you found this helpful!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Hello World]]></title><description><![CDATA[My first post on my new blog! Learning Gatsby, very cool stuff. I am creating this blog to write about my experience as a developer.
 I’ll…]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io/hello-world/</link><guid isPermaLink="false">https://gatsbystarterblogsource.gatsbyjs.io/hello-world/</guid><pubDate>Fri, 31 Dec 2021 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;My first post on my new blog! Learning Gatsby, very cool stuff.&lt;/p&gt;
 &lt;p&gt;I am creating this blog to write about my experience as a developer.
 I’ll write about some technical topics and general experience as well.&lt;/p&gt;
