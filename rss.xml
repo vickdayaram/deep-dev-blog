@@ -1,4 +1,95 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Deep Dev RSS Feed]]></title><description><![CDATA[A developer experience and learnings]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 09 Jan 2022 22:17:49 GMT</lastBuildDate><item><title><![CDATA[LeetCode 424. Longest Repeating Character Replacement]]></title><description><![CDATA[Solving LeetCode 424. Longest Repeating Character Replacement, with a Sliding Window approach. Click here to try it out your self! LeetCode…]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io/longest-repeating-character-replacement/</link><guid isPermaLink="false">https://gatsbystarterblogsource.gatsbyjs.io/longest-repeating-character-replacement/</guid><pubDate>Sat, 08 Jan 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Solving LeetCode 424. Longest Repeating Character Replacement, with a Sliding Window approach. &lt;a href=&quot;https://leetcode.com/problems/longest-repeating-character-replacement/&quot;&gt;Click here&lt;/a&gt; to try it out your self!&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Deep Dev RSS Feed]]></title><description><![CDATA[A developer experience and learnings]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 15 Jan 2022 21:18:13 GMT</lastBuildDate><item><title><![CDATA[LeetCode 16. 3Sum Closest]]></title><description><![CDATA[Solving LeetCode 16. 3Sum Closest, with a two pointer approach. Click here and try it out your self! LeetCode Problem Statement Given an…]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io/3-sum-closest/</link><guid isPermaLink="false">https://gatsbystarterblogsource.gatsbyjs.io/3-sum-closest/</guid><pubDate>Sat, 15 Jan 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Solving LeetCode 16. 3Sum Closest, with a two pointer approach. &lt;a href=&quot;https://leetcode.com/problems/3sum-closest/&quot;&gt;Click here&lt;/a&gt; and try it out your self!&lt;/p&gt;
+&lt;h3&gt;LeetCode Problem Statement&lt;/h3&gt;
+&lt;p&gt;Given an integer array nums of length n and an integer target, find three integers in nums such that the sum is closest to target.&lt;/p&gt;
+&lt;p&gt;Return the sum of the three integers.&lt;/p&gt;
+&lt;p&gt;You may assume that each input would have exactly one solution.&lt;/p&gt;
+&lt;p&gt;Examples:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Input: nums = [-1,2,1,-4], target = 1
+Output: 2
+Explanation: The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
+
+Input: nums = [0,0,0], target = 1
+Output: 0&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This problem is interesting. What you are asked to is simple, and is easy to understand. Today we will work on building out a solution that runs in O(n^2) by using a two pointer approach.&lt;/p&gt;
+&lt;h3&gt;The Algorithm Plan&lt;/h3&gt;
+&lt;p&gt;The intentions of the machine, and how it will run…&lt;/p&gt;
+&lt;p&gt;Execution&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Sort the array of numbers up front. Two pointer approach only works with a sorted set of numbers.&lt;/li&gt;
+&lt;li&gt;Iterate through each value in the array until array.length - 2. This ensures we always have triplets and don’t have to deal with out of bound errors.&lt;/li&gt;
+&lt;li&gt;For each iteration
+&lt;ul&gt;
+&lt;li&gt;Set up a left var equal to i + 1&lt;/li&gt;
+&lt;li&gt;Set up a right var equal to array.length - 1&lt;/li&gt;
+&lt;li&gt;Set up a while loop, while left &amp;#x3C; right
+&lt;ul&gt;
+&lt;li&gt;Calculate current sum&lt;/li&gt;
+&lt;li&gt;Run checks
+&lt;ul&gt;
+&lt;li&gt;If we found a better answer, update ClosestSum
+&lt;ul&gt;
+&lt;li&gt;Use Math.abs, remember there could be negative numbers&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;If sum is greater than target, decrement right to find a better answer&lt;/li&gt;
+&lt;li&gt;If sum is less than target, increment left to find a better answer&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Variables&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ClosestSum: Global Variable to keep track of the best answer. We will return this at the end. Initialize to Infinity&lt;/li&gt;
+&lt;li&gt;Left Pointer, Right Pointer, CurrentSum, for each iteration of the loop.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These are the steps that we need to execute for the algorithm.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Special Note on Planning: Planning is an important step when writing code. The better you plan, the easier it will be to code the solution. So take extra time here, its a wise investment. It may seem slower at first, but it’s how you will become a wizard.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Lets code it up!&lt;/p&gt;
+&lt;h3&gt;Code&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;threeSumClosest&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;nums&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; target&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    
+    &lt;span class=&quot;token comment&quot;&gt;// Sort the array for two pointer approach&lt;/span&gt;
+    nums&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;a&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; b&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; a &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; b&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; closestSum &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;Infinity&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; nums&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+        &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; val &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; nums&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;i&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; left &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; right &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; nums&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        
+        &lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;left &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; right&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; currentSum &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; val &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; nums&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;left&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; nums&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;right&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; currentDiff &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; Math&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;abs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;target &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; currentSum&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; closestDiff &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; Math&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;abs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;target &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; closestSum&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+            
+            &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;currentDiff &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; closestDiff&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                closestSum &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; currentSum&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+            &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;target &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; currentSum&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                right&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                left&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; closestSum&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Summary&lt;/h3&gt;
+&lt;p&gt;This Algorithm runs in O(n^2) time. O(n * log(n)) for the sort plus O(n^2) for the iteration, O(n * log(n) + n^2), which is asymptotically equivalent to O(n^2). Space complexity will be O(n) which is required for sorting.&lt;/p&gt;
+&lt;p&gt;The two pointer approach pattern we used here can be used for a variety of other problems similar to this one. It’s a great one to have in your tool belt.&lt;/p&gt;
+&lt;p&gt;Shout out to &lt;a href=&quot;https://www.educative.io/learn&quot;&gt;educative.io&lt;/a&gt;, specifically their course Grokking the coding interview: Pattern for coding questions. Their course has been tremendously helpful in my development when tackling these questions. Highly recommend them if you are looking to sharpen your skills.&lt;/p&gt;
+&lt;p&gt;Hope you found this walk through helpful. If you take one thing away from this I hope it’s the planning piece. Take the time to plan. It’s a habit that will help you as an engineer, and life in general.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[LeetCode 424. Longest Repeating Character Replacement]]></title><description><![CDATA[Solving LeetCode 424. Longest Repeating Character Replacement, with a Sliding Window approach. Click here to try it out your self! LeetCode…]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io/longest-repeating-character-replacement/</link><guid isPermaLink="false">https://gatsbystarterblogsource.gatsbyjs.io/longest-repeating-character-replacement/</guid><pubDate>Sat, 08 Jan 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Solving LeetCode 424. Longest Repeating Character Replacement, with a Sliding Window approach. &lt;a href=&quot;https://leetcode.com/problems/longest-repeating-character-replacement/&quot;&gt;Click here&lt;/a&gt; to try it out your self!&lt;/p&gt;
 &lt;h3&gt;LeetCode Problem Statement&lt;/h3&gt;
 &lt;p&gt;You are given a string s and an integer k. You can choose any character of the string and change it to any other uppercase English character. You can perform this operation at most k times.&lt;/p&gt;
 &lt;p&gt;Return the length of the longest substring containing the same letter you can get after performing the above operations&lt;/p&gt;
