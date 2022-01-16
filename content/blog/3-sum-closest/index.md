@@ -100,8 +100,6 @@ This Algorithm runs in O(n^2) time. O(n * log(n)) for the sort plus O(n^2) for t
 
 The two pointer approach pattern we used here can be used for a variety of other problems similar to this one. It's a great one to have in your tool belt.
 
-Shout out to [educative.io](https://www.educative.io/learn), specifically their course Grokking the coding interview: Pattern for coding questions. Their course has been tremendously helpful in my development when tackling these questions. Highly recommend them if you are looking to sharpen your skills.
-
 Hope you found this walk through helpful. If you take one thing away from this I hope it's the planning piece. Take the time to plan. It's a habit that will help you as an engineer, and life in general. 
 
 

@@ -4,6 +4,7 @@ import { Link, graphql } from "gatsby"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import { Educative } from "../components/educative"
 
 const BlogPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark
@@ -29,6 +30,7 @@ const BlogPostTemplate = ({ data, location }) => {
           dangerouslySetInnerHTML={{ __html: post.html }}
           itemProp="articleBody"
         />
+        <Educative/>
         <hr />
         <footer>
           <Bio />

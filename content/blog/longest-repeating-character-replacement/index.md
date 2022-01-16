@@ -125,8 +125,6 @@ This algorithm runs in O(n) time and O(1) space. Given that we only have 26 lett
 
 I struggled when solving this problem. Understanding that the length of the substring would equal the maxNumberOfCharacters + k, was the key insight I needed to make a break through. 
 
-Shout out to [educative.io](https://www.educative.io/learn), specifically their course Grokking the coding interview: Pattern for coding questions. Their course has been tremendously helpful in my development when tackling these questions. Highly recommend them if you are looking to sharpen your skills here.
-
 Hope you found this helpful! 
 
 
