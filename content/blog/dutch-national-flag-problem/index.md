@@ -6,7 +6,7 @@ description: "Sort Colors, or Dutch National Flag Problem"
 
 Solving LeetCode 75. Sort Colors with a two pointer approach. [Click here](https://leetcode.com/problems/sort-colors/) and try it out your self!
 
-This problem is also known ad the Dutch National Flag problem because the Dutch national flag has three colors.
+This problem is also known ad the Dutch National Flag problem because the flag has three colors.
 
 ### LeetCode Problem Statement
 
@@ -102,7 +102,7 @@ const sortColors = (nums) => {
 This algorithm runs in O(n) time with O(1) space. Very nice. Satisfying
 these constraints is the hardest part of this problem. Using the two pointer approach
 works quite nicely. I have used two pointers before but using them in this 
-fashion was new to me. This is a great one to visualize in your mind a bit as far
+fashion is new to me. This is a great one to visualize in your mind a bit as far
 as how it's actually working.
 
 When writing the plan section I didn't think about the helper function for the swapping. 
@@ -110,7 +110,10 @@ The helper function dawned on me as I was coding up the solution. I think shapin
 your algorithm a bit as you go is ok. Figuring out how to structure it while you
 are coding up though.... I'm sure it can be done, but it's not the best approach. 
 
-> Take the time to plan. A Wizard in the future will thank you.
+> Take the time to plan. A Wizard in the future will thank you. That Wizard will be you,
+> if you hone in your planning game.
+
+Hope you found this walk through helpful!
 
 
 
