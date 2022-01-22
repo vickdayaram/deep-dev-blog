@@ -1,4 +1,175 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Deep Dev RSS Feed]]></title><description><![CDATA[A developer experience and learnings]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 16 Jan 2022 18:34:59 GMT</lastBuildDate><item><title><![CDATA[LeetCode 75. Sort Colors]]></title><description><![CDATA[Solving LeetCode 75. Sort Colors with a two pointer approach. Click here and try it out your self! This problem is also known ad the Dutch…]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io/dutch-national-flag-problem/</link><guid isPermaLink="false">https://gatsbystarterblogsource.gatsbyjs.io/dutch-national-flag-problem/</guid><pubDate>Sun, 16 Jan 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Solving LeetCode 75. Sort Colors with a two pointer approach. &lt;a href=&quot;https://leetcode.com/problems/sort-colors/&quot;&gt;Click here&lt;/a&gt; and try it out your self!&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Deep Dev RSS Feed]]></title><description><![CDATA[A developer experience and learnings]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 22 Jan 2022 19:29:55 GMT</lastBuildDate><item><title><![CDATA[LeetCode 844. Backspace String Compare]]></title><description><![CDATA[Solving LeetCode 844, Backspace String Compare. Click here and try it out your self! LeetCode Problem Statement Given two strings s and t…]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io/backspace-string-compare/</link><guid isPermaLink="false">https://gatsbystarterblogsource.gatsbyjs.io/backspace-string-compare/</guid><pubDate>Sat, 22 Jan 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Solving LeetCode 844, Backspace String Compare. &lt;a href=&quot;https://leetcode.com/problems/backspace-string-compare/&quot;&gt;Click here&lt;/a&gt; and try it out your self!&lt;/p&gt;
+&lt;h3&gt;LeetCode Problem Statement&lt;/h3&gt;
+&lt;p&gt;Given two strings s and t, return true if they are equal when both are typed into empty text editors. ’#’ means a backspace character.&lt;/p&gt;
+&lt;p&gt;Note that after backspacing an empty text, the text will continue empty.&lt;/p&gt;
+&lt;p&gt;Examples:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Input: s = &quot;ab#c&quot;, t = &quot;ad#c&quot;
+Output: true
+Explanation: Both s and t become &quot;ac&quot;.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Input: s = &quot;ab##&quot;, t = &quot;c#d#&quot;
+Output: true
+Explanation: Both s and t become &quot;&quot;.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Input: s = &quot;a#c&quot;, t = &quot;b&quot;
+Output: false
+Explanation: s becomes &quot;c&quot; while t becomes &quot;b&quot;.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Initial Thoughts&lt;/h3&gt;
+&lt;p&gt;Ok, I can use a stack, array, or maybe even build a new string with backspaces applied?!!&lt;/p&gt;
+&lt;p&gt;But…&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Can you solve it in O(n) time and O(1) space?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Hmmm…&lt;/p&gt;
+&lt;p&gt;Well… I mean… I guess… Yea… Hmm…&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/7ed3f89de9ddf93c4408061843999991/c83bb/thinking-monkey.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 66.45569620253164%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAECAwT/xAAVAQEBAAAAAAAAAAAAAAAAAAABA//aAAwDAQACEAMQAAABzwZBRUD/AP/EABoQAAICAwAAAAAAAAAAAAAAAAABAhESITL/2gAIAQEAAQUCSTKWVULlEpb/AP/EABYRAQEBAAAAAAAAAAAAAAAAAAABEf/aAAgBAwEBPwGNf//EABYRAQEBAAAAAAAAAAAAAAAAAAAhQf/aAAgBAgEBPwHFf//EABcQAAMBAAAAAAAAAAAAAAAAAAERIDH/2gAIAQEABj8CGOv/xAAaEAADAQEBAQAAAAAAAAAAAAAAARExIUFh/9oACAEBAAE/IajgJFLlF5HwQi1bCOD/2gAMAwEAAgADAAAAEF/v/8QAFREBAQAAAAAAAAAAAAAAAAAAIRD/2gAIAQMBAT8QDH//xAAYEQEAAwEAAAAAAAAAAAAAAAABABEhMf/aAAgBAgEBPxC9Kwscn//EABoQAQEAAwEBAAAAAAAAAAAAAAERACExUWH/2gAIAQEAAT8QaCg75DuMhRQ7tdI5MhCqtcZDSr0+OEoTVe6xYy67XP/Z&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;thinking monkey&quot;
+        title=&quot;thinking monkey&quot;
+        src=&quot;/static/7ed3f89de9ddf93c4408061843999991/828fb/thinking-monkey.jpg&quot;
+        srcset=&quot;/static/7ed3f89de9ddf93c4408061843999991/ff44c/thinking-monkey.jpg 158w,
+/static/7ed3f89de9ddf93c4408061843999991/a6688/thinking-monkey.jpg 315w,
+/static/7ed3f89de9ddf93c4408061843999991/828fb/thinking-monkey.jpg 630w,
+/static/7ed3f89de9ddf93c4408061843999991/0ede0/thinking-monkey.jpg 945w,
+/static/7ed3f89de9ddf93c4408061843999991/3ac88/thinking-monkey.jpg 1260w,
+/static/7ed3f89de9ddf93c4408061843999991/c83bb/thinking-monkey.jpg 4608w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Spoiler, Yes we can. Lets take a look and see how&lt;/p&gt;
+&lt;h3&gt;The Algorithm Plan&lt;/h3&gt;
+&lt;p&gt;How can this work? O(n) and O(1) space…&lt;/p&gt;
+&lt;p&gt;We can use a two pointer approach to achieve this&lt;/p&gt;
+&lt;p&gt;Overall Execution&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Set up two pointers
+&lt;ul&gt;
+&lt;li&gt;One for the first string, set to the last character&lt;/li&gt;
+&lt;li&gt;One for the second string, set to the last character&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;We will iterate through each character until we reach the first character of each string. Iterate while sIdx &gt;= 0 || tIdx &gt;= 0. This will ensure that we can get to the end of the strings if they are different lengths
+&lt;ul&gt;
+&lt;li&gt;For each iteration we will look for the next valid character idx
+&lt;ul&gt;
+&lt;li&gt;Valid character idx will be a an idx that will be part of the final string after backspaces are applied.&lt;/li&gt;
+&lt;li&gt;We will write a helper function for this functionality since we will need it for both strings.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Once we have a valid idx for both strings we will compare them.
+&lt;ul&gt;
+&lt;li&gt;If they are the same
+&lt;ul&gt;
+&lt;li&gt;Decrement the pointers&lt;/li&gt;
+&lt;li&gt;Continue to check the next character&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Else, return false and break. Strings are not equivalent&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;If the loop breaks check if sIdx === tIdx.
+&lt;ul&gt;
+&lt;li&gt;If they do, the strings are equivalent.
+&lt;ul&gt;
+&lt;li&gt;This is a case we will run into if the backspaces wind up creating an empty string for both strings and return -1s.&lt;/li&gt;
+&lt;li&gt;If one string becomes empty, and not the other, then they are not equivalent.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Valid Character Helper Function&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Args: currentIdx, string&lt;/li&gt;
+&lt;li&gt;Set up a backspace count variable equal to 0&lt;/li&gt;
+&lt;li&gt;If the current character is not a ”#”
+&lt;ul&gt;
+&lt;li&gt;If backspace count is 0
+&lt;ul&gt;
+&lt;li&gt;return currentIdx&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;If backspace count is &gt; 0
+&lt;ul&gt;
+&lt;li&gt;decrement backspace count&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;If the current character is a ”#”
+&lt;ul&gt;
+&lt;li&gt;Increment backspace count&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Decrement currentIdx for each iteration&lt;/li&gt;
+&lt;li&gt;Return -1 if there are no more characters&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The helper function is what’s doing most of the work here. Notice how we are finding the right indexes to compare here in O(1) space.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;That’s our plan. Lets code it up!&lt;/p&gt;
+&lt;h3&gt;Code&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;backspaceCompare&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;s&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; t&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; sIdx &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; s&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; tIdx &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; t&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;sIdx &lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt; tIdx &lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        sIdx &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;getValidIdx&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;s&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; sIdx&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        tIdx &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;getValidIdx&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;t&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; tIdx&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;s&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;sIdx&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;!==&lt;/span&gt; t&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;tIdx&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+        sIdx&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        tIdx&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; sIdx &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; tIdx&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;getValidIdx&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;string&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; idx&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; backspaceCount &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;idx &lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; char &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; string&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;idx&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;char &lt;span class=&quot;token operator&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;#&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; backspaceCount &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; idx&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;char &lt;span class=&quot;token operator&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;#&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; backspaceCount &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            backspaceCount&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;char &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;#&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            backspaceCount&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+        idx&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// At this point we would return -1 if there are no more valid chars&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; idx&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Summary&lt;/h3&gt;
+&lt;p&gt;This Algorithm runs in O(n) time and O(1) space. We completed our challenge! The crux here is figuring out how to apply the backspaces without using extra space. When I took on the challenge that’s the part that I struggled with the most. The pointer approach works quite beautifully.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The aha moment for me was that I don’t need to compare the entire strings in one go, I can do it character by character. That insight really helps open up the door to this approach.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Hope you found this walk through helpful!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[LeetCode 75. Sort Colors]]></title><description><![CDATA[Solving LeetCode 75. Sort Colors with a two pointer approach. Click here and try it out your self! This problem is also known ad the Dutch…]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io/dutch-national-flag-problem/</link><guid isPermaLink="false">https://gatsbystarterblogsource.gatsbyjs.io/dutch-national-flag-problem/</guid><pubDate>Sun, 16 Jan 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Solving LeetCode 75. Sort Colors with a two pointer approach. &lt;a href=&quot;https://leetcode.com/problems/sort-colors/&quot;&gt;Click here&lt;/a&gt; and try it out your self!&lt;/p&gt;
 &lt;p&gt;This problem is also known ad the Dutch National Flag problem because the flag has three colors.&lt;/p&gt;
 &lt;h3&gt;LeetCode Problem Statement&lt;/h3&gt;
 &lt;p&gt;Given an array nums with n objects colored red, white, or blue, sort them in-place so that objects of the same color are adjacent, with the colors in the order red, white, and blue.&lt;/p&gt;
