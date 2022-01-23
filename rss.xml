@@ -1,4 +1,134 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Deep Dev RSS Feed]]></title><description><![CDATA[A developer experience and learnings]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 22 Jan 2022 19:29:55 GMT</lastBuildDate><item><title><![CDATA[LeetCode 844. Backspace String Compare]]></title><description><![CDATA[Solving LeetCode 844, Backspace String Compare. Click here and try it out your self! LeetCode Problem Statement Given two strings s and t…]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io/backspace-string-compare/</link><guid isPermaLink="false">https://gatsbystarterblogsource.gatsbyjs.io/backspace-string-compare/</guid><pubDate>Sat, 22 Jan 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Solving LeetCode 844, Backspace String Compare. &lt;a href=&quot;https://leetcode.com/problems/backspace-string-compare/&quot;&gt;Click here&lt;/a&gt; and try it out your self!&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Deep Dev RSS Feed]]></title><description><![CDATA[A developer experience and learnings]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 23 Jan 2022 18:01:15 GMT</lastBuildDate><item><title><![CDATA[LeetCode 202. Happy Number]]></title><description><![CDATA[Solving LeetCode 202, Happy Number. Click here and try it out your self! LeetCode Problem Statement Write an algorithm to determine if a…]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io/happy-number/</link><guid isPermaLink="false">https://gatsbystarterblogsource.gatsbyjs.io/happy-number/</guid><pubDate>Sun, 23 Jan 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Solving LeetCode 202, Happy Number. &lt;a href=&quot;https://leetcode.com/problems/happy-number/&quot;&gt;Click here&lt;/a&gt; and try it out your self!&lt;/p&gt;
+&lt;h3&gt;LeetCode Problem Statement&lt;/h3&gt;
+&lt;p&gt;Write an algorithm to determine if a number n is happy.&lt;/p&gt;
+&lt;p&gt;A happy number is a number defined by the following process:&lt;/p&gt;
+&lt;p&gt;Starting with any positive integer, replace the number by the sum of the squares of its digits.
+Repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1.
+Those numbers for which this process ends in 1 are happy.
+Return true if n is a happy number, and false if not.&lt;/p&gt;
+&lt;p&gt;Examples:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Input: n = 19
+Output: true
+Explanation:
+12 + 92 = 82
+82 + 22 = 68
+62 + 82 = 100
+12 + 02 + 02 = 1
+
+
+Input: n = 2
+Output: false&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Initial Thoughts&lt;/h3&gt;
+&lt;p&gt;Happy Number. I didn’t realize numbers could feel emotions…&lt;/p&gt;
+&lt;p&gt;HA!&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/f6932c65520a0310119cd21cfd433043/1688a/happy-lama.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 132.91139240506328%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAbABQDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAIBAwQF/8QAFgEBAQEAAAAAAAAAAAAAAAAAAQIA/9oADAMBAAIQAxAAAAHsxmQdZBihnUaCCb//xAAcEAEAAgIDAQAAAAAAAAAAAAABAAIDEAQREjH/2gAIAQEAAQUC3yHrHRWgxxjPMdW+M//EABURAQEAAAAAAAAAAAAAAAAAABAR/9oACAEDAQE/AYU//8QAFREBAQAAAAAAAAAAAAAAAAAAEBH/2gAIAQIBAT8BIf/EABsQAAIBBQAAAAAAAAAAAAAAAAABEQIQEiAx/9oACAEBAAY/Ar5KoUyd3//EABsQAAIDAAMAAAAAAAAAAAAAAAABESExEEFR/9oACAEBAAE/IYIIMQRdPRmsjjtkytBSl45RRaJfJo//2gAMAwEAAgADAAAAECAugP/EABcRAQEBAQAAAAAAAAAAAAAAAAEAETH/2gAIAQMBAT8QNFkLkN//xAAXEQADAQAAAAAAAAAAAAAAAAAAAREx/9oACAECAQE/EG4UaaQ//8QAHRABAQEAAgIDAAAAAAAAAAAAAREAMVEQQSFhgf/aAAgBAQABPxDHHZKjxfMfQHvQHMxKfTr8qMmOwH5HeRbl1qOr4SJ6zb3/2Q==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;happy lama&quot;
+        title=&quot;happy lama&quot;
+        src=&quot;/static/f6932c65520a0310119cd21cfd433043/828fb/happy-lama.jpg&quot;
+        srcset=&quot;/static/f6932c65520a0310119cd21cfd433043/ff44c/happy-lama.jpg 158w,
+/static/f6932c65520a0310119cd21cfd433043/a6688/happy-lama.jpg 315w,
+/static/f6932c65520a0310119cd21cfd433043/828fb/happy-lama.jpg 630w,
+/static/f6932c65520a0310119cd21cfd433043/0ede0/happy-lama.jpg 945w,
+/static/f6932c65520a0310119cd21cfd433043/3ac88/happy-lama.jpg 1260w,
+/static/f6932c65520a0310119cd21cfd433043/1688a/happy-lama.jpg 2194w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;I thought I would have to keep track of my solutions. If a solution was equal to 1, then it would be a happy number. If I saw it before, then it would be a sad number.&lt;/p&gt;
+&lt;p&gt;This solution would require extra space though… can we do better?&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Could we solve with with O(1) space?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Indeed we can by using slow and fast pointers. Lets see how!&lt;/p&gt;
+&lt;h3&gt;The Algorithm Plan&lt;/h3&gt;
+&lt;p&gt;The key insight here is that we are searching for a cycle. Either
+a cycle that gets stuck in a number 1, or a cycle that doesn’t. Lets
+keep that in mind as we go through this Algorithm plan.&lt;/p&gt;
+&lt;p&gt;Approach Overview&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Set up two pointers, a slow one and a fast one
+&lt;ul&gt;
+&lt;li&gt;Slow = number&lt;/li&gt;
+&lt;li&gt;Fast = getNextSum(number)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;While fast != 1 &amp;#x26;&amp;#x26; slow != fast&lt;/li&gt;
+&lt;li&gt;Slow pointer will solve the problem for the current number&lt;/li&gt;
+&lt;li&gt;Fast pointer will solve the problem for two steps ahead&lt;/li&gt;
+&lt;li&gt;When the loops break
+&lt;ul&gt;
+&lt;li&gt;return fast === 1
+&lt;ul&gt;
+&lt;li&gt;If this is true, the number is happy, else it’s sad&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;getNextSum implementation&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Accepts number&lt;/li&gt;
+&lt;li&gt;Declare sum variable and set to zero&lt;/li&gt;
+&lt;li&gt;While number &gt; 0
+&lt;ul&gt;
+&lt;li&gt;Get the leading digit with modulo operator &lt;code class=&quot;language-text&quot;&gt;number % 10&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Update the sum with the square value &lt;code class=&quot;language-text&quot;&gt;sum = digit * digit&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Remove the leading digit from the number &lt;code class=&quot;language-text&quot;&gt;number = Math.floor(number/10)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Return the sum&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;That’s our plan. Overall this algorithm is fairly easy to implement. Nothing fancy here.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Once you realize that you are searching for cycles, this solution follows nicely. That’s the key insight we need to uncover.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Lets code it up!&lt;/p&gt;
+&lt;h3&gt;Code&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;isHappy&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; slow &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; number&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; fast &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;getNextSum&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;number&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;fast &lt;span class=&quot;token operator&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; slow &lt;span class=&quot;token operator&quot;&gt;!==&lt;/span&gt; fast&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        slow &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;getNextSum&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;slow&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        fast &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;getNextSum&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getNextSum&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;fast&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; fast &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;getNextSum&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; sum &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;number &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; digit &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; number &lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        sum &lt;span class=&quot;token operator&quot;&gt;+=&lt;/span&gt; digit &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; digit&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        number &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; Math&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;floor&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;number &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; sum&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Summary&lt;/h3&gt;
+&lt;p&gt;This Algorithm runs in O(logN) time and O(1) space. The time complexity here is hard to determine. It requires some real insight into the numbers.&lt;/p&gt;
+&lt;p&gt;For a detailed time complexity analysis I’d highly recommend the solution section on leetCode &lt;a href=&quot;https://leetcode.com/problems/happy-number/solution/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Hope the walk through was helpful!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[LeetCode 844. Backspace String Compare]]></title><description><![CDATA[Solving LeetCode 844, Backspace String Compare. Click here and try it out your self! LeetCode Problem Statement Given two strings s and t…]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io/backspace-string-compare/</link><guid isPermaLink="false">https://gatsbystarterblogsource.gatsbyjs.io/backspace-string-compare/</guid><pubDate>Sat, 22 Jan 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Solving LeetCode 844, Backspace String Compare. &lt;a href=&quot;https://leetcode.com/problems/backspace-string-compare/&quot;&gt;Click here&lt;/a&gt; and try it out your self!&lt;/p&gt;
 &lt;h3&gt;LeetCode Problem Statement&lt;/h3&gt;
 &lt;p&gt;Given two strings s and t, return true if they are equal when both are typed into empty text editors. ’#’ means a backspace character.&lt;/p&gt;
 &lt;p&gt;Note that after backspacing an empty text, the text will continue empty.&lt;/p&gt;
