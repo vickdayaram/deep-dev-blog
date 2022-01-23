@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Deep Dev RSS Feed]]></title><description><![CDATA[A developer experience and learnings]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 23 Jan 2022 18:01:15 GMT</lastBuildDate><item><title><![CDATA[LeetCode 202. Happy Number]]></title><description><![CDATA[Solving LeetCode 202, Happy Number. Click here and try it out your self! LeetCode Problem Statement Write an algorithm to determine if a…]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io/happy-number/</link><guid isPermaLink="false">https://gatsbystarterblogsource.gatsbyjs.io/happy-number/</guid><pubDate>Sun, 23 Jan 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Solving LeetCode 202, Happy Number. &lt;a href=&quot;https://leetcode.com/problems/happy-number/&quot;&gt;Click here&lt;/a&gt; and try it out your self!&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Deep Dev RSS Feed]]></title><description><![CDATA[A developer experience and learnings]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 23 Jan 2022 20:27:46 GMT</lastBuildDate><item><title><![CDATA[LeetCode 202. Happy Number]]></title><description><![CDATA[Solving LeetCode 202, Happy Number. Click here and try it out your self! LeetCode Problem Statement Write an algorithm to determine if a…]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io/happy-number/</link><guid isPermaLink="false">https://gatsbystarterblogsource.gatsbyjs.io/happy-number/</guid><pubDate>Sun, 23 Jan 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Solving LeetCode 202, Happy Number. &lt;a href=&quot;https://leetcode.com/problems/happy-number/&quot;&gt;Click here&lt;/a&gt; and try it out your self!&lt;/p&gt;
 &lt;h3&gt;LeetCode Problem Statement&lt;/h3&gt;
 &lt;p&gt;Write an algorithm to determine if a number n is happy.&lt;/p&gt;
 &lt;p&gt;A happy number is a number defined by the following process:&lt;/p&gt;
@@ -128,7 +128,141 @@ keep that in mind as we go through this Algorithm plan.&lt;/p&gt;
 &lt;h3&gt;Summary&lt;/h3&gt;
 &lt;p&gt;This Algorithm runs in O(logN) time and O(1) space. The time complexity here is hard to determine. It requires some real insight into the numbers.&lt;/p&gt;
 &lt;p&gt;For a detailed time complexity analysis I’d highly recommend the solution section on leetCode &lt;a href=&quot;https://leetcode.com/problems/happy-number/solution/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Hope the walk through was helpful!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[LeetCode 844. Backspace String Compare]]></title><description><![CDATA[Solving LeetCode 844, Backspace String Compare. Click here and try it out your self! LeetCode Problem Statement Given two strings s and t…]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io/backspace-string-compare/</link><guid isPermaLink="false">https://gatsbystarterblogsource.gatsbyjs.io/backspace-string-compare/</guid><pubDate>Sat, 22 Jan 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Solving LeetCode 844, Backspace String Compare. &lt;a href=&quot;https://leetcode.com/problems/backspace-string-compare/&quot;&gt;Click here&lt;/a&gt; and try it out your self!&lt;/p&gt;
+&lt;p&gt;Hope the walk through was helpful!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[LeetCode 581. Shortest Unsorted Continuous Subarray]]></title><description><![CDATA[Solving LeetCode 581, Shortest Unsorted Continuous Subarray. Click here and try it out your self! LeetCode Problem Statement Given an…]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io/shortest-unsorted-continuous-subarray/</link><guid isPermaLink="false">https://gatsbystarterblogsource.gatsbyjs.io/shortest-unsorted-continuous-subarray/</guid><pubDate>Sun, 23 Jan 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Solving LeetCode 581, Shortest Unsorted Continuous Subarray. &lt;a href=&quot;https://leetcode.com/problems/shortest-unsorted-continuous-subarray/&quot;&gt;Click here&lt;/a&gt; and try it out your self!&lt;/p&gt;
+&lt;h3&gt;LeetCode Problem Statement&lt;/h3&gt;
+&lt;p&gt;Given an integer array nums, you need to find one continuous subarray that if you only sort this subarray in ascending order, then the whole array will be sorted in ascending order.&lt;/p&gt;
+&lt;p&gt;Return the shortest such subarray and output its length.&lt;/p&gt;
+&lt;p&gt;Examples:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Input: nums = [2,6,4,8,10,9,15]
+Output: 5
+Explanation: You need to sort [6, 4, 8, 10, 9] in ascending order to make the whole array sorted in ascending order.
+
+Input: nums = [1,2,3,4]
+Output: 0
+
+Input: nums = [1]
+Output: 0&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Initial Thoughts&lt;/h3&gt;
+&lt;p&gt;This problem tripped me up. Grasping what you need to do is straight forward, but I had to spend some time coming up with a way to do this. What helped me get un-stuck is looking at examples and looking for a pattern. Doing this helps me understand more deeply what I am trying to find.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Once you know what you need to find, it’s easier to formulate a plan to get to a solution. So ask yourself often, “What I’m I looking for?”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;What we are looking for&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The minimum number out of order&lt;/li&gt;
+&lt;li&gt;The maximum number out of order&lt;/li&gt;
+&lt;li&gt;The index to insert the minimum number for it to be in order&lt;/li&gt;
+&lt;li&gt;The index to insert the maximum number for it to be in order&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Break down the problem and make it easy&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/77f9e3342487430058de1b5b70bd401c/32956/camara-pieces.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 66.45569620253164%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAwAE/8QAFQEBAQAAAAAAAAAAAAAAAAAAAQD/2gAMAwEAAhADEAAAAXbIhBFJ/8QAHRAAAQMFAQAAAAAAAAAAAAAAAgEDEQAEEhMiMv/aAAgBAQABBQIJQEmrj2DvG5IePIv/xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAdEAACAQQDAAAAAAAAAAAAAAAAARECITGRMoGh/9oACAEBAAY/AqYVoRS7aydCUenF7MH/xAAbEAEBAQEAAwEAAAAAAAAAAAABEQAhMUFRYf/aAAgBAQABPyGpB+A1CkD3nDzSZNTgGASB++egpHPbd//aAAwDAQACAAMAAAAQuM//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/ED//xAAVEQEBAAAAAAAAAAAAAAAAAAAAEf/aAAgBAgEBPxBH/8QAHRAAAgIDAAMAAAAAAAAAAAAAAREAITFBUWGBsf/aAAgBAQABPxDMjK4nuodoIHQKohCr+RhwmtBdPFAnwGpGt4cI3itD2oEyAFXUTleZ/9k=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;camara pieces&quot;
+        title=&quot;camara pieces&quot;
+        src=&quot;/static/77f9e3342487430058de1b5b70bd401c/828fb/camara-pieces.jpg&quot;
+        srcset=&quot;/static/77f9e3342487430058de1b5b70bd401c/ff44c/camara-pieces.jpg 158w,
+/static/77f9e3342487430058de1b5b70bd401c/a6688/camara-pieces.jpg 315w,
+/static/77f9e3342487430058de1b5b70bd401c/828fb/camara-pieces.jpg 630w,
+/static/77f9e3342487430058de1b5b70bd401c/0ede0/camara-pieces.jpg 945w,
+/static/77f9e3342487430058de1b5b70bd401c/3ac88/camara-pieces.jpg 1260w,
+/static/77f9e3342487430058de1b5b70bd401c/32956/camara-pieces.jpg 4179w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;The Algorithm Plan&lt;/h3&gt;
+&lt;p&gt;Keeping in mind the problems we need to solve, lets look at our Algorithm Plan.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Iterate from left to right and look for the first number out of order
+&lt;ul&gt;
+&lt;li&gt;Number out of order will be &lt;code class=&quot;language-text&quot;&gt;arr[i] &gt; arr[i + 1]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;If no number is found, return, array is sorted&lt;/li&gt;
+&lt;li&gt;Call this the lowIdx&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Iterate from right to left and look for the first number out of order
+&lt;ul&gt;
+&lt;li&gt;Number out of order will be &lt;code class=&quot;language-text&quot;&gt;arr[i] &amp;lt; arr[i - 1]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Call this the highIdx&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Look for the minimum number in the subarray from the above indexes&lt;/li&gt;
+&lt;li&gt;Look for the maximum number in the subarray from the above indexes&lt;/li&gt;
+&lt;li&gt;Expand the subarray if needed
+&lt;ul&gt;
+&lt;li&gt;Decrement the lowIdx while the current value at low index is greater than the minNumber you found.&lt;/li&gt;
+&lt;li&gt;Increment the highIdx while the current value at the high index is less than the maxNumber you found.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Return &lt;code class=&quot;language-text&quot;&gt;maxIdx - minIdx + 1&lt;/code&gt;. This is the length of the min subArray the needs to be sorted&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;That’s our plan! As you can tell by looking at it, we are just solving our sub problems, one sub problem at a time.&lt;/p&gt;
+&lt;p&gt;Lets code it up!&lt;/p&gt;
+&lt;h3&gt;Code&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;findUnSortedSubArray&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; low &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; high &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; array&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;low &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; array&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; array&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;low&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;=&lt;/span&gt; array&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;low &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        low&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;// Array is sorted&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;low &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; array&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;high &lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; array&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;high&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt; array&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;high &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        high&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; arrayMin &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;Infinity&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; arrayMax &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;Infinity&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; low&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;&amp;lt;=&lt;/span&gt; high&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        arrayMin &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; Math&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;arrayMin&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; array&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;i&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        arrayMax &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; Math&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;arrayMax&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; array&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;i&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;low &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; array&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;low &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; arrayMin&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        low&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;high &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; array&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; array&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;high &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; arrayMax&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        high&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; high &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; low &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;    
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Summary&lt;/h3&gt;
+&lt;p&gt;This Algorithm runs in O(N) time and O(1) space. Credit to Educative.io for this solution. It’s very elegant, and it’s a great example of breaking down a problem into sub problems.&lt;/p&gt;
+&lt;p&gt;The key takeaway from this problem is to break it down and keep it simple. The first part of solving these questions is teasing out that ambiguity.&lt;/p&gt;
+&lt;p&gt;Hope that you enjoyed this walk through.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;So, break it on down, and keep it simple&lt;/p&gt;
+&lt;/blockquote&gt;</content:encoded></item><item><title><![CDATA[LeetCode 844. Backspace String Compare]]></title><description><![CDATA[Solving LeetCode 844, Backspace String Compare. Click here and try it out your self! LeetCode Problem Statement Given two strings s and t…]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io/backspace-string-compare/</link><guid isPermaLink="false">https://gatsbystarterblogsource.gatsbyjs.io/backspace-string-compare/</guid><pubDate>Sat, 22 Jan 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Solving LeetCode 844, Backspace String Compare. &lt;a href=&quot;https://leetcode.com/problems/backspace-string-compare/&quot;&gt;Click here&lt;/a&gt; and try it out your self!&lt;/p&gt;
 &lt;h3&gt;LeetCode Problem Statement&lt;/h3&gt;
 &lt;p&gt;Given two strings s and t, return true if they are equal when both are typed into empty text editors. ’#’ means a backspace character.&lt;/p&gt;
 &lt;p&gt;Note that after backspacing an empty text, the text will continue empty.&lt;/p&gt;
