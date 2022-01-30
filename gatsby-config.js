@@ -12,7 +12,7 @@ module.exports = {
       summary: `who lives and works in Brooklyn building useful things.`,
     },
     description: `A developer experience and learnings`,
-    siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
+    siteUrl: `https://deepdevblog.com/`,
     social: {
       twitter: `@PradeepDayaram`,
     },
@@ -216,7 +216,7 @@ module.exports = {
               }
             `,
             output: "/rss.xml",
-            title: "DeepDevBlog RSS Feed",
+            title: "Your Site's RSS Feed",
             // optional configuration to insert feed reference in pages:
             // if `string` is used, it will be used to create RegExp and then test if pathname of
             // current page satisfied this regular expression;
