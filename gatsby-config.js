@@ -12,7 +12,7 @@ module.exports = {
       summary: `who lives and works in Brooklyn building useful things.`,
     },
     description: `A developer experience and learnings`,
-    siteUrl: `https://deepdevblog.com/`,
+    siteUrl: `https://www.deepdevblog.com/`,
     social: {
       twitter: `@PradeepDayaram`,
     },
