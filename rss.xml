@@ -1,4 +1,507 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Your Site's RSS Feed]]></title><description><![CDATA[A developer experience and learnings]]></description><link>https://www.deepdevblog.com</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 30 Jan 2022 18:21:45 GMT</lastBuildDate><item><title><![CDATA[LeetCode 581. Shortest Unsorted Continuous Subarray]]></title><description><![CDATA[Solving LeetCode 581, Shortest Unsorted Continuous Subarray. Click here and try it out your self! LeetCode Problem Statement Given an…]]></description><link>https://www.deepdevblog.com/shortest-unsorted-continuous-subarray/</link><guid isPermaLink="false">https://www.deepdevblog.com/shortest-unsorted-continuous-subarray/</guid><pubDate>Sun, 23 Jan 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Solving LeetCode 581, Shortest Unsorted Continuous Subarray. &lt;a href=&quot;https://leetcode.com/problems/shortest-unsorted-continuous-subarray/&quot;&gt;Click here&lt;/a&gt; and try it out your self!&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Your Site's RSS Feed]]></title><description><![CDATA[A developer experience and learnings]]></description><link>https://www.deepdevblog.com</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 12 Feb 2022 18:01:40 GMT</lastBuildDate><item><title><![CDATA[LeetCode 143. Reorder List]]></title><description><![CDATA[Solving LeetCode 143. Reorder List. Click here and try it out your self! LeetCode Problem Statement You are given the head of a singly…]]></description><link>https://www.deepdevblog.com/reorder-list/</link><guid isPermaLink="false">https://www.deepdevblog.com/reorder-list/</guid><pubDate>Sat, 12 Feb 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Solving LeetCode 143. Reorder List. &lt;a href=&quot;https://leetcode.com/problems/reorder-list/&quot;&gt;Click here&lt;/a&gt; and try it out your self!&lt;/p&gt;
+&lt;h3&gt;LeetCode Problem Statement&lt;/h3&gt;
+&lt;p&gt;You are given the head of a singly linked-list. The list can be represented as:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;L0 → L1 → … → Ln - 1 → Ln&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Reorder the list to be on the following form:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;L0 → Ln → L1 → Ln - 1 → L2 → Ln - 2 → …&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You may not modify the values in the list’s nodes. Only nodes themselves may be changed.&lt;/p&gt;
+&lt;p&gt;Examples:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Input: head = [1,2,3,4]
+Output: [1,4,2,3]
+
+Input: head = [1,2,3,4,5]
+Output: [1,5,2,4,3]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Initial Thoughts&lt;/h3&gt;
+&lt;p&gt;Hmmm… After some thought, it became clear that I’d have to solve a couple of sub problems. The way I realized this was by looking at the input and output, and walking through some examples by
+hand. Drawing things out by hand is recommended by mostly everyone, and with great
+reason. A tool that I have been using lately to do this is &lt;a href=&quot;https://excalidraw.com/&quot;&gt;excalidraw&lt;/a&gt;.
+It’s been super helpful.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;So, Draw things!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Breaking it down&lt;/h3&gt;
+&lt;p&gt;Let’s take an example:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/0e2e3a64eb04306b6d08f92abec1e9c8/078fe/inputOutput.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 63.291139240506325%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABYlAAAWJQFJUiTwAAABSUlEQVQ4y6WT2Y7DMAhF/f8/l8c+5KHZ27RZmr3NxuggUUWjkapRkYjB2ITLxW7bNnm9Xqr7vn+t7vl8yul0kiiKBGHzKJ/83+KokKTLsgg2gj3Ps6zrqr4hsPgwDHrHfjBNk/R9r3E3jqPcbjfdLMtSK2VFi6LQNUkSuV6veu5yucjj8ZCqquR+v0scx3oGm1yOPzdNow4Jzuez5HmuNivJWEmGhmEodV2/4+aTlKIcJZMUxyCSHAjARgySxdu2la7r1AYmNncUMh96RmLs/5DwV8xRhe/74nmelv3p0if/DRnWWA0yakzCKrAsDin0/dgiFKRaIQ4XaHKaptpoWKNiWA2CQFmm+cTZw2eFRM6yz491sDlIozkEezY6VAKzJMQ3Nm0K8LMse4+Ujo09PcpFbbDR42AfBx3WDT5iD0Of3jck2Ps9kvID8ivyWef49KYAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;inputOutput&quot;
+        title=&quot;inputOutput&quot;
+        src=&quot;/static/0e2e3a64eb04306b6d08f92abec1e9c8/f058b/inputOutput.png&quot;
+        srcset=&quot;/static/0e2e3a64eb04306b6d08f92abec1e9c8/c26ae/inputOutput.png 158w,
+/static/0e2e3a64eb04306b6d08f92abec1e9c8/6bdcf/inputOutput.png 315w,
+/static/0e2e3a64eb04306b6d08f92abec1e9c8/f058b/inputOutput.png 630w,
+/static/0e2e3a64eb04306b6d08f92abec1e9c8/078fe/inputOutput.png 934w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;It looks like we would like to re order the
+list in a way where we are interleaving the numbers
+from the end of the list into the beginning.&lt;/p&gt;
+&lt;p&gt;The pattern would be to start with the last node,
+5 in this case, and place it between the 1 and the 2. Then take the next last node, 4, and place it between the 2 and the 3.&lt;/p&gt;
+&lt;p&gt;We have two sets of numbers. Set A, the set we will insert nodes into, and Set B, the nodes that we will insert into Set A. Since we are only given
+one list however, we have to determine where one
+set of number ends and the other begins. From the example above, we can see that the middle of the list is this spot.&lt;/p&gt;
+&lt;p&gt;We can find the middle of the list, and then have
+two lists that we can work with. To find the middle of a linked list we can use the fast and slow pointer approach. With this approach we would end up with something like:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/d04f933dece2f25848547ba00e4a70af/d9199/twoLists.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 50.632911392405056%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAzElEQVQoz5WR2Q6EIAxF+f+P9AGDcYm4BFfQTm6TTpp5GLFJlStyuG3Nvu/UNA2N40jWWrquiyTu+6a3YQDo+56zrmsGppS+YEDfgA0crutK0zQR1iEEmueZtYZmAzWgLEsqioLatqWu69ipdingfxeY4zi4f8jzPNklLoAWoI4ntwYPlKZ/hNbDwTrGmOcQLpxzXCbKxltKXpaFBwVdVRVDs4Deey4Rh9FDgNHbYRhYYx+ZBUQ56BncSM9Ey8Ft2/hbztTNU9Of9C/wA4yXEdEZSjtRAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;twoLists&quot;
+        title=&quot;twoLists&quot;
+        src=&quot;/static/d04f933dece2f25848547ba00e4a70af/f058b/twoLists.png&quot;
+        srcset=&quot;/static/d04f933dece2f25848547ba00e4a70af/c26ae/twoLists.png 158w,
+/static/d04f933dece2f25848547ba00e4a70af/6bdcf/twoLists.png 315w,
+/static/d04f933dece2f25848547ba00e4a70af/f058b/twoLists.png 630w,
+/static/d04f933dece2f25848547ba00e4a70af/40601/twoLists.png 945w,
+/static/d04f933dece2f25848547ba00e4a70af/d9199/twoLists.png 960w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;This looks like something we can work with. Although it will be hard to work with the second list since we want to start backward. This is a singly linked list so we don’t have a reference to the previous node.&lt;/p&gt;
+&lt;p&gt;What if it was reversed? Then our lists would look something like:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/34fe6a84f5002566113bfc5738f8a22c/0a867/twoListsSecondReversed.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 50.632911392405056%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAAA40lEQVQoz52S14rEMAxF5/9/MiSB9N77HY7A87DsZsIKTCQ7Pr4qr3EclSSJ8jxXEARK01RxHCsMQ4s5833f/H3fhV3Xpb/sdRyHqqpSXddq21Y8QFwUhfq+1zAMdtY0zQd0C5ymySBcxC/L8hP/ZncwA6Kq6zpTlWWZPM9TFEW2zvM0gFsOeKtw2zbN86x1XW2DGIWo/XnxmzoD8tOyLAbFUAWc2roHWOw/ShkQBad2NIIO0wRKQIcpA7578CsQdVxyUMaFLxA3OowSJXgEJBWgpOVSJnYzh08JHqd8V/T/NOUNcvkPIiDhu6UAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;twoListsSecondReversed&quot;
+        title=&quot;twoListsSecondReversed&quot;
+        src=&quot;/static/34fe6a84f5002566113bfc5738f8a22c/f058b/twoListsSecondReversed.png&quot;
+        srcset=&quot;/static/34fe6a84f5002566113bfc5738f8a22c/c26ae/twoListsSecondReversed.png 158w,
+/static/34fe6a84f5002566113bfc5738f8a22c/6bdcf/twoListsSecondReversed.png 315w,
+/static/34fe6a84f5002566113bfc5738f8a22c/f058b/twoListsSecondReversed.png 630w,
+/static/34fe6a84f5002566113bfc5738f8a22c/40601/twoListsSecondReversed.png 945w,
+/static/34fe6a84f5002566113bfc5738f8a22c/0a867/twoListsSecondReversed.png 986w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Instead of having two separate lists, we could have two lists that end on the same node. Something like this:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 458px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/fbeea9fa215fcbb9f50b0965645e0c78/f7a31/twoListsSecondReversedConnected.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 54.43037974683544%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsTAAALEwEAmpwYAAABDklEQVQoz42SV4rFMAxF3/43mM80QnqvpOlxBA6ZjJmMQKjYupau9SnLUpqmkSzLJM9zKfJCLfk0TfWMGL8oCr0XRZH4vi/zPAtynqcY+QzDcIElSaKWOAgCCcNQY4pd170A4zhWXdfVDoiO46iJaZrUN6+/yR1MAauqUoC6rsXzPHEcR306WZZFLx3HoUrxU391CFcAYAGAq7ZtdUysKXgWPzu7ADng9bts26YWcDi8j2fr7keHcAaHXddpgvGhgRxiKODeG38KyFrwexTxs/wmoOSJUfiEEpRNMGtm7ZBuADM8smN0i8+4AOLzKF1y1ve9qhUQvvgMs1PwSaHhkTzn+77/b+S/Ltjit0/5Av6yVwlsxhyCAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;twoListsSecondReversedConnected&quot;
+        title=&quot;twoListsSecondReversedConnected&quot;
+        src=&quot;/static/fbeea9fa215fcbb9f50b0965645e0c78/f7a31/twoListsSecondReversedConnected.png&quot;
+        srcset=&quot;/static/fbeea9fa215fcbb9f50b0965645e0c78/c26ae/twoListsSecondReversedConnected.png 158w,
+/static/fbeea9fa215fcbb9f50b0965645e0c78/6bdcf/twoListsSecondReversedConnected.png 315w,
+/static/fbeea9fa215fcbb9f50b0965645e0c78/f7a31/twoListsSecondReversedConnected.png 458w&quot;
+        sizes=&quot;(max-width: 458px) 100vw, 458px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Our algorithm implementation will be written expecting to operate on this data structure (two lists that end on a shared node). Keep this in mind. Disconnecting the two lists would work as well, but the implementation would be different.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;So we will find the middle of the linked list, and reverse the second half. Once we get here we have to
+figure out how to interleave the nodes of the two lists. This is the tricky part.&lt;/p&gt;
+&lt;p&gt;We can iterate through both the lists, and update the pointers as we go. Let’s look at an overview of the process:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 513px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/abdf69e42b889ba1844567d05bb11bdd/267f6/ourVariables.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 51.89873417721519%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA/ElEQVQoz42SiaqFMAxE/f8/VEEUxX0X9yWXU2h5ePXyApEQ08nMtNa+7zKOowzDIH3fy7IsQlzX9ZV/+29hTdMkcRxLnufiuq4URfE6/AvIAD41YQxb2G/bJm3bKgVPzL8Aj+OQKIrEtm0Jw1DqupYkSaTrOsmyTBzHkbIslYK75CdQi8Y8z8Y/6qqqFCt6TdOoxAqW3OXfF1hvXsBcB7L1YtRgxROYYUic5ynruqofMEMmvtGjhjUzAJKA66BvGCIT/0huGQ993ze+4WGapqofBIF4nqdq/OV14DfLDCAfNugt+pYZgqm+ZZIaH/GUGX3up4f/eWtPM9rDDwoaDDFVD9v+AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;ourVariables&quot;
+        title=&quot;ourVariables&quot;
+        src=&quot;/static/abdf69e42b889ba1844567d05bb11bdd/267f6/ourVariables.png&quot;
+        srcset=&quot;/static/abdf69e42b889ba1844567d05bb11bdd/c26ae/ourVariables.png 158w,
+/static/abdf69e42b889ba1844567d05bb11bdd/6bdcf/ourVariables.png 315w,
+/static/abdf69e42b889ba1844567d05bb11bdd/267f6/ourVariables.png 513w&quot;
+        sizes=&quot;(max-width: 513px) 100vw, 513px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;During iteration&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/e6c27d2f8edbdd4b28304c00313fc938/13a9a/firstHalfUpdatePointers.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 65.82278481012659%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsTAAALEwEAmpwYAAABO0lEQVQ4y42SC4+CMBCE+f9/DyNEEgggIPJQRF6+9vI1qdHCcbdJQ9m2szO7Yz2fTzmdTtI0jVwuF/W9Xq/Stq3K13Ut0zSJjtfrNVs6T1j3+12iKJKiKCQMQ4njWKqqkuPxKFmWie/7b9BxHGUpNJgChKFt2+rhdruV3W6nCvB1XVc8z5PNZqOW4zhyPp8lz3M5HA7q+3g8vhmyQZ6W3Pf9Wy6Pkc/6PCPPIjeTLCsBgyAIFNBafEk2G0xPb7ebOoRZWZa/DmNxKGYVZDCgYRiUrCRJZn36BDLDMishj6nCkj29pMiSbUy5iz3kQpqmwvTZa7uQM22zxFLZhj7xAP/BDv+x3+/3iiGexFbcwQ1Muuu6ZYYkuES/YMAgAAWIQjzknwIajDua7Z+S1yzxnzNrzQ7mVNfsogF/AJUW9bYyXJaqAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;firstHalfUpdatePointers&quot;
+        title=&quot;firstHalfUpdatePointers&quot;
+        src=&quot;/static/e6c27d2f8edbdd4b28304c00313fc938/f058b/firstHalfUpdatePointers.png&quot;
+        srcset=&quot;/static/e6c27d2f8edbdd4b28304c00313fc938/c26ae/firstHalfUpdatePointers.png 158w,
+/static/e6c27d2f8edbdd4b28304c00313fc938/6bdcf/firstHalfUpdatePointers.png 315w,
+/static/e6c27d2f8edbdd4b28304c00313fc938/f058b/firstHalfUpdatePointers.png 630w,
+/static/e6c27d2f8edbdd4b28304c00313fc938/13a9a/firstHalfUpdatePointers.png 637w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 574px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/664532cbda00ab14534bc84f77f7da80/86389/secondHalfUpdatePointers.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 79.74683544303798%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAAAsTAAALEwEAmpwYAAABZElEQVQ4y52T66rCQAyE+/5P10qL+EOwNxW19n5R0cgXyKEUW+UE4q672dmZydYZhkHO57OUZamZ57nUdS1VVWmydjqdpG1bIV6v12wSDofTNFWgw+Gghw3ker3Kfr/XfS7+FoA6sHNdV8IwFM/zxPd92e12st1uZb1eSxAEmtSsViut4QxELpeLEuG/Xeg0TaNgJEziOJYsy5Qta7A8Ho+a7FHDGgqiKNI6RrPEWZJwu92kKArNX0Il8/N8Pv9ybDDsN5uNShvXWY3NbVSG0y51XadNwZPH46FSzR+r+dRdC2dMlwCs73t9MhiP6ayNgabzRUDMRSKgNAHZADKOa6fgs4CMdA2GdNOkA5okic6njVhkeL/f1Tc6y2FAkW3PBPZcxj5+f2XIU+EwB5gDzn/eJmBcgLdYMG3WrGSAYEoADICx/1nyp01841vmUzR5/2rK+GEjEbmwnqubZbjEdm5tCvgGOBHeGCX+v3UAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;secondHalfUpdatePointers&quot;
+        title=&quot;secondHalfUpdatePointers&quot;
+        src=&quot;/static/664532cbda00ab14534bc84f77f7da80/86389/secondHalfUpdatePointers.png&quot;
+        srcset=&quot;/static/664532cbda00ab14534bc84f77f7da80/c26ae/secondHalfUpdatePointers.png 158w,
+/static/664532cbda00ab14534bc84f77f7da80/6bdcf/secondHalfUpdatePointers.png 315w,
+/static/664532cbda00ab14534bc84f77f7da80/86389/secondHalfUpdatePointers.png 574w&quot;
+        sizes=&quot;(max-width: 574px) 100vw, 574px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Looks like things would work. Lets take a look at how our loop would break in this case:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 518px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/06a86bfb6aa5991bbd48bb70ec192b67/6b9fd/lastIterationForOddNumberLinkedList.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 70.88607594936708%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAAsTAAALEwEAmpwYAAABLElEQVQ4y42Si66CMBBE/f8vJBAwvAQNTwHlvTdnEwzRS3WTpd22TGdme1rXVR6PhzRNo9l13Svrupbn8yl93+uZtm3lfr9rTfAvuY/TsiwSRZHcbjfxfV+CIJA0TaUoCq0vl4t4nifX61VHx3F07xCQzzAMevs4jroIK/L98D6O9hSQG6uq0kROWZaS57laMM+zXkQy37M6ZIgvgALAHMmAAo4VlmWJ67ovBXvAD4bbIl5N0yRxHCsYQFskSfIBYpSMlDAMJcsyZUV3aRRzvOQy1t5l/suQD1IAIwHAP/yEpW3bWjOn04ycMwIiFZmwAJwRQLqPpzwXaoJn9pOHptj7+ZOHmy/73LylIefzWbuMHV+7bHq0AOIfdpDUJnaHgKafvllkZHhkhYnhHx9ZR+70Ik0FAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;lastIterationForOddNumberLinkedList&quot;
+        title=&quot;lastIterationForOddNumberLinkedList&quot;
+        src=&quot;/static/06a86bfb6aa5991bbd48bb70ec192b67/6b9fd/lastIterationForOddNumberLinkedList.png&quot;
+        srcset=&quot;/static/06a86bfb6aa5991bbd48bb70ec192b67/c26ae/lastIterationForOddNumberLinkedList.png 158w,
+/static/06a86bfb6aa5991bbd48bb70ec192b67/6bdcf/lastIterationForOddNumberLinkedList.png 315w,
+/static/06a86bfb6aa5991bbd48bb70ec192b67/6b9fd/lastIterationForOddNumberLinkedList.png 518w&quot;
+        sizes=&quot;(max-width: 518px) 100vw, 518px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;As you can see, we end up in a situation where&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;firstHalf &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;
+secondHalf &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Following our algorithm&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; nextFirstHalf &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; firstHalf&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;next &lt;span class=&quot;token comment&quot;&gt;// null&lt;/span&gt;
+firstHalf&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;next &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; secondHalf &lt;span class=&quot;token comment&quot;&gt;// 3, circular reference&lt;/span&gt;
+firstHalf &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; nextFirstHalf &lt;span class=&quot;token comment&quot;&gt;// null&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; nextSecondHalf &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; secondHalf&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;next &lt;span class=&quot;token comment&quot;&gt;// 3, circular reference&lt;/span&gt;
+secondHalf&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;next &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; firstHalf &lt;span class=&quot;token comment&quot;&gt;// break circular reference, now 3 -&gt; null&lt;/span&gt;
+secondHalf &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; nextSecondHalf &lt;span class=&quot;token comment&quot;&gt;// 3, with no circular reference&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;In this case, things would just work once the loop breaks. Nice!&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;But… How would the loop break with an even number of nodes?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I’ve added a node to our example, lets pick it up and go through it to find out.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/fb937574b90e9e0c9e132ac745834b8d/38cea/evenNodesIterationOne.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 68.9873417721519%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAAsTAAALEwEAmpwYAAABaUlEQVQ4y5WTi46CMBBF+f9/NILKQ0RERBAFx5zZXFKNm+w2qaXtzH1Mx+h+v9swDHa9Xn3t+97XcRxtnmd7Pp9/nozocrlYXddWFIUdDgdfq6qypmnsvwPQCGXb7daOx6Pt93s7nU4+AV+v1/7ddZ3FcWxlWdput3NCJvHsyX88Hj8K+cAmFs/nswMDolJwz1QZcIR6Yom53W5+vlgOJQO8Wq1c0W8DgCRJnPSr5WmanA3rMGIDRpRiUQ8DCTHssyzzWJRzDsYCyAWPwoUeiPptNht/IABI4EygEKl+1JlyLIB8CFCWGBCRqMF927Z+JlUolIsFkB/sMWFiVeGplYIBC1VSbyYq3yyzIVltQ5LagzNUhKSQEUMshHmeu5s3yzwKQQwBQESvKZC9EgFFJQNXCFjahqA0Tb1xw3YBGBUCDNsGVeSomQFHEOWJvvWSVsjCvQApESpVXz3i8iiff/BQ0SfJNwHh+QuilUAj6Jz9mQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;evenNodesIterationOne&quot;
+        title=&quot;evenNodesIterationOne&quot;
+        src=&quot;/static/fb937574b90e9e0c9e132ac745834b8d/f058b/evenNodesIterationOne.png&quot;
+        srcset=&quot;/static/fb937574b90e9e0c9e132ac745834b8d/c26ae/evenNodesIterationOne.png 158w,
+/static/fb937574b90e9e0c9e132ac745834b8d/6bdcf/evenNodesIterationOne.png 315w,
+/static/fb937574b90e9e0c9e132ac745834b8d/f058b/evenNodesIterationOne.png 630w,
+/static/fb937574b90e9e0c9e132ac745834b8d/38cea/evenNodesIterationOne.png 678w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/ac2368155f138dc19395541e9faef141/38cea/evenNodesIterationTwo.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 63.291139240506325%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsTAAALEwEAmpwYAAABVElEQVQ4y5XT2Y7CMAwF0P7/P4J4AVp2KPuW0bHkTtF0RhpLURwv19dOUq3X67JYLMp8Pi+r1Sp0trZty3/k/X7HXm02m7JcLgMEoLXdbgu7/Xa7lfP5XHa7XTkej1HIfjqdQme3ErQC1Ac8HA4BhulsNiv3+z2A6fxN08TZkpfnDnCI/vP5LNPpNBL+EmAKPR6Pb8Dr9Voul0sYtUHnEJxz5BP3er1CNwaiE6wTLABzXpKzFfpoNOoYOosBaiRA6DmWD8AcNCA37QI4APARNn5nMeIBAxP3AShYe9q1Y8UhURLRqnNeVl3XAWrOPwA5VEoWbns8Hoctn4OZKaQAG1AE6Ej0pTJkYFi4kGQoIQfu1vf7ffjFaj2fk3jA4sV1zwYgttqRSLDNtodEvEIKaF2xKr+MilrRQgJi3/8FuZKA4pPJpJtjtNz/h0N/c+j8W7xL+QI6gu8aCOEyzQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;evenNodesIterationTwo&quot;
+        title=&quot;evenNodesIterationTwo&quot;
+        src=&quot;/static/ac2368155f138dc19395541e9faef141/f058b/evenNodesIterationTwo.png&quot;
+        srcset=&quot;/static/ac2368155f138dc19395541e9faef141/c26ae/evenNodesIterationTwo.png 158w,
+/static/ac2368155f138dc19395541e9faef141/6bdcf/evenNodesIterationTwo.png 315w,
+/static/ac2368155f138dc19395541e9faef141/f058b/evenNodesIterationTwo.png 630w,
+/static/ac2368155f138dc19395541e9faef141/38cea/evenNodesIterationTwo.png 678w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/cceb3ec57989ea4ac2305fc7aebf2c58/8ae3e/evenNodesIterationThree.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 60.75949367088608%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsTAAALEwEAmpwYAAABP0lEQVQoz42Th46EMAxE+f+fRKIsvS69efV8MmIRWl0kEycZ2zNOcPZ9l3meZZomWZZF/XVd1RjHcch/huEcEvi+rxYEgc5RFKnf972CSI4/jqMMw6DFMdZd18m2bWdSB1ZZlklZllIUhbRtK3VdS57nagySxHGs6zRNTyzrJEkElWfCXzIIJuDXgDkkbKjk9/ut/bvKMaD1lbVJZ0YuPu2BaVVVfwwtkF4ghTUzEtkDREEzginyer2UvfUPLIUcPvSMClSDJT3FNynscU7fOANPO/BNFSpUMhW4WYIBYE3T6C3b04EZjJAJFhUkd11Xz75umRtCBpWgTRAgGBEIiDMKwoR9JIOlMMnsDT7eMgk9z1Om+PTz/rhZw56k4L4Y8jFjwAIg8z2JYehXGIZ6cVd22sMr8InJveDTr3iV/AGtUqU3mRaouQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;evenNodesIterationThree&quot;
+        title=&quot;evenNodesIterationThree&quot;
+        src=&quot;/static/cceb3ec57989ea4ac2305fc7aebf2c58/f058b/evenNodesIterationThree.png&quot;
+        srcset=&quot;/static/cceb3ec57989ea4ac2305fc7aebf2c58/c26ae/evenNodesIterationThree.png 158w,
+/static/cceb3ec57989ea4ac2305fc7aebf2c58/6bdcf/evenNodesIterationThree.png 315w,
+/static/cceb3ec57989ea4ac2305fc7aebf2c58/f058b/evenNodesIterationThree.png 630w,
+/static/cceb3ec57989ea4ac2305fc7aebf2c58/8ae3e/evenNodesIterationThree.png 756w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;In this case, secondHalf would be null, and firstHalf.next would be pointing to itself. As you can see we end up with a cycle.&lt;/p&gt;
+&lt;p&gt;To ensure we return a proper list without a cycle, we have to check to make sure that firstHalf.next equals null after the loop breaks. If it doesn’t, set it to null to remove the cycle&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The last iteration is key here! This tripped me up for sure!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;The Algorithm Plan&lt;/h3&gt;
+&lt;p&gt;Steps we need to solve this problem from our breakdown analysis:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Overview&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Find middle of list&lt;/li&gt;
+&lt;li&gt;Reverse second half&lt;/li&gt;
+&lt;li&gt;Use to pointers to iterate through both lists, and interleave the nodes&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Finding the middle of the linked list&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Use a two pointer approach
+&lt;ul&gt;
+&lt;li&gt;Previous pointer, Slow pointer, and Fast pointer&lt;/li&gt;
+&lt;li&gt;Once Fast reaches the end, Slow will be the middle node of the list&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Reverse the second half of the list&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Write a helper function to reverse the list starting from the slow node&lt;/li&gt;
+&lt;li&gt;The function should return the new head of this list, this value will be our secondHalf&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Interleave the nodes&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Create a pointer for the firstHalf&lt;/li&gt;
+&lt;li&gt;Iterate through while firstHalf and secondHalf are not null&lt;/li&gt;
+&lt;li&gt;Update pointers for the firstHalf
+&lt;ul&gt;
+&lt;li&gt;Store the nextFirstHalf&lt;/li&gt;
+&lt;li&gt;Set firstHalf.next to secondHalf&lt;/li&gt;
+&lt;li&gt;Set firstHalf to nextFirstHalf&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Update pointers for the secondHalf
+&lt;ul&gt;
+&lt;li&gt;Store the nextSecondHalf&lt;/li&gt;
+&lt;li&gt;Set secondHalf.next to firstHalf&lt;/li&gt;
+&lt;li&gt;Set secondHalf to nextSecondHalf&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Return head (Since we are just changing pointers, we can return the original head of the list we were given)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Alright, lets code it up!&lt;/p&gt;
+&lt;h3&gt;Code&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;reorderList&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    
+    &lt;span class=&quot;token comment&quot;&gt;// Find the middle&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; slow &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; head&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; fast &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; head&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;fast &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; fast&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;next&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        slow &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; slow&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;next&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        fast &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; fast&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;next&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;next&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;// reverse second half&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; secondHalf &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;reverseList&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;slow&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;// interleave nodes&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; firstHalf &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; head&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;firstHalf &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; secondHalf&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token comment&quot;&gt;// Update firstHalf pointers&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; nextFirstHalf &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; firstHalf&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;next&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        firstHalf&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;next &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; secondHalf&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        firstHalf &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; nextFirstHalf
+
+        &lt;span class=&quot;token comment&quot;&gt;// Update secondHalf pointers&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; nextSecondHalf &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; secondHalf&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;next&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        secondHalf&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;next &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; firstHalf&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        secondHalf &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; nextSecondHalf&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;// remove circular dependency if it exists&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;firstHalf &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; firstHalf&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;next &lt;span class=&quot;token operator&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        firstHalf&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;next &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// return original head since we were just changing pointers&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; head&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;reverseList&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; prev &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;node&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; nextNode &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; node&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;next&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        node&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;next &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; prev&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        prev &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; node&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        node &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; nextNode&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; prev&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Summary&lt;/h3&gt;
+&lt;p&gt;This was an interesting problem. The solution I am using here is from educative.io. Using two linked lists that point to the same node wasn’t something that came to my mind. This data structure makes the algorithm slightly nicer though.&lt;/p&gt;
+&lt;p&gt;Without knowing that solution, disconnecting the lists is a more natural solution. The crux with that approach also reveals it self in the last iteration. You have to add some additional logic in the loop to handle some cases.&lt;/p&gt;
+&lt;p&gt;I challenge you to give that a shot. Draw out a diagram and work through it slowly, iteration by iteration.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Sometimes, you have to go slow to go fast!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Hope this was helpful!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[LeetCode 581. Shortest Unsorted Continuous Subarray]]></title><description><![CDATA[Solving LeetCode 581, Shortest Unsorted Continuous Subarray. Click here and try it out your self! LeetCode Problem Statement Given an…]]></description><link>https://www.deepdevblog.com/shortest-unsorted-continuous-subarray/</link><guid isPermaLink="false">https://www.deepdevblog.com/shortest-unsorted-continuous-subarray/</guid><pubDate>Sun, 23 Jan 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Solving LeetCode 581, Shortest Unsorted Continuous Subarray. &lt;a href=&quot;https://leetcode.com/problems/shortest-unsorted-continuous-subarray/&quot;&gt;Click here&lt;/a&gt; and try it out your self!&lt;/p&gt;
 &lt;h3&gt;LeetCode Problem Statement&lt;/h3&gt;
 &lt;p&gt;Given an integer array nums, you need to find one continuous subarray that if you only sort this subarray in ascending order, then the whole array will be sorted in ascending order.&lt;/p&gt;
 &lt;p&gt;Return the shortest such subarray and output its length.&lt;/p&gt;
