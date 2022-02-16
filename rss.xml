@@ -1,4 +1,102 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Your Site's RSS Feed]]></title><description><![CDATA[A developer experience and learnings]]></description><link>https://www.deepdevblog.com</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 12 Feb 2022 18:01:40 GMT</lastBuildDate><item><title><![CDATA[LeetCode 143. Reorder List]]></title><description><![CDATA[Solving LeetCode 143. Reorder List. Click here and try it out your self! LeetCode Problem Statement You are given the head of a singly…]]></description><link>https://www.deepdevblog.com/reorder-list/</link><guid isPermaLink="false">https://www.deepdevblog.com/reorder-list/</guid><pubDate>Sat, 12 Feb 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Solving LeetCode 143. Reorder List. &lt;a href=&quot;https://leetcode.com/problems/reorder-list/&quot;&gt;Click here&lt;/a&gt; and try it out your self!&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Deep Dev RSS Feed]]></title><description><![CDATA[A developer experience and learnings]]></description><link>https://www.deepdevblog.com</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 16 Feb 2022 23:54:27 GMT</lastBuildDate><item><title><![CDATA[LeetCode 57. Insert Interval]]></title><description><![CDATA[Solving LeetCode 57, Insert Interval. Click here and try it out your self! LeetCode Problem Statement You are given an array of non…]]></description><link>https://www.deepdevblog.com/insert-interval/</link><guid isPermaLink="false">https://www.deepdevblog.com/insert-interval/</guid><pubDate>Sun, 13 Feb 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Solving LeetCode 57, Insert Interval. &lt;a href=&quot;https://leetcode.com/problems/insert-interval/&quot;&gt;Click here&lt;/a&gt; and try it out your self!&lt;/p&gt;
+&lt;h3&gt;LeetCode Problem Statement&lt;/h3&gt;
+&lt;p&gt;You are given an array of non-overlapping intervals intervals where intervals[i] = [starti, endi] represent the start and the end of the ith interval and intervals is sorted in ascending order by starti. You are also given an interval newInterval = [start, end] that represents the start and end of another interval.&lt;/p&gt;
+&lt;p&gt;Insert newInterval into intervals such that intervals is still sorted in ascending order by starti and intervals still does not have any overlapping intervals (merge overlapping intervals if necessary).&lt;/p&gt;
+&lt;p&gt;Return intervals after the insertion.&lt;/p&gt;
+&lt;p&gt;Examples:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Input: intervals = [[1,3],[6,9]], newInterval = [2,5]
+Output: [[1,5],[6,9]]
+
+Input: intervals = [[1,2],[3,5],[6,7],[8,10],[12,16]], newInterval = [4,8]
+Output: [[1,2],[3,10],[12,16]]
+Explanation: Because the new interval [4,8] overlaps with [3,5],[6,7],[8,10].&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Initial Thoughts&lt;/h3&gt;
+&lt;p&gt;Must be a two step process. Step one, find the right spot for the new
+interval and insert it. Step two, merge the necessary intervals.&lt;/p&gt;
+&lt;p&gt;Brute force could be pushing in the new interval, then sorting by start time
+and merging all the remaining intervals. Since the data is already sorted though,
+we should be able to devise a more efficient way of solving this problem.&lt;/p&gt;
+&lt;p&gt;I’ll draw a timeline diagram for sure. Doing that is one of the most helpful things
+when solving these interval problems.&lt;/p&gt;
+&lt;h3&gt;Breaking it down&lt;/h3&gt;
+&lt;p&gt;Lets start by taking a look at the example:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/6a141b5edc4de4ff1c8023a96ad11600/30c92/example1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 108.86075949367088%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAWCAYAAADAQbwGAAAACXBIWXMAABYlAAAWJQFJUiTwAAAB5klEQVQ4y62U6arCQAyF+/7vpRVFBHFrFdz3fd/N5QtERntr/eFASCczc5KTpd75fJbNZiP7/V4ul4uwHo9HrNhyv93l7XY7yWQy4vu+zGYzNd7v95dL70BxYAoYd3C73RQYbSDX6zU5Qqhms1kJw1DK5bI0Gg1ZLpeSz+clnU5LoVBQBrlcTuUryjxMpVKqi8WiVKtV6Xa7UqlU1I5D8uxGGwsIrfl8LqvVShaLhWqcsKA4HA5lu93Kt8s7Ho8yGAyeoEiz2dQUtFotLVS9Xpf1eh3pgNgcQpP8BEEg4/FY9+SuVCopWK1WU8qfcpdY5f9WEpgCcok8omny0+mkGjkcDtrsLsXECN2LtAsgFIFcsqdQVPfTBLmOIoBERCEoEt/kjqiT0vAEdD0DNJlMNCoA2fP9/iguuicgLUF09B8g731HjrETrYmlxKJ/iZBoAKNluIS4l6COUwo1Go30Pu0GmDmPACLQA4zLLjUi5MwmCW2sGIwI4K8WoDrL7oih2bfbbZ3jfr8vvV5P9xSMnwa0sdk5YqPpWbsQOlTQHE6nU6Vu800hyDN3sJMietbOrFeVMkaAKQpJ5mfBYx4RDQDYzCksEAuEM5t1z6oIoHmimtgsAr5xYDYcAITmF9fpdF4p/7Iof2qbqtqeMHRaAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;example1&quot;
+        title=&quot;example1&quot;
+        src=&quot;https://www.deepdevblog.com/static/6a141b5edc4de4ff1c8023a96ad11600/f058b/example1.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/6a141b5edc4de4ff1c8023a96ad11600/c26ae/example1.png 158w,
+https://www.deepdevblog.com/static/6a141b5edc4de4ff1c8023a96ad11600/6bdcf/example1.png 315w,
+https://www.deepdevblog.com/static/6a141b5edc4de4ff1c8023a96ad11600/f058b/example1.png 630w,
+https://www.deepdevblog.com/static/6a141b5edc4de4ff1c8023a96ad11600/30c92/example1.png 874w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;From looking at this, we can figure out that the right spot to
+insert the interval is between the first and second interval in the
+list. This means we have to find the first interval in the
+list that overlaps with the new interval.&lt;/p&gt;
+&lt;p&gt;Lets look at the second example:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/da12dbf85200da58b87a3437dffc7d79/307e7/example2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 74.0506329113924%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAABYlAAAWJQFJUiTwAAABhUlEQVQ4y62T2YrCUAyGz/u/ljelVwWXUkQtUq17q1a7uGT4AimjU2aYYQ6EpGny509OjrvdblLXtTyfT/nt6cpxcRxLEASSZZk68jxX4Xu73cpms5H9fq/2er1WG9/5fO4EdfP5XHq9nnieJ+PxWIbDofi+r74wDNVHzHQ6lclkojqKopbAF8DT6SS73U4rI1VVaXXsP7VMK1RMkkSZjEYjFdgMBgPp9/sym800+PF4KIjpToZcCizLspSmaeRyuUhRFHK9XlubGEv+6fLcewu0CxDa7Pv9/sLGgLvkBZBEGMH0eDyqNvlubi8MmYfNBEBaBRRm1jKakXBhNkv8CF0wMmz8jhteLpeahGbHAF2tVrp3JLAifCMcK0oXi8VCAYnjgTiACLB2sa1lgIylJXG4pPc50wEYDsfhcNAfsCXZXor9I9heEIXogjh21eJYP4goQ5z2vADAtnbNDxhA/Kcwmr0lLk1T3WOKtZcCXYR2ELM/awrAgm9GwyUxN2zbYyf/fD4AavOIsDiDgusAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;example2&quot;
+        title=&quot;example2&quot;
+        src=&quot;https://www.deepdevblog.com/static/da12dbf85200da58b87a3437dffc7d79/f058b/example2.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/da12dbf85200da58b87a3437dffc7d79/c26ae/example2.png 158w,
+https://www.deepdevblog.com/static/da12dbf85200da58b87a3437dffc7d79/6bdcf/example2.png 315w,
+https://www.deepdevblog.com/static/da12dbf85200da58b87a3437dffc7d79/f058b/example2.png 630w,
+https://www.deepdevblog.com/static/da12dbf85200da58b87a3437dffc7d79/40601/example2.png 945w,
+https://www.deepdevblog.com/static/da12dbf85200da58b87a3437dffc7d79/78612/example2.png 1260w,
+https://www.deepdevblog.com/static/da12dbf85200da58b87a3437dffc7d79/307e7/example2.png 1354w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Applying our rule, we could ask our selves if the new interval overlaps with
+the current one we are iterating through. If it does, we have found our spot.&lt;/p&gt;
+&lt;p&gt;Another observation here is that all the intervals that do not overlap with
+the new interval, will remain mutually exclusive.&lt;/p&gt;
+&lt;h3&gt;The Algorithm Plan&lt;/h3&gt;
+&lt;h3&gt;Code&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Summary&lt;/h3&gt;</content:encoded></item><item><title><![CDATA[LeetCode 143. Reorder List]]></title><description><![CDATA[Solving LeetCode 143. Reorder List. Click here and try it out your self! LeetCode Problem Statement You are given the head of a singly…]]></description><link>https://www.deepdevblog.com/reorder-list/</link><guid isPermaLink="false">https://www.deepdevblog.com/reorder-list/</guid><pubDate>Sat, 12 Feb 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Solving LeetCode 143. Reorder List. &lt;a href=&quot;https://leetcode.com/problems/reorder-list/&quot;&gt;Click here&lt;/a&gt; and try it out your self!&lt;/p&gt;
 &lt;h3&gt;LeetCode Problem Statement&lt;/h3&gt;
 &lt;p&gt;You are given the head of a singly linked-list. The list can be represented as:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;L0 → L1 → … → Ln - 1 → Ln&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -27,7 +125,7 @@ It’s been super helpful.&lt;/p&gt;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/0e2e3a64eb04306b6d08f92abec1e9c8/078fe/inputOutput.png&quot;
+    href=&quot;https://www.deepdevblog.com/static/0e2e3a64eb04306b6d08f92abec1e9c8/078fe/inputOutput.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -40,11 +138,11 @@ It’s been super helpful.&lt;/p&gt;
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;inputOutput&quot;
         title=&quot;inputOutput&quot;
-        src=&quot;/static/0e2e3a64eb04306b6d08f92abec1e9c8/f058b/inputOutput.png&quot;
-        srcset=&quot;/static/0e2e3a64eb04306b6d08f92abec1e9c8/c26ae/inputOutput.png 158w,
-/static/0e2e3a64eb04306b6d08f92abec1e9c8/6bdcf/inputOutput.png 315w,
-/static/0e2e3a64eb04306b6d08f92abec1e9c8/f058b/inputOutput.png 630w,
-/static/0e2e3a64eb04306b6d08f92abec1e9c8/078fe/inputOutput.png 934w&quot;
+        src=&quot;https://www.deepdevblog.com/static/0e2e3a64eb04306b6d08f92abec1e9c8/f058b/inputOutput.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/0e2e3a64eb04306b6d08f92abec1e9c8/c26ae/inputOutput.png 158w,
+https://www.deepdevblog.com/static/0e2e3a64eb04306b6d08f92abec1e9c8/6bdcf/inputOutput.png 315w,
+https://www.deepdevblog.com/static/0e2e3a64eb04306b6d08f92abec1e9c8/f058b/inputOutput.png 630w,
+https://www.deepdevblog.com/static/0e2e3a64eb04306b6d08f92abec1e9c8/078fe/inputOutput.png 934w&quot;
         sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -68,7 +166,7 @@ two lists that we can work with. To find the middle of a linked list we can use 
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/d04f933dece2f25848547ba00e4a70af/d9199/twoLists.png&quot;
+    href=&quot;https://www.deepdevblog.com/static/d04f933dece2f25848547ba00e4a70af/d9199/twoLists.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -81,12 +179,12 @@ two lists that we can work with. To find the middle of a linked list we can use 
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;twoLists&quot;
         title=&quot;twoLists&quot;
-        src=&quot;/static/d04f933dece2f25848547ba00e4a70af/f058b/twoLists.png&quot;
-        srcset=&quot;/static/d04f933dece2f25848547ba00e4a70af/c26ae/twoLists.png 158w,
-/static/d04f933dece2f25848547ba00e4a70af/6bdcf/twoLists.png 315w,
-/static/d04f933dece2f25848547ba00e4a70af/f058b/twoLists.png 630w,
-/static/d04f933dece2f25848547ba00e4a70af/40601/twoLists.png 945w,
-/static/d04f933dece2f25848547ba00e4a70af/d9199/twoLists.png 960w&quot;
+        src=&quot;https://www.deepdevblog.com/static/d04f933dece2f25848547ba00e4a70af/f058b/twoLists.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/d04f933dece2f25848547ba00e4a70af/c26ae/twoLists.png 158w,
+https://www.deepdevblog.com/static/d04f933dece2f25848547ba00e4a70af/6bdcf/twoLists.png 315w,
+https://www.deepdevblog.com/static/d04f933dece2f25848547ba00e4a70af/f058b/twoLists.png 630w,
+https://www.deepdevblog.com/static/d04f933dece2f25848547ba00e4a70af/40601/twoLists.png 945w,
+https://www.deepdevblog.com/static/d04f933dece2f25848547ba00e4a70af/d9199/twoLists.png 960w&quot;
         sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -102,7 +200,7 @@ two lists that we can work with. To find the middle of a linked list we can use 
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/34fe6a84f5002566113bfc5738f8a22c/0a867/twoListsSecondReversed.png&quot;
+    href=&quot;https://www.deepdevblog.com/static/34fe6a84f5002566113bfc5738f8a22c/0a867/twoListsSecondReversed.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -115,12 +213,12 @@ two lists that we can work with. To find the middle of a linked list we can use 
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;twoListsSecondReversed&quot;
         title=&quot;twoListsSecondReversed&quot;
-        src=&quot;/static/34fe6a84f5002566113bfc5738f8a22c/f058b/twoListsSecondReversed.png&quot;
-        srcset=&quot;/static/34fe6a84f5002566113bfc5738f8a22c/c26ae/twoListsSecondReversed.png 158w,
-/static/34fe6a84f5002566113bfc5738f8a22c/6bdcf/twoListsSecondReversed.png 315w,
-/static/34fe6a84f5002566113bfc5738f8a22c/f058b/twoListsSecondReversed.png 630w,
-/static/34fe6a84f5002566113bfc5738f8a22c/40601/twoListsSecondReversed.png 945w,
-/static/34fe6a84f5002566113bfc5738f8a22c/0a867/twoListsSecondReversed.png 986w&quot;
+        src=&quot;https://www.deepdevblog.com/static/34fe6a84f5002566113bfc5738f8a22c/f058b/twoListsSecondReversed.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/34fe6a84f5002566113bfc5738f8a22c/c26ae/twoListsSecondReversed.png 158w,
+https://www.deepdevblog.com/static/34fe6a84f5002566113bfc5738f8a22c/6bdcf/twoListsSecondReversed.png 315w,
+https://www.deepdevblog.com/static/34fe6a84f5002566113bfc5738f8a22c/f058b/twoListsSecondReversed.png 630w,
+https://www.deepdevblog.com/static/34fe6a84f5002566113bfc5738f8a22c/40601/twoListsSecondReversed.png 945w,
+https://www.deepdevblog.com/static/34fe6a84f5002566113bfc5738f8a22c/0a867/twoListsSecondReversed.png 986w&quot;
         sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -135,7 +233,7 @@ two lists that we can work with. To find the middle of a linked list we can use 
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/fbeea9fa215fcbb9f50b0965645e0c78/f7a31/twoListsSecondReversedConnected.png&quot;
+    href=&quot;https://www.deepdevblog.com/static/fbeea9fa215fcbb9f50b0965645e0c78/f7a31/twoListsSecondReversedConnected.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -148,10 +246,10 @@ two lists that we can work with. To find the middle of a linked list we can use 
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;twoListsSecondReversedConnected&quot;
         title=&quot;twoListsSecondReversedConnected&quot;
-        src=&quot;/static/fbeea9fa215fcbb9f50b0965645e0c78/f7a31/twoListsSecondReversedConnected.png&quot;
-        srcset=&quot;/static/fbeea9fa215fcbb9f50b0965645e0c78/c26ae/twoListsSecondReversedConnected.png 158w,
-/static/fbeea9fa215fcbb9f50b0965645e0c78/6bdcf/twoListsSecondReversedConnected.png 315w,
-/static/fbeea9fa215fcbb9f50b0965645e0c78/f7a31/twoListsSecondReversedConnected.png 458w&quot;
+        src=&quot;https://www.deepdevblog.com/static/fbeea9fa215fcbb9f50b0965645e0c78/f7a31/twoListsSecondReversedConnected.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/fbeea9fa215fcbb9f50b0965645e0c78/c26ae/twoListsSecondReversedConnected.png 158w,
+https://www.deepdevblog.com/static/fbeea9fa215fcbb9f50b0965645e0c78/6bdcf/twoListsSecondReversedConnected.png 315w,
+https://www.deepdevblog.com/static/fbeea9fa215fcbb9f50b0965645e0c78/f7a31/twoListsSecondReversedConnected.png 458w&quot;
         sizes=&quot;(max-width: 458px) 100vw, 458px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -171,7 +269,7 @@ figure out how to interleave the nodes of the two lists. This is the tricky part
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/abdf69e42b889ba1844567d05bb11bdd/267f6/ourVariables.png&quot;
+    href=&quot;https://www.deepdevblog.com/static/abdf69e42b889ba1844567d05bb11bdd/267f6/ourVariables.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -184,10 +282,10 @@ figure out how to interleave the nodes of the two lists. This is the tricky part
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;ourVariables&quot;
         title=&quot;ourVariables&quot;
-        src=&quot;/static/abdf69e42b889ba1844567d05bb11bdd/267f6/ourVariables.png&quot;
-        srcset=&quot;/static/abdf69e42b889ba1844567d05bb11bdd/c26ae/ourVariables.png 158w,
-/static/abdf69e42b889ba1844567d05bb11bdd/6bdcf/ourVariables.png 315w,
-/static/abdf69e42b889ba1844567d05bb11bdd/267f6/ourVariables.png 513w&quot;
+        src=&quot;https://www.deepdevblog.com/static/abdf69e42b889ba1844567d05bb11bdd/267f6/ourVariables.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/abdf69e42b889ba1844567d05bb11bdd/c26ae/ourVariables.png 158w,
+https://www.deepdevblog.com/static/abdf69e42b889ba1844567d05bb11bdd/6bdcf/ourVariables.png 315w,
+https://www.deepdevblog.com/static/abdf69e42b889ba1844567d05bb11bdd/267f6/ourVariables.png 513w&quot;
         sizes=&quot;(max-width: 513px) 100vw, 513px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -202,7 +300,7 @@ figure out how to interleave the nodes of the two lists. This is the tricky part
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/e6c27d2f8edbdd4b28304c00313fc938/13a9a/firstHalfUpdatePointers.png&quot;
+    href=&quot;https://www.deepdevblog.com/static/e6c27d2f8edbdd4b28304c00313fc938/13a9a/firstHalfUpdatePointers.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -215,11 +313,11 @@ figure out how to interleave the nodes of the two lists. This is the tricky part
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;firstHalfUpdatePointers&quot;
         title=&quot;firstHalfUpdatePointers&quot;
-        src=&quot;/static/e6c27d2f8edbdd4b28304c00313fc938/f058b/firstHalfUpdatePointers.png&quot;
-        srcset=&quot;/static/e6c27d2f8edbdd4b28304c00313fc938/c26ae/firstHalfUpdatePointers.png 158w,
-/static/e6c27d2f8edbdd4b28304c00313fc938/6bdcf/firstHalfUpdatePointers.png 315w,
-/static/e6c27d2f8edbdd4b28304c00313fc938/f058b/firstHalfUpdatePointers.png 630w,
-/static/e6c27d2f8edbdd4b28304c00313fc938/13a9a/firstHalfUpdatePointers.png 637w&quot;
+        src=&quot;https://www.deepdevblog.com/static/e6c27d2f8edbdd4b28304c00313fc938/f058b/firstHalfUpdatePointers.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/e6c27d2f8edbdd4b28304c00313fc938/c26ae/firstHalfUpdatePointers.png 158w,
+https://www.deepdevblog.com/static/e6c27d2f8edbdd4b28304c00313fc938/6bdcf/firstHalfUpdatePointers.png 315w,
+https://www.deepdevblog.com/static/e6c27d2f8edbdd4b28304c00313fc938/f058b/firstHalfUpdatePointers.png 630w,
+https://www.deepdevblog.com/static/e6c27d2f8edbdd4b28304c00313fc938/13a9a/firstHalfUpdatePointers.png 637w&quot;
         sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -233,7 +331,7 @@ figure out how to interleave the nodes of the two lists. This is the tricky part
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/664532cbda00ab14534bc84f77f7da80/86389/secondHalfUpdatePointers.png&quot;
+    href=&quot;https://www.deepdevblog.com/static/664532cbda00ab14534bc84f77f7da80/86389/secondHalfUpdatePointers.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -246,10 +344,10 @@ figure out how to interleave the nodes of the two lists. This is the tricky part
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;secondHalfUpdatePointers&quot;
         title=&quot;secondHalfUpdatePointers&quot;
-        src=&quot;/static/664532cbda00ab14534bc84f77f7da80/86389/secondHalfUpdatePointers.png&quot;
-        srcset=&quot;/static/664532cbda00ab14534bc84f77f7da80/c26ae/secondHalfUpdatePointers.png 158w,
-/static/664532cbda00ab14534bc84f77f7da80/6bdcf/secondHalfUpdatePointers.png 315w,
-/static/664532cbda00ab14534bc84f77f7da80/86389/secondHalfUpdatePointers.png 574w&quot;
+        src=&quot;https://www.deepdevblog.com/static/664532cbda00ab14534bc84f77f7da80/86389/secondHalfUpdatePointers.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/664532cbda00ab14534bc84f77f7da80/c26ae/secondHalfUpdatePointers.png 158w,
+https://www.deepdevblog.com/static/664532cbda00ab14534bc84f77f7da80/6bdcf/secondHalfUpdatePointers.png 315w,
+https://www.deepdevblog.com/static/664532cbda00ab14534bc84f77f7da80/86389/secondHalfUpdatePointers.png 574w&quot;
         sizes=&quot;(max-width: 574px) 100vw, 574px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -264,7 +362,7 @@ figure out how to interleave the nodes of the two lists. This is the tricky part
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/06a86bfb6aa5991bbd48bb70ec192b67/6b9fd/lastIterationForOddNumberLinkedList.png&quot;
+    href=&quot;https://www.deepdevblog.com/static/06a86bfb6aa5991bbd48bb70ec192b67/6b9fd/lastIterationForOddNumberLinkedList.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -277,10 +375,10 @@ figure out how to interleave the nodes of the two lists. This is the tricky part
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;lastIterationForOddNumberLinkedList&quot;
         title=&quot;lastIterationForOddNumberLinkedList&quot;
-        src=&quot;/static/06a86bfb6aa5991bbd48bb70ec192b67/6b9fd/lastIterationForOddNumberLinkedList.png&quot;
-        srcset=&quot;/static/06a86bfb6aa5991bbd48bb70ec192b67/c26ae/lastIterationForOddNumberLinkedList.png 158w,
-/static/06a86bfb6aa5991bbd48bb70ec192b67/6bdcf/lastIterationForOddNumberLinkedList.png 315w,
-/static/06a86bfb6aa5991bbd48bb70ec192b67/6b9fd/lastIterationForOddNumberLinkedList.png 518w&quot;
+        src=&quot;https://www.deepdevblog.com/static/06a86bfb6aa5991bbd48bb70ec192b67/6b9fd/lastIterationForOddNumberLinkedList.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/06a86bfb6aa5991bbd48bb70ec192b67/c26ae/lastIterationForOddNumberLinkedList.png 158w,
+https://www.deepdevblog.com/static/06a86bfb6aa5991bbd48bb70ec192b67/6bdcf/lastIterationForOddNumberLinkedList.png 315w,
+https://www.deepdevblog.com/static/06a86bfb6aa5991bbd48bb70ec192b67/6b9fd/lastIterationForOddNumberLinkedList.png 518w&quot;
         sizes=&quot;(max-width: 518px) 100vw, 518px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -310,7 +408,7 @@ secondHalf &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; nextSecon
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/fb937574b90e9e0c9e132ac745834b8d/38cea/evenNodesIterationOne.png&quot;
+    href=&quot;https://www.deepdevblog.com/static/fb937574b90e9e0c9e132ac745834b8d/38cea/evenNodesIterationOne.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -323,11 +421,11 @@ secondHalf &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; nextSecon
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;evenNodesIterationOne&quot;
         title=&quot;evenNodesIterationOne&quot;
-        src=&quot;/static/fb937574b90e9e0c9e132ac745834b8d/f058b/evenNodesIterationOne.png&quot;
-        srcset=&quot;/static/fb937574b90e9e0c9e132ac745834b8d/c26ae/evenNodesIterationOne.png 158w,
-/static/fb937574b90e9e0c9e132ac745834b8d/6bdcf/evenNodesIterationOne.png 315w,
-/static/fb937574b90e9e0c9e132ac745834b8d/f058b/evenNodesIterationOne.png 630w,
-/static/fb937574b90e9e0c9e132ac745834b8d/38cea/evenNodesIterationOne.png 678w&quot;
+        src=&quot;https://www.deepdevblog.com/static/fb937574b90e9e0c9e132ac745834b8d/f058b/evenNodesIterationOne.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/fb937574b90e9e0c9e132ac745834b8d/c26ae/evenNodesIterationOne.png 158w,
+https://www.deepdevblog.com/static/fb937574b90e9e0c9e132ac745834b8d/6bdcf/evenNodesIterationOne.png 315w,
+https://www.deepdevblog.com/static/fb937574b90e9e0c9e132ac745834b8d/f058b/evenNodesIterationOne.png 630w,
+https://www.deepdevblog.com/static/fb937574b90e9e0c9e132ac745834b8d/38cea/evenNodesIterationOne.png 678w&quot;
         sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -341,7 +439,7 @@ secondHalf &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; nextSecon
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/ac2368155f138dc19395541e9faef141/38cea/evenNodesIterationTwo.png&quot;
+    href=&quot;https://www.deepdevblog.com/static/ac2368155f138dc19395541e9faef141/38cea/evenNodesIterationTwo.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -354,11 +452,11 @@ secondHalf &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; nextSecon
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;evenNodesIterationTwo&quot;
         title=&quot;evenNodesIterationTwo&quot;
-        src=&quot;/static/ac2368155f138dc19395541e9faef141/f058b/evenNodesIterationTwo.png&quot;
-        srcset=&quot;/static/ac2368155f138dc19395541e9faef141/c26ae/evenNodesIterationTwo.png 158w,
-/static/ac2368155f138dc19395541e9faef141/6bdcf/evenNodesIterationTwo.png 315w,
-/static/ac2368155f138dc19395541e9faef141/f058b/evenNodesIterationTwo.png 630w,
-/static/ac2368155f138dc19395541e9faef141/38cea/evenNodesIterationTwo.png 678w&quot;
+        src=&quot;https://www.deepdevblog.com/static/ac2368155f138dc19395541e9faef141/f058b/evenNodesIterationTwo.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/ac2368155f138dc19395541e9faef141/c26ae/evenNodesIterationTwo.png 158w,
+https://www.deepdevblog.com/static/ac2368155f138dc19395541e9faef141/6bdcf/evenNodesIterationTwo.png 315w,
+https://www.deepdevblog.com/static/ac2368155f138dc19395541e9faef141/f058b/evenNodesIterationTwo.png 630w,
+https://www.deepdevblog.com/static/ac2368155f138dc19395541e9faef141/38cea/evenNodesIterationTwo.png 678w&quot;
         sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -372,7 +470,7 @@ secondHalf &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; nextSecon
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/cceb3ec57989ea4ac2305fc7aebf2c58/8ae3e/evenNodesIterationThree.png&quot;
+    href=&quot;https://www.deepdevblog.com/static/cceb3ec57989ea4ac2305fc7aebf2c58/8ae3e/evenNodesIterationThree.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -385,11 +483,11 @@ secondHalf &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; nextSecon
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;evenNodesIterationThree&quot;
         title=&quot;evenNodesIterationThree&quot;
-        src=&quot;/static/cceb3ec57989ea4ac2305fc7aebf2c58/f058b/evenNodesIterationThree.png&quot;
-        srcset=&quot;/static/cceb3ec57989ea4ac2305fc7aebf2c58/c26ae/evenNodesIterationThree.png 158w,
-/static/cceb3ec57989ea4ac2305fc7aebf2c58/6bdcf/evenNodesIterationThree.png 315w,
-/static/cceb3ec57989ea4ac2305fc7aebf2c58/f058b/evenNodesIterationThree.png 630w,
-/static/cceb3ec57989ea4ac2305fc7aebf2c58/8ae3e/evenNodesIterationThree.png 756w&quot;
+        src=&quot;https://www.deepdevblog.com/static/cceb3ec57989ea4ac2305fc7aebf2c58/f058b/evenNodesIterationThree.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/cceb3ec57989ea4ac2305fc7aebf2c58/c26ae/evenNodesIterationThree.png 158w,
+https://www.deepdevblog.com/static/cceb3ec57989ea4ac2305fc7aebf2c58/6bdcf/evenNodesIterationThree.png 315w,
+https://www.deepdevblog.com/static/cceb3ec57989ea4ac2305fc7aebf2c58/f058b/evenNodesIterationThree.png 630w,
+https://www.deepdevblog.com/static/cceb3ec57989ea4ac2305fc7aebf2c58/8ae3e/evenNodesIterationThree.png 756w&quot;
         sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -536,7 +634,7 @@ Output: 0&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/77f9e3342487430058de1b5b70bd401c/32956/camara-pieces.jpg&quot;
+    href=&quot;https://www.deepdevblog.com/static/77f9e3342487430058de1b5b70bd401c/32956/camara-pieces.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -549,13 +647,13 @@ Output: 0&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;camara pieces&quot;
         title=&quot;camara pieces&quot;
-        src=&quot;/static/77f9e3342487430058de1b5b70bd401c/828fb/camara-pieces.jpg&quot;
-        srcset=&quot;/static/77f9e3342487430058de1b5b70bd401c/ff44c/camara-pieces.jpg 158w,
-/static/77f9e3342487430058de1b5b70bd401c/a6688/camara-pieces.jpg 315w,
-/static/77f9e3342487430058de1b5b70bd401c/828fb/camara-pieces.jpg 630w,
-/static/77f9e3342487430058de1b5b70bd401c/0ede0/camara-pieces.jpg 945w,
-/static/77f9e3342487430058de1b5b70bd401c/3ac88/camara-pieces.jpg 1260w,
-/static/77f9e3342487430058de1b5b70bd401c/32956/camara-pieces.jpg 4179w&quot;
+        src=&quot;https://www.deepdevblog.com/static/77f9e3342487430058de1b5b70bd401c/828fb/camara-pieces.jpg&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/77f9e3342487430058de1b5b70bd401c/ff44c/camara-pieces.jpg 158w,
+https://www.deepdevblog.com/static/77f9e3342487430058de1b5b70bd401c/a6688/camara-pieces.jpg 315w,
+https://www.deepdevblog.com/static/77f9e3342487430058de1b5b70bd401c/828fb/camara-pieces.jpg 630w,
+https://www.deepdevblog.com/static/77f9e3342487430058de1b5b70bd401c/0ede0/camara-pieces.jpg 945w,
+https://www.deepdevblog.com/static/77f9e3342487430058de1b5b70bd401c/3ac88/camara-pieces.jpg 1260w,
+https://www.deepdevblog.com/static/77f9e3342487430058de1b5b70bd401c/32956/camara-pieces.jpg 4179w&quot;
         sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -664,7 +762,7 @@ Output: false&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/f6932c65520a0310119cd21cfd433043/1688a/happy-lama.jpg&quot;
+    href=&quot;https://www.deepdevblog.com/static/f6932c65520a0310119cd21cfd433043/1688a/happy-lama.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -677,13 +775,13 @@ Output: false&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;happy lama&quot;
         title=&quot;happy lama&quot;
-        src=&quot;/static/f6932c65520a0310119cd21cfd433043/828fb/happy-lama.jpg&quot;
-        srcset=&quot;/static/f6932c65520a0310119cd21cfd433043/ff44c/happy-lama.jpg 158w,
-/static/f6932c65520a0310119cd21cfd433043/a6688/happy-lama.jpg 315w,
-/static/f6932c65520a0310119cd21cfd433043/828fb/happy-lama.jpg 630w,
-/static/f6932c65520a0310119cd21cfd433043/0ede0/happy-lama.jpg 945w,
-/static/f6932c65520a0310119cd21cfd433043/3ac88/happy-lama.jpg 1260w,
-/static/f6932c65520a0310119cd21cfd433043/1688a/happy-lama.jpg 2194w&quot;
+        src=&quot;https://www.deepdevblog.com/static/f6932c65520a0310119cd21cfd433043/828fb/happy-lama.jpg&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/f6932c65520a0310119cd21cfd433043/ff44c/happy-lama.jpg 158w,
+https://www.deepdevblog.com/static/f6932c65520a0310119cd21cfd433043/a6688/happy-lama.jpg 315w,
+https://www.deepdevblog.com/static/f6932c65520a0310119cd21cfd433043/828fb/happy-lama.jpg 630w,
+https://www.deepdevblog.com/static/f6932c65520a0310119cd21cfd433043/0ede0/happy-lama.jpg 945w,
+https://www.deepdevblog.com/static/f6932c65520a0310119cd21cfd433043/3ac88/happy-lama.jpg 1260w,
+https://www.deepdevblog.com/static/f6932c65520a0310119cd21cfd433043/1688a/happy-lama.jpg 2194w&quot;
         sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -793,7 +891,7 @@ Explanation: s becomes &quot;c&quot; while t becomes &quot;b&quot;.&lt;/code&gt;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/7ed3f89de9ddf93c4408061843999991/c83bb/thinking-monkey.jpg&quot;
+    href=&quot;https://www.deepdevblog.com/static/7ed3f89de9ddf93c4408061843999991/c83bb/thinking-monkey.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -806,13 +904,13 @@ Explanation: s becomes &quot;c&quot; while t becomes &quot;b&quot;.&lt;/code&gt;
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;thinking monkey&quot;
         title=&quot;thinking monkey&quot;
-        src=&quot;/static/7ed3f89de9ddf93c4408061843999991/828fb/thinking-monkey.jpg&quot;
-        srcset=&quot;/static/7ed3f89de9ddf93c4408061843999991/ff44c/thinking-monkey.jpg 158w,
-/static/7ed3f89de9ddf93c4408061843999991/a6688/thinking-monkey.jpg 315w,
-/static/7ed3f89de9ddf93c4408061843999991/828fb/thinking-monkey.jpg 630w,
-/static/7ed3f89de9ddf93c4408061843999991/0ede0/thinking-monkey.jpg 945w,
-/static/7ed3f89de9ddf93c4408061843999991/3ac88/thinking-monkey.jpg 1260w,
-/static/7ed3f89de9ddf93c4408061843999991/c83bb/thinking-monkey.jpg 4608w&quot;
+        src=&quot;https://www.deepdevblog.com/static/7ed3f89de9ddf93c4408061843999991/828fb/thinking-monkey.jpg&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/7ed3f89de9ddf93c4408061843999991/ff44c/thinking-monkey.jpg 158w,
+https://www.deepdevblog.com/static/7ed3f89de9ddf93c4408061843999991/a6688/thinking-monkey.jpg 315w,
+https://www.deepdevblog.com/static/7ed3f89de9ddf93c4408061843999991/828fb/thinking-monkey.jpg 630w,
+https://www.deepdevblog.com/static/7ed3f89de9ddf93c4408061843999991/0ede0/thinking-monkey.jpg 945w,
+https://www.deepdevblog.com/static/7ed3f89de9ddf93c4408061843999991/3ac88/thinking-monkey.jpg 1260w,
+https://www.deepdevblog.com/static/7ed3f89de9ddf93c4408061843999991/c83bb/thinking-monkey.jpg 4608w&quot;
         sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -955,7 +1053,7 @@ Output: [0,1,2]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/acd493f5a542922bec18c7c1bd7a433c/c08c5/yawning-cat.jpg&quot;
+    href=&quot;https://www.deepdevblog.com/static/acd493f5a542922bec18c7c1bd7a433c/c08c5/yawning-cat.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -968,11 +1066,11 @@ Output: [0,1,2]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;yawning cat&quot;
         title=&quot;yawning cat&quot;
-        src=&quot;/static/acd493f5a542922bec18c7c1bd7a433c/828fb/yawning-cat.jpg&quot;
-        srcset=&quot;/static/acd493f5a542922bec18c7c1bd7a433c/ff44c/yawning-cat.jpg 158w,
-/static/acd493f5a542922bec18c7c1bd7a433c/a6688/yawning-cat.jpg 315w,
-/static/acd493f5a542922bec18c7c1bd7a433c/828fb/yawning-cat.jpg 630w,
-/static/acd493f5a542922bec18c7c1bd7a433c/c08c5/yawning-cat.jpg 640w&quot;
+        src=&quot;https://www.deepdevblog.com/static/acd493f5a542922bec18c7c1bd7a433c/828fb/yawning-cat.jpg&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/acd493f5a542922bec18c7c1bd7a433c/ff44c/yawning-cat.jpg 158w,
+https://www.deepdevblog.com/static/acd493f5a542922bec18c7c1bd7a433c/a6688/yawning-cat.jpg 315w,
+https://www.deepdevblog.com/static/acd493f5a542922bec18c7c1bd7a433c/828fb/yawning-cat.jpg 630w,
+https://www.deepdevblog.com/static/acd493f5a542922bec18c7c1bd7a433c/c08c5/yawning-cat.jpg 640w&quot;
         sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
