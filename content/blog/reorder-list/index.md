@@ -46,7 +46,7 @@ It's been super helpful.
 
 Let's take an example:
 
-![](inputOutput.png)
+![](exampleOne.png)
 
 It looks like we would like to re order the 
 list in a way where we are interleaving the numbers 
