@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Deep Dev RSS Feed]]></title><description><![CDATA[A developer experience and learnings]]></description><link>https://www.deepdevblog.com</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 17 Feb 2022 00:09:23 GMT</lastBuildDate><item><title><![CDATA[LeetCode 57. Insert Interval]]></title><description><![CDATA[Solving LeetCode 57, Insert Interval. Click here and try it out your self! LeetCode Problem Statement You are given an array of non…]]></description><link>https://www.deepdevblog.com/insert-interval/</link><guid isPermaLink="false">https://www.deepdevblog.com/insert-interval/</guid><pubDate>Sun, 13 Feb 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Solving LeetCode 57, Insert Interval. &lt;a href=&quot;https://leetcode.com/problems/insert-interval/&quot;&gt;Click here&lt;/a&gt; and try it out your self!&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Deep Dev RSS Feed]]></title><description><![CDATA[A developer experience and learnings]]></description><link>https://www.deepdevblog.com</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 20 Feb 2022 21:37:29 GMT</lastBuildDate><item><title><![CDATA[LeetCode 57. Insert Interval]]></title><description><![CDATA[Solving LeetCode 57, Insert Interval. Click here and try it out your self! LeetCode Problem Statement You are given an array of non…]]></description><link>https://www.deepdevblog.com/insert-interval/</link><guid isPermaLink="false">https://www.deepdevblog.com/insert-interval/</guid><pubDate>Sun, 20 Feb 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Solving LeetCode 57, Insert Interval. &lt;a href=&quot;https://leetcode.com/problems/insert-interval/&quot;&gt;Click here&lt;/a&gt; and try it out your self!&lt;/p&gt;
 &lt;h3&gt;LeetCode Problem Statement&lt;/h3&gt;
 &lt;p&gt;You are given an array of non-overlapping intervals intervals where intervals[i] = [starti, endi] represent the start and the end of the ith interval and intervals is sorted in ascending order by starti. You are also given an interval newInterval = [start, end] that represents the start and end of another interval.&lt;/p&gt;
 &lt;p&gt;Insert newInterval into intervals such that intervals is still sorted in ascending order by starti and intervals still does not have any overlapping intervals (merge overlapping intervals if necessary).&lt;/p&gt;
@@ -11,15 +11,14 @@ Input: intervals = [[1,2],[3,5],[6,7],[8,10],[12,16]], newInterval = [4,8]
 Output: [[1,2],[3,10],[12,16]]
 Explanation: Because the new interval [4,8] overlaps with [3,5],[6,7],[8,10].&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3&gt;Initial Thoughts&lt;/h3&gt;
-&lt;p&gt;Must be a two step process. Step one, find the right spot for the new
-interval and insert it. Step two, merge the necessary intervals.&lt;/p&gt;
-&lt;p&gt;Brute force could be pushing in the new interval, then sorting by start time
-and merging all the remaining intervals. Since the data is already sorted though,
-we should be able to devise a more efficient way of solving this problem.&lt;/p&gt;
-&lt;p&gt;I’ll draw a timeline diagram for sure. Doing that is one of the most helpful things
+&lt;p&gt;Brute force: push the new interval, then sort by start time
+and merge all the remaining intervals. The data is already sorted though… can we use that to make this more efficient?&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Draw a timeline diagram for sure. Doing that is one of the most helpful things
 when solving these interval problems.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h3&gt;Breaking it down&lt;/h3&gt;
-&lt;p&gt;Lets start by taking a look at the example:&lt;/p&gt;
+&lt;p&gt;Lets look at the example:&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
@@ -53,8 +52,10 @@ https://www.deepdevblog.com/static/6a141b5edc4de4ff1c8023a96ad11600/30c92/exampl
     &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;From looking at this, we can figure out that the right spot to
 insert the interval is between the first and second interval in the
-list. This means we have to find the first interval in the
-list that overlaps with the new interval.&lt;/p&gt;
+list.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;So to find the insertion point, we have to find the first interval that overlaps with the new interval&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;Lets look at the second example:&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
@@ -89,14 +90,245 @@ https://www.deepdevblog.com/static/da12dbf85200da58b87a3437dffc7d79/307e7/exampl
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Applying our rule, we could ask our selves if the new interval overlaps with
-the current one we are iterating through. If it does, we have found our spot.&lt;/p&gt;
-&lt;p&gt;Another observation here is that all the intervals that do not overlap with
-the new interval, will remain mutually exclusive.&lt;/p&gt;
+&lt;p&gt;So we can find our insertion point by iterating through the intervals and checking if the new interval overlaps with the current one we are iterating through.&lt;/p&gt;
+&lt;p&gt;Notice how the intervals before the insertion will stay as is. They will not be subject to merge. However, all the intervals after insertion may be subject to merge.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;With this in mind, we could iterate through the intervals while there is no
+overlap with the new interval, and push intervals into a results array. Then we can iterate through the remaining values, merge if necessary, and push into the results array.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Let’s step through it:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/34905f6a3556a0f479b7a189624dcef8/86a1e/firstLoop.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 84.81012658227847%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAACXBIWXMAABYlAAAWJQFJUiTwAAABn0lEQVQ4y42Th47CQAxE9/9/j1ADAVESakJvAXx6lozCsrk7S9YuG5fxeHDX61Uul4vc73d5PB6CvV4vdbuH3ny3d7deryWOYxmNRrJarb4S/KLP51M9VFQLHo9Hmc/nkue5mNUF/8ccI4OyKAqhOKePCoOSw+Eg4/FYkiSRLMtksVjIbDbTb++RCRoOh7JcLjVhu91+IDWj8W63U2o6nY4MBgOdjILkvgvCW6/Xk36/L91uV73VamlSu91WbzabMplM5Hw+KzUUZhKafI3MZulyOp102yTZ5u20d9AzMuMyFSdWXZIzfv4yitP0drtpPE24+3w7P7Fuu1YoFF+968h0x7mHNFhNMh2GtKgcMgbbYjnwFEL7G0I/XnUIuSYbiqMvE7oVhDO+Ixs2z3Km06n+Rr9vhKDiA0X2+70ipQHSIKgsSw1kEhLTNFUNIm5AGACLc+gJDaI9NMj/mhMUnFEUSaPR0BimAflms9HiIYoc5MINDjpOuuEsye68o0OQMRHI/MUowmoH01Ud4VBiDav/3w+EdTIJufHka7Ba9AcVSijQ+NEStgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;firstLoop&quot;
+        title=&quot;firstLoop&quot;
+        src=&quot;https://www.deepdevblog.com/static/34905f6a3556a0f479b7a189624dcef8/f058b/firstLoop.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/34905f6a3556a0f479b7a189624dcef8/c26ae/firstLoop.png 158w,
+https://www.deepdevblog.com/static/34905f6a3556a0f479b7a189624dcef8/6bdcf/firstLoop.png 315w,
+https://www.deepdevblog.com/static/34905f6a3556a0f479b7a189624dcef8/f058b/firstLoop.png 630w,
+https://www.deepdevblog.com/static/34905f6a3556a0f479b7a189624dcef8/40601/firstLoop.png 945w,
+https://www.deepdevblog.com/static/34905f6a3556a0f479b7a189624dcef8/78612/firstLoop.png 1260w,
+https://www.deepdevblog.com/static/34905f6a3556a0f479b7a189624dcef8/86a1e/firstLoop.png 1296w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Once the loop breaks we can push the new interval into the results.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 312px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/a3e5010aeca2c2e2b560e3ad901b1583/17474/addNewIntToResults.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 24.050632911392405%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAtElEQVQY061QMQqEMBDM//8ikiIWVjYiNoKVhZ1gIVGjaIKCOrIL8eS48gbCzmw2s0PEdV04zxNUCW/u8a1/wc+Id3Pf94eTsTEG27axds4xp0NzZEB1HEfM8/yYijRNIaVElmUIwxBFUaBpGtR1jTiOkSQJP1JKoSxLVFWFKIq4l+c5giAAefgQgi7atkXXdbxJa82bj+PghKSXZcEwDOj7Huu6YpomTuwTWms/CfEn+D+8Afdsfqg4TOxjAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;addNewIntToResults&quot;
+        title=&quot;addNewIntToResults&quot;
+        src=&quot;https://www.deepdevblog.com/static/a3e5010aeca2c2e2b560e3ad901b1583/17474/addNewIntToResults.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/a3e5010aeca2c2e2b560e3ad901b1583/c26ae/addNewIntToResults.png 158w,
+https://www.deepdevblog.com/static/a3e5010aeca2c2e2b560e3ad901b1583/17474/addNewIntToResults.png 312w&quot;
+        sizes=&quot;(max-width: 312px) 100vw, 312px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;From here this will resemble a merge interval problem. We can iterate through the remaining intervals, and merge when we have to. If you are not familiar with this problem, I highly recommend that you work on that first.&lt;/p&gt;
+&lt;p&gt;Stepping through the second half:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 594px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/61ec82b89c28d2a4ad85219372bf5361/5fd3e/secondLoop1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 93.0379746835443%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAYAAACQjC21AAAACXBIWXMAAAsTAAALEwEAmpwYAAAB8UlEQVQ4y42T6YoCMRCE8/5Ppj8URBHv+77vW3v5GmrIjq5sICTpSaqrq2vC9Xq13W5n+/3ejsejXS4XOxwOvj+dTsk3Ytvt1jabjd1uN2O8Xi9Lj9DpdCyXy1mpVLJ8Pu/7QqHg52w2a5lMxlqtlq3Xa5vNZtbtdu18Pv8NCAuyM2EHMxgwxVSM4vF8Ph0wPcNisbDBYGDz+dwv/TXiR99GILt0giEaxaylHUDc5dtqtXISo9HI37ISc4YE6vW6awNor9ez8XjsD9BsOp0aOosld4bDoVUqFZ/c44zOJA4gTyYTDwKgC0zFYUASktEQGsR5uVx6RbEkgQDozGq16iuM+v2+NRoN31NBu912YJoEEIkhg/Zx10MsKJm/DR5IU6qRT0nyC1B07/e7d1qWiFcGTZPO5XLZdce7gCeA/Cl0D7DH4/HRW7IK3+UEqmFFZ2IJoNzPSjnfyv3PCGQFiIxkQmR04ayJdeRD9KLDzWbTG8ePQeMg5AwRuFaredfkMT5SCkA8IBb7kG7jCHSUweVjtw0PCTJj38mTnNkz1VmSsqZlcmPLh3SPFc+xZ1IOMcoDGEBk4YwfAX6zTXpQ5qeBfSgLElSgvVg6YNoePMJC6Zh8iOaA8fcgQbFYTAi8MYytoX3ah/iWzqMfk/IhIMAfiPGxiaEMJM0AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;secondLoop1&quot;
+        title=&quot;secondLoop1&quot;
+        src=&quot;https://www.deepdevblog.com/static/61ec82b89c28d2a4ad85219372bf5361/5fd3e/secondLoop1.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/61ec82b89c28d2a4ad85219372bf5361/c26ae/secondLoop1.png 158w,
+https://www.deepdevblog.com/static/61ec82b89c28d2a4ad85219372bf5361/6bdcf/secondLoop1.png 315w,
+https://www.deepdevblog.com/static/61ec82b89c28d2a4ad85219372bf5361/5fd3e/secondLoop1.png 594w&quot;
+        sizes=&quot;(max-width: 594px) 100vw, 594px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 626px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/b100fcae7f263966318ea97124b3602e/af590/secondLoopPart2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 78.48101265822784%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAAAsTAAALEwEAmpwYAAABr0lEQVQ4y42UiY7CMAxE+/+/hjjLUaBVJW7KXaDcePWMjMIuhY0UOYmTsT2e1hsOh9Lr9QR7Pp+Fcb/f/0w7zxvm867Xq25ut5t8G1mWyX6/l81mo/Z4POqacwP1FouFRFEkk8lE5vO59Pt9GY1GOsfjsfqWy+UTkEqKxaIUCgX1hWEoQRBIkiSPDNfrtYJheTCbzRQYEKKzPp1OWsF2u5Xdbqfntmbgu1wuD8A4jsX3fWk0GlKv13Xdbrel2WxKt9uVSqWivlqtpkGsIgKTrYE+SwadZhDBJrzCD4+4hB9LBWRG1qzTNNXpNtLLawCBIN4dlA63rVZLua5Wq8rzR0BXJr/3AMKf8TudTl86rBziJBpdcp15WvykQ80QvozDb4M77/Tqnqls0BJZ0gS6bvqji3R8MBjoZWtIuVyWUqmkXPKVoUnewLlH27lEtw6Hw1Nf7LHsjQrzQQ/aBcQ0iZx44xGdLOgYFt11Oh3VI18A2kSTWEDIgsztS3J1qCXDC5qjg2bh1CZ+MsJHpgCsVivNhsqg7F86dAcgEA8lAAHiUvUCmCeRd3LJ+yO5d34AmIjQYp2F9mkAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;secondLoopPart2&quot;
+        title=&quot;secondLoopPart2&quot;
+        src=&quot;https://www.deepdevblog.com/static/b100fcae7f263966318ea97124b3602e/af590/secondLoopPart2.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/b100fcae7f263966318ea97124b3602e/c26ae/secondLoopPart2.png 158w,
+https://www.deepdevblog.com/static/b100fcae7f263966318ea97124b3602e/6bdcf/secondLoopPart2.png 315w,
+https://www.deepdevblog.com/static/b100fcae7f263966318ea97124b3602e/af590/secondLoopPart2.png 626w&quot;
+        sizes=&quot;(max-width: 626px) 100vw, 626px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Lastly, return our results:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/3591628237a5e165bf79004ea2f1c68a/5819f/returnResults.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 17.088607594936708%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAaUlEQVQI16WMMQrAIBAE8//vCQqKotgIiqiVhbrhBFOEdJlmbpdjrzEGUkporSHnjFLKvmutO5NjjE+m3xAC1logjg9X7x1CCFhr4ZyDUmpbaw0pJbz34JzvjmyMAWMMc87vQfzgPUaDN43e5wc6zsGHAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;returnResults&quot;
+        title=&quot;returnResults&quot;
+        src=&quot;https://www.deepdevblog.com/static/3591628237a5e165bf79004ea2f1c68a/f058b/returnResults.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/3591628237a5e165bf79004ea2f1c68a/c26ae/returnResults.png 158w,
+https://www.deepdevblog.com/static/3591628237a5e165bf79004ea2f1c68a/6bdcf/returnResults.png 315w,
+https://www.deepdevblog.com/static/3591628237a5e165bf79004ea2f1c68a/f058b/returnResults.png 630w,
+https://www.deepdevblog.com/static/3591628237a5e165bf79004ea2f1c68a/40601/returnResults.png 945w,
+https://www.deepdevblog.com/static/3591628237a5e165bf79004ea2f1c68a/5819f/returnResults.png 1042w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Nice&lt;/p&gt;
 &lt;h3&gt;The Algorithm Plan&lt;/h3&gt;
+&lt;p&gt;The algorithm will be broken into three parts:&lt;/p&gt;
+&lt;p&gt;Part 1&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Iterate through intervals while current interval does not overlap with new interval&lt;/li&gt;
+&lt;li&gt;Push interval into results array&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Part 2&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;We have found the insertion point, push new interval into results array&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Part 3&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Iterate through the remaining intervals&lt;/li&gt;
+&lt;li&gt;If currentInterval and lastInterval overlap
+&lt;ul&gt;
+&lt;li&gt;Merge intervals&lt;/li&gt;
+&lt;li&gt;Pop from results&lt;/li&gt;
+&lt;li&gt;Push merged into results&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;If they do not overlap
+&lt;ul&gt;
+&lt;li&gt;Push into results&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Increment the currentIdx&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Finally, return results&lt;/p&gt;
+&lt;p&gt;Ok, lets code it up!&lt;/p&gt;
 &lt;h3&gt;Code&lt;/h3&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;Summary&lt;/h3&gt;</content:encoded></item><item><title><![CDATA[LeetCode 143. Reorder List]]></title><description><![CDATA[Solving LeetCode 143. Reorder List. Click here and try it out your self! LeetCode Problem Statement You are given the head of a singly…]]></description><link>https://www.deepdevblog.com/reorder-list/</link><guid isPermaLink="false">https://www.deepdevblog.com/reorder-list/</guid><pubDate>Sat, 12 Feb 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Solving LeetCode 143. Reorder List. &lt;a href=&quot;https://leetcode.com/problems/reorder-list/&quot;&gt;Click here&lt;/a&gt; and try it out your self!&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;insert&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;intervals&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; newInterval&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; results &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; currentIdx &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;// Part 1&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;intervals&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;currentIdx&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; intervals&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;currentIdx&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; newInterval&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        results&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;intervals&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;currentIdx&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        currentIdx&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;// Part 2&lt;/span&gt;
+    results&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;newInterval&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;// Part 3&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;currentIdx &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; intervals&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; lastInterval &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; results&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;results&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; currentInterval &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; intervals&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;currentIdx&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;lastInterval&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; currentInterval&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            results&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;currentInterval&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; merged &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+                Math&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;currentInterval&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; lastInterval&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                Math&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;currentInterval&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; lastInterval&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+            results&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+            results&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;merged&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+        currentIdx&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; results&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Summary&lt;/h3&gt;
+&lt;p&gt;I remember when first attempting this, it was really hard to wrap my head around. The biggest thing that has helped me with interval problems in general is remembering the following:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Non overlapping cases are easier to identify than overlapping cases&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is key from an implementation stand point. It’s must easier to write code to determine if intervals don’t overlap, versus the cases that they do. Good way to see this for your self is to draw some diagrams, and identify all the ways that two intervals can overlap, and all the ways that they won’t. Highly recommend that you explore this.&lt;/p&gt;
+&lt;p&gt;Thanks for reading. Hope this was helpful!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[LeetCode 143. Reorder List]]></title><description><![CDATA[Solving LeetCode 143. Reorder List. Click here and try it out your self! LeetCode Problem Statement You are given the head of a singly…]]></description><link>https://www.deepdevblog.com/reorder-list/</link><guid isPermaLink="false">https://www.deepdevblog.com/reorder-list/</guid><pubDate>Sat, 12 Feb 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Solving LeetCode 143. Reorder List. &lt;a href=&quot;https://leetcode.com/problems/reorder-list/&quot;&gt;Click here&lt;/a&gt; and try it out your self!&lt;/p&gt;
 &lt;h3&gt;LeetCode Problem Statement&lt;/h3&gt;
 &lt;p&gt;You are given the head of a singly linked-list. The list can be represented as:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;L0 → L1 → … → Ln - 1 → Ln&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
