@@ -1,4 +1,623 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Deep Dev RSS Feed]]></title><description><![CDATA[A developer experience and learnings]]></description><link>https://www.deepdevblog.com</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 27 Feb 2022 16:53:55 GMT</lastBuildDate><item><title><![CDATA[LeetCode 57. Insert Interval]]></title><description><![CDATA[Solving LeetCode 57, Insert Interval. Click here and try it out your self! LeetCode Problem Statement You are given an array of non…]]></description><link>https://www.deepdevblog.com/insert-interval/</link><guid isPermaLink="false">https://www.deepdevblog.com/insert-interval/</guid><pubDate>Sun, 20 Feb 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Solving LeetCode 57, Insert Interval. &lt;a href=&quot;https://leetcode.com/problems/insert-interval/&quot;&gt;Click here&lt;/a&gt; and try it out your self!&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Deep Dev RSS Feed]]></title><description><![CDATA[A developer experience and learnings]]></description><link>https://www.deepdevblog.com</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 27 Feb 2022 21:13:59 GMT</lastBuildDate><item><title><![CDATA[LeetCode 25. Reverse Nodes in k-Group]]></title><description><![CDATA[Solving LeetCode 25. Reverse Nodes in k-Group. Click here and try it out your self! LeetCode Problem Statement Given the head of a linked…]]></description><link>https://www.deepdevblog.com/reverse-every-k-element-sub-list/</link><guid isPermaLink="false">https://www.deepdevblog.com/reverse-every-k-element-sub-list/</guid><pubDate>Sun, 27 Feb 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Solving LeetCode 25. Reverse Nodes in k-Group. &lt;a href=&quot;https://leetcode.com/problems/reverse-nodes-in-k-group/&quot;&gt;Click here&lt;/a&gt; and try it out your self!&lt;/p&gt;
+&lt;h3&gt;LeetCode Problem Statement&lt;/h3&gt;
+&lt;p&gt;Given the head of a linked list, reverse the nodes of the list k at a time, and return the modified list.&lt;/p&gt;
+&lt;p&gt;k is a positive integer and is less than or equal to the length of the linked list. If the number of nodes is not a multiple of k then left-out nodes, in the end, should remain as it is.&lt;/p&gt;
+&lt;p&gt;You may not alter the values in the list’s nodes, only nodes themselves may be changed.&lt;/p&gt;
+&lt;p&gt;Examples:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Input: head = [1,2,3,4,5], k = 2
+Output: [2,1,4,3,5]
+
+
+Input: head = [1,2,3,4,5], k = 3
+Output: [3,2,1,4,5]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Initial Thoughts&lt;/h3&gt;
+&lt;p&gt;Linked Lists… For me, these problems are fairly easy to understand conceptually. The
+challenging part here is figuring out the implementation. With Linked Lists problems, keeping
+track of pointers is key.&lt;/p&gt;
+&lt;h3&gt;Breaking it down&lt;/h3&gt;
+&lt;p&gt;Lets look at an example and start working through it to understand what the implementation will look like.&lt;/p&gt;
+&lt;h4&gt;Overview&lt;/h4&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/ac7aa95a9090c0a6af0153c384e7ae85/df56e/example.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 44.30379746835443%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABYlAAAWJQFJUiTwAAABAUlEQVQoz62SuY7EQAhE+/+/bBIHduDMoe/7vs3oITHaXU24SLiBLlAVbXcch6zrqr4si+z7LsMwSFVVMo6jTNMkYLDneb663WEuyzJ5vV4ShqF4nidBEIjv+1IUhbRtK13X/Rpo9jc2d3xgdZ6nsoTRfd/y08itdl3X17qZ27ZN5nlWuUhELp6mqZ4wjONY72BszPM8V6/rWu/oh5Tr+17KstQCAwCwBhoZZo3grA6OnMEoghA714FGlQQgsjFAFtNMjjGAOsoYaJiPZMBRFH3YNE0jSZIoU2OLo4KTVRCzBqsbjrdwLJVF85IMt1+IGMaAjKHFsKSH02L69ZXln+0NA7e4gsmsgDoAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;example&quot;
+        title=&quot;example&quot;
+        src=&quot;https://www.deepdevblog.com/static/ac7aa95a9090c0a6af0153c384e7ae85/f058b/example.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/ac7aa95a9090c0a6af0153c384e7ae85/c26ae/example.png 158w,
+https://www.deepdevblog.com/static/ac7aa95a9090c0a6af0153c384e7ae85/6bdcf/example.png 315w,
+https://www.deepdevblog.com/static/ac7aa95a9090c0a6af0153c384e7ae85/f058b/example.png 630w,
+https://www.deepdevblog.com/static/ac7aa95a9090c0a6af0153c384e7ae85/40601/example.png 945w,
+https://www.deepdevblog.com/static/ac7aa95a9090c0a6af0153c384e7ae85/df56e/example.png 1188w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;From looking at this we can see that we will need a way to count the nodes as we iterate through them.
+Once we get to k nodes, we will have to run some operations to reverse that sub list, and re-connect it.
+Once we do that, we can move on to the next k nodes.&lt;/p&gt;
+&lt;h4&gt;What to do once you get to k nodes&lt;/h4&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/b52fbbee58c837d01e6d5790e8a3d6bd/636d3/firstIteration.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 48.734177215189874%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAAA5UlEQVQoz51S1wqEQAzc//9BfRAERbFg73WOCeTQQ68Fhs2mzGaMBgD2fceV3cXfmdGmeZ6RJAl83xfwrqSfcHzcHNnLskRRFGjb9qepjkpM0zToug7btiGOYyGkX1WVxAn1+RB99kzThHVdTxMShgR1XT/lZlkmxEEQIM9zuK4rOdZ5nic5RZqmWJblLJkvD8MgAfp930tCfU7LkzWciCeno5HsdUrDJMElsIAYx1FibFbZBKVStsrX+4kwDEPYtg3LskQmpdE42dU2Py3GRFEEx3HkO3HLJLpr+ObXMf8035GR8AELSQ8xfYbqBwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;firstIteration&quot;
+        title=&quot;firstIteration&quot;
+        src=&quot;https://www.deepdevblog.com/static/b52fbbee58c837d01e6d5790e8a3d6bd/f058b/firstIteration.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/b52fbbee58c837d01e6d5790e8a3d6bd/c26ae/firstIteration.png 158w,
+https://www.deepdevblog.com/static/b52fbbee58c837d01e6d5790e8a3d6bd/6bdcf/firstIteration.png 315w,
+https://www.deepdevblog.com/static/b52fbbee58c837d01e6d5790e8a3d6bd/f058b/firstIteration.png 630w,
+https://www.deepdevblog.com/static/b52fbbee58c837d01e6d5790e8a3d6bd/40601/firstIteration.png 945w,
+https://www.deepdevblog.com/static/b52fbbee58c837d01e6d5790e8a3d6bd/636d3/firstIteration.png 1222w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Once we get to the kth node we will need to reverse the list from 1 to 2. In order to reverse a list, we will need the startingNode.
+We will need a pointer to keep track of that.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/072b9e16dccf505845146fc795498910/cd78c/firstIterationStartingNode.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 48.10126582278481%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAAA9klEQVQoz51S2aqEUAw7//9z+iYiKC6ouOG+a4YUDjjOwtxbCG2pJ02kKooiBEEA3/dxHAcY53kKrvUdenYPVVUVuq7DOI7Y9x1hGMJ1XXieJ/2neLdUCOM4xrIs0gzDgKIoRCkXbNsmNeckZ89aO3mnUtV1DapMkkTICC7JsgxlWcqv4DxNU1HPOes8z9E0zYt91fc92raVITN7gmqpkpmgsnVdMU2TZKplfVep+KG2xqzBRxrzPAtIwCXXnvMnhZROi7RM+1R5JeRCQhMQmpDkL4SWZcE0TRiGIeejbfwlniw7jgPbtsF7pLpvt/fLTapv2/4TD+vKDLirpPB2AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;firstIterationStartingNode&quot;
+        title=&quot;firstIterationStartingNode&quot;
+        src=&quot;https://www.deepdevblog.com/static/072b9e16dccf505845146fc795498910/f058b/firstIterationStartingNode.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/072b9e16dccf505845146fc795498910/c26ae/firstIterationStartingNode.png 158w,
+https://www.deepdevblog.com/static/072b9e16dccf505845146fc795498910/6bdcf/firstIterationStartingNode.png 315w,
+https://www.deepdevblog.com/static/072b9e16dccf505845146fc795498910/f058b/firstIterationStartingNode.png 630w,
+https://www.deepdevblog.com/static/072b9e16dccf505845146fc795498910/40601/firstIterationStartingNode.png 945w,
+https://www.deepdevblog.com/static/072b9e16dccf505845146fc795498910/cd78c/firstIterationStartingNode.png 1236w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Then we can disconnect the list, and keep track of the rightHalf to re-connect.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/48c5e186af3acef911888b0728e2df9b/d43b4/firstIterationRightPart.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 57.59493670886076%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABYlAAAWJQFJUiTwAAABJUlEQVQoz51S2YqEQAzs//8xUd9880HE+3a8b81QgV7c2Z7dZQLBIiaVpNJiXVfa953wva6LXu01psq5m/A8j1zXJcdxaJ5nmqaJHo8HFUVBy7JwUtM0VNc1/5Okd783Ekjctu2rQxzHFEURBUFAfd/TMAwUhiHHuq5TTnufWshCGIrTNGUMGaqqorIsGR/HwY5cEAOrSEXbtryO7/s8CUigJ4jzPOdYkiSM0RwNgLMsY0f9N0LoAu3QUWoHQwwaQg6ZA4wY/DzPHxrChUwAITpiAhRiSsRBBB/HkSWRK+MrMSSRpAIrYj2IjmuiWHVJ1WVVBxKWZZFpmqRpGtm2zWv/h/Dd0xG6rpNhGIT3CPHvZJ+YgC64FDST7/G31f4kfKfFp4RPhAWn/vvceqQAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;firstIterationRightPart&quot;
+        title=&quot;firstIterationRightPart&quot;
+        src=&quot;https://www.deepdevblog.com/static/48c5e186af3acef911888b0728e2df9b/f058b/firstIterationRightPart.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/48c5e186af3acef911888b0728e2df9b/c26ae/firstIterationRightPart.png 158w,
+https://www.deepdevblog.com/static/48c5e186af3acef911888b0728e2df9b/6bdcf/firstIterationRightPart.png 315w,
+https://www.deepdevblog.com/static/48c5e186af3acef911888b0728e2df9b/f058b/firstIterationRightPart.png 630w,
+https://www.deepdevblog.com/static/48c5e186af3acef911888b0728e2df9b/40601/firstIterationRightPart.png 945w,
+https://www.deepdevblog.com/static/48c5e186af3acef911888b0728e2df9b/d43b4/firstIterationRightPart.png 1202w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h4&gt;Reversing the sub-list&lt;/h4&gt;
+&lt;p&gt;Now we can actually reverse the list. We won’t be doing a deep dive on linkedList reversal here. If you aren’t familiar with how to reverse a linkedList,
+I highly recommend you learn that first before diving into this problem.&lt;/p&gt;
+&lt;p&gt;Once we reverse the list we should have:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/010b41a57ed0ed675a0703c193616635/e8e04/firstIterationReverseTheList.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 55.06329113924051%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABYlAAAWJQFJUiTwAAABDUlEQVQoz5VT146DQAzk/z+NNyR4I/QiOoLQy5zGElGSI1xuJbPG4x3GXqPs+45jPftnMfpnOc9L4WPbNqzrKoGu61CWJZIkwf1+l9g4jpim6UF4kL7vQlhVFTzPg2VZGIYBdV0jTVMxEhN3XRdZluGsmnfFCr/MZKpsmga+7wuwLAuiKJLYPM+C930v70c1pwrjOIbjOFIifZJTqW3bopIYFeZ5/sCZS2PeL0L25wCKopCDXFRDZVRKnKpYDX2q/dRPKZkXQWIS0kjGC/lkbdtK6dxJ/kLIxt9uNxiGgSAI5MDVbf41Wgr7o6oqNE2DaZqi9PnwN/aikI3WdR1hGMrIfDvAl4N99Wf8l/AHR8xasqPvNy4AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;firstIterationReverseTheList&quot;
+        title=&quot;firstIterationReverseTheList&quot;
+        src=&quot;https://www.deepdevblog.com/static/010b41a57ed0ed675a0703c193616635/f058b/firstIterationReverseTheList.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/010b41a57ed0ed675a0703c193616635/c26ae/firstIterationReverseTheList.png 158w,
+https://www.deepdevblog.com/static/010b41a57ed0ed675a0703c193616635/6bdcf/firstIterationReverseTheList.png 315w,
+https://www.deepdevblog.com/static/010b41a57ed0ed675a0703c193616635/f058b/firstIterationReverseTheList.png 630w,
+https://www.deepdevblog.com/static/010b41a57ed0ed675a0703c193616635/40601/firstIterationReverseTheList.png 945w,
+https://www.deepdevblog.com/static/010b41a57ed0ed675a0703c193616635/78612/firstIterationReverseTheList.png 1260w,
+https://www.deepdevblog.com/static/010b41a57ed0ed675a0703c193616635/e8e04/firstIterationReverseTheList.png 1270w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Important observation here. Notice how starting node is now the tail of our subList, and currentNode is the head.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;Re-connecting the reversed sub-list to the main list and re-setting for the next iteration&lt;/h4&gt;
+&lt;p&gt;To re-connect and reset we would run the following operations on our pointers:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;startingNode&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;next &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; rightPart
+startingNode &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; rightPart
+currentNode &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; rightPart
+counter &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Resulting in:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/e603e35ca7f75358c72fa255c23131b8/fbf76/firstIterationResetForNext.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 61.39240506329114%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABYlAAAWJQFJUiTwAAABCklEQVQoz5VTya6DMAzM//8XB8QBIbghLhzY9313NZZSJe2jfbU0xLGd8RIi6Eau69LWO/+rCDheD0ubug+CgDzPI8uyqO97Le5PwjtA5nkm13XJcRwKw5C2bXsjlLqgL9J1HTVNQ+M4Pon2fdcqU3VxnidVVUV5nvPhoiiYALYoiijLMkZZltS2La8AYrBHIq1CfOBM05RnAyLsVRsIkHAYBiYBYAcwDrVKbvk4DlrX9YllWbgtAG3CLwEbYmCHLmMlqZAzgUNCkkodhyXUpKhumqZ3QjiTJOEbxFrXNVfzi2gtg8AwDDJNk3+NOI61rP+BViGGa9s2+b7PA8fNf3oNn0R8e1q/kj4ArhyrB//IqbwAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;firstIterationResetForNext&quot;
+        title=&quot;firstIterationResetForNext&quot;
+        src=&quot;https://www.deepdevblog.com/static/e603e35ca7f75358c72fa255c23131b8/f058b/firstIterationResetForNext.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/e603e35ca7f75358c72fa255c23131b8/c26ae/firstIterationResetForNext.png 158w,
+https://www.deepdevblog.com/static/e603e35ca7f75358c72fa255c23131b8/6bdcf/firstIterationResetForNext.png 315w,
+https://www.deepdevblog.com/static/e603e35ca7f75358c72fa255c23131b8/f058b/firstIterationResetForNext.png 630w,
+https://www.deepdevblog.com/static/e603e35ca7f75358c72fa255c23131b8/40601/firstIterationResetForNext.png 945w,
+https://www.deepdevblog.com/static/e603e35ca7f75358c72fa255c23131b8/fbf76/firstIterationResetForNext.png 1252w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Hmm ok, we have made some progress. There are two things that we are missing here though…&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;What about the leftPart?!&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;We haven’t seen the leftPart come into action yet, but as you probably guessed we will have to handle this. To
+handle this we will use a leftPart pointer.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;What are we going to return once we are done?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;We will have to return the newHead of the first subList. To handle this, we can…
+you guessed it, use a newHead pointer.&lt;/p&gt;
+&lt;h4&gt;Re-connecting the reversed sub-list to the main list and re-setting for the next iteration with the leftPart and newHead&lt;/h4&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/eba82e70b031920ceac72279b89e42af/e8814/firstIterationLeftPartNewHead.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 59.49367088607595%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABYlAAAWJQFJUiTwAAABHklEQVQoz5VTSQ6DMAzM//8FNw5cOCABEovEvu+bq7GUirbpZskkTpzJjGPEuq60bRud58njcRw8lw5Txe9MuK5LhmFQGIYUBMFLwvPha6wCFtM0UVVV1LYtgW1RFBTHMUVRxIxh4zhSXde8/42xQCLY+b7PC03TUJqmDALArus4TpKEAT8xZkB8+r6nLMsYBAzzPOdaYgRTqaAsS87DfBiGu4IHhldJOAAHK7CRcwDiUuQBDGXCOsYXQDDZ950ZSbYAQNKyLLwHJrIb5nlmx7pSMhJxK17YcRyuJ5jhdjhYQZ6MJeDzAz1IxgHLssg0TUIbSSnfTNk2+KB+uq6Tbdv8mlc5n/wtQ7SKpmks2fM8LoEq+RcTqt/rX5Ar4A3iQKmlFF6eJgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;firstIterationLeftPartNewHead&quot;
+        title=&quot;firstIterationLeftPartNewHead&quot;
+        src=&quot;https://www.deepdevblog.com/static/eba82e70b031920ceac72279b89e42af/f058b/firstIterationLeftPartNewHead.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/eba82e70b031920ceac72279b89e42af/c26ae/firstIterationLeftPartNewHead.png 158w,
+https://www.deepdevblog.com/static/eba82e70b031920ceac72279b89e42af/6bdcf/firstIterationLeftPartNewHead.png 315w,
+https://www.deepdevblog.com/static/eba82e70b031920ceac72279b89e42af/f058b/firstIterationLeftPartNewHead.png 630w,
+https://www.deepdevblog.com/static/eba82e70b031920ceac72279b89e42af/40601/firstIterationLeftPartNewHead.png 945w,
+https://www.deepdevblog.com/static/eba82e70b031920ceac72279b89e42af/78612/firstIterationLeftPartNewHead.png 1260w,
+https://www.deepdevblog.com/static/eba82e70b031920ceac72279b89e42af/e8814/firstIterationLeftPartNewHead.png 1392w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Then, we’ll run the following operations…&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;startingNode&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;next &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; rightPart &lt;span class=&quot;token comment&quot;&gt;// connect the list&lt;/span&gt;
+newHead &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; currentNode &lt;span class=&quot;token comment&quot;&gt;// set the newHead, we will only do this once&lt;/span&gt;
+leftPart &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; startingNode &lt;span class=&quot;token comment&quot;&gt;// save the leftPart for the next iteration&lt;/span&gt;
+startingNode &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; rightPart &lt;span class=&quot;token comment&quot;&gt;// save the next startingNode&lt;/span&gt;
+currentNode &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; rightPart &lt;span class=&quot;token comment&quot;&gt;// set up the next currentNode&lt;/span&gt;
+counter &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// reset the counter&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then we’ll be left with…&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/55d12dcf2e2f99ab2e6e661c78db0870/bc3ae/firstIterationComplete.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 66.45569620253164%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABYlAAAWJQFJUiTwAAABM0lEQVQ4y51Tya6DMAzk//8LiUsllgMggTix7/vW1tVYCgqv5W2WjBxij2cSRyEiej6fH12YHH/3D6ZcbciNYEVRUBAE5LoujeP4tn8A4rMsCw3DQI/Hg+Z5pjRNqe/7U7Jt23S73cg0Td77qkysGbAsS/J9n3/c73eO27blJKybpqG6rjlvXddLNQdDwarrOpaGQjBGnCQJhWHIDaZpoqqqeB9NkCMrORgiMc9zZhHHMRcjRhMAIAYwYuRlWcY5AASJEyDODS7bvu8sFY5YOM4akuGIt217lwy5oI3u6Cx3RyGKBABy4XIsyIjLUQQjz/PIsizSdZ2iKGLA35o8DQegpmmkqirPGdii89XAf3oAp1vGWRmGQY7j8A3KMv5qJ8l4CRgV3PrVS/gR8KrgP+wA+ALPHfbcL0aHsQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;firstIterationComplete&quot;
+        title=&quot;firstIterationComplete&quot;
+        src=&quot;https://www.deepdevblog.com/static/55d12dcf2e2f99ab2e6e661c78db0870/f058b/firstIterationComplete.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/55d12dcf2e2f99ab2e6e661c78db0870/c26ae/firstIterationComplete.png 158w,
+https://www.deepdevblog.com/static/55d12dcf2e2f99ab2e6e661c78db0870/6bdcf/firstIterationComplete.png 315w,
+https://www.deepdevblog.com/static/55d12dcf2e2f99ab2e6e661c78db0870/f058b/firstIterationComplete.png 630w,
+https://www.deepdevblog.com/static/55d12dcf2e2f99ab2e6e661c78db0870/40601/firstIterationComplete.png 945w,
+https://www.deepdevblog.com/static/55d12dcf2e2f99ab2e6e661c78db0870/78612/firstIterationComplete.png 1260w,
+https://www.deepdevblog.com/static/55d12dcf2e2f99ab2e6e661c78db0870/bc3ae/firstIterationComplete.png 1268w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h4&gt;Re-connecting the reversed sub-list to the main list and re-setting for the next iteration in the middle of the list&lt;/h4&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/9ecd9e749730346837297232bc3a0b6c/04784/secondIteration.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 72.15189873417721%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAABYlAAAWJQFJUiTwAAABUUlEQVQ4y5VT2Y6DMAzk//+rvFXlAQlaibOiB1e5i+jh1VhyFljKqpasOMHMjO1EoxV7v9+LZ3Mfn2vzpKWfiqKg2+1Gj8fjX2JtrmK+r+uadrsd++FwYNC2bel0OpHv+0z0R2Hf93S9XqlpGv4YRRG5rktVVdHr9eIVXpYl5wIEudgDfCxEAdq2zQkwJANULE1TFZ/PZ+q6jmOQzatTJUNhnuesBOVcLhfeJ0kyiUGEGJ5lGSuEkPv9/qsQTPiIUuAABzCA4jhmhQCAOskDOM4AiKGJak2aCdDn88mHWIVxbOOcT9PWMDVMEgxwMKKHUgrYsSJHXIYkgxLySQ/DMKTtdku6rpNpmlz2p3u3dhcV4PF4JMMwyLIschyHlckUl17Hp9eiAPf7PW02G/I8j9WtPb81U4BBEHDJuP3oizR/rOArQAwEZWIYwzBMyvhG4Q/gxkInTTUknAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;secondIteration&quot;
+        title=&quot;secondIteration&quot;
+        src=&quot;https://www.deepdevblog.com/static/9ecd9e749730346837297232bc3a0b6c/f058b/secondIteration.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/9ecd9e749730346837297232bc3a0b6c/c26ae/secondIteration.png 158w,
+https://www.deepdevblog.com/static/9ecd9e749730346837297232bc3a0b6c/6bdcf/secondIteration.png 315w,
+https://www.deepdevblog.com/static/9ecd9e749730346837297232bc3a0b6c/f058b/secondIteration.png 630w,
+https://www.deepdevblog.com/static/9ecd9e749730346837297232bc3a0b6c/40601/secondIteration.png 945w,
+https://www.deepdevblog.com/static/9ecd9e749730346837297232bc3a0b6c/04784/secondIteration.png 1174w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Disconnect the subList, and reverse it by running:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;rightPart &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; currentNode&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;next &lt;span class=&quot;token comment&quot;&gt;// save the rightPart&lt;/span&gt;
+currentNode&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;next &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; disconnect from the main list
+&lt;span class=&quot;token function&quot;&gt;reverse&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;startingNode&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// reverse the subList&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Resulting in…&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/781bc038080a1bdbe11a41f6d49c1992/0d98f/secondIterationReverseSublist.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 66.45569620253164%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABYlAAAWJQFJUiTwAAABSklEQVQ4y5WT2Y6DMAxF+f8f6yO8UFGgIFrWQilQ9s2ja01QYaZUtRThxInvcWIk+rV5npfvu/Fq7+LSNrhnewIiLm0D0zRRVVXUdR0Nw0C+79P5fKbr9cpxx3F4YK2ua97Ttu2aMM9zMgyDmqahcRzpdDrR7XbjDUVR0PP5ZB9CmMMg+Hg8yLZtCsOQQZaEUPE8jxNCKYoi6vue10EDAsyDIGAqzLEHAn9KhgMq13VZEV/QJUnC5Pf7nX3TNCnLMqZFPI5jpoWP86uEcKAMCgRBAHUkTNOUS4IQqMRelLztDi4ZARxEgrIsmUD4WAcByECPkhEXA3Fxd+LlF0IQHI9HUlWVLpcLJ9xrne3aqmQYXllRFNI0jVvltaRPY1WySCjLMh0OB35V0SafGv0/WxJalkW6rvMD4NK/+YNWCcVmlCgae3vR3xD+AJ+E9Uf7qkRuAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;secondIterationReverseSublist&quot;
+        title=&quot;secondIterationReverseSublist&quot;
+        src=&quot;https://www.deepdevblog.com/static/781bc038080a1bdbe11a41f6d49c1992/f058b/secondIterationReverseSublist.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/781bc038080a1bdbe11a41f6d49c1992/c26ae/secondIterationReverseSublist.png 158w,
+https://www.deepdevblog.com/static/781bc038080a1bdbe11a41f6d49c1992/6bdcf/secondIterationReverseSublist.png 315w,
+https://www.deepdevblog.com/static/781bc038080a1bdbe11a41f6d49c1992/f058b/secondIterationReverseSublist.png 630w,
+https://www.deepdevblog.com/static/781bc038080a1bdbe11a41f6d49c1992/40601/secondIterationReverseSublist.png 945w,
+https://www.deepdevblog.com/static/781bc038080a1bdbe11a41f6d49c1992/78612/secondIterationReverseSublist.png 1260w,
+https://www.deepdevblog.com/static/781bc038080a1bdbe11a41f6d49c1992/0d98f/secondIterationReverseSublist.png 1276w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Re-connect the subList to the mainList, and reset for the next iteration.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;leftPart&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;next &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; currentNode &lt;span class=&quot;token comment&quot;&gt;// connect the leftPart&lt;/span&gt;
+startingNode&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;next &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; rightPart &lt;span class=&quot;token comment&quot;&gt;// connect the rightPart&lt;/span&gt;
+leftPart &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; startingNode &lt;span class=&quot;token comment&quot;&gt;// set the next leftPart&lt;/span&gt;
+startingNode &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; rightPart &lt;span class=&quot;token comment&quot;&gt;// set the next startingNode&lt;/span&gt;
+currentNode &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; rightPart &lt;span class=&quot;token comment&quot;&gt;// set the next currentNode&lt;/span&gt;
+counter &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// reset the counter&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Resulting in…&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/0e565de38483a2f3afe147ff31155c61/37048/secondIterationComplete.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 60.75949367088608%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABYlAAAWJQFJUiTwAAABLklEQVQoz51Sy66CQAzl/z+MHQsJUVlAeIi8CYiiqHDMaTJcILjwNmnaaTtnTtvRAGAcx0nVeW6VzGve7zfu9zuu1yuez+eU175dUvG6rhGGIW632+KRruvgOA4sy8LpdPoDpNO2LYqiwDAMWAtfL8sSj8djEW+aBqZp4ng8ir8ArKoKnucJIJUgbOn1eknh5XJBnudTq6xnbC0TIOlHUSSX4jgWRmyDrWZZhiAI4Ps+0jQVmySJ1FDVo2oUAsggQWnJju3Rp+37XlipGPNUdrJepDBkIelzYxw8gbk5zlUp88pnTuXVzOeL1dTgD4cDDMPAbrfD+XwWVltfaM5qKz+1TEBuzHVd+SprgG+6yZBz0nUd+/1eNrhm94ssGNq2LVudA/4Kqn278B92BPwALV6pAyvt5RQAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;secondIterationComplete&quot;
+        title=&quot;secondIterationComplete&quot;
+        src=&quot;https://www.deepdevblog.com/static/0e565de38483a2f3afe147ff31155c61/f058b/secondIterationComplete.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/0e565de38483a2f3afe147ff31155c61/c26ae/secondIterationComplete.png 158w,
+https://www.deepdevblog.com/static/0e565de38483a2f3afe147ff31155c61/6bdcf/secondIterationComplete.png 315w,
+https://www.deepdevblog.com/static/0e565de38483a2f3afe147ff31155c61/f058b/secondIterationComplete.png 630w,
+https://www.deepdevblog.com/static/0e565de38483a2f3afe147ff31155c61/40601/secondIterationComplete.png 945w,
+https://www.deepdevblog.com/static/0e565de38483a2f3afe147ff31155c61/78612/secondIterationComplete.png 1260w,
+https://www.deepdevblog.com/static/0e565de38483a2f3afe147ff31155c61/37048/secondIterationComplete.png 1352w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Nice, our process should handle all the intermediate subLists.&lt;/p&gt;
+&lt;h4&gt;Handling the end of the list&lt;/h4&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/c378a01084f38b3f703fc7adef705805/0786c/lastIteration.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 60.75949367088608%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsTAAALEwEAmpwYAAABLElEQVQoz51S2YqEQAz0/7/Mh0F8chQPFBVUvB3vI0NlaWlcZ5fdQEzSUpXqdBQiouM4The1HIVd6ysWrtyBZPK+78m2bcrznOskScgwDHo+n/R6vb41UPBpmobCMKRlWejOAByGgfOiKMh1XW6Apm3bUhAE5Ps+jeP4RYgkjmPato32fWdiEdd1pXmeWRmsrmsmEYYGVVUxOTBMOE0TRVHEIChFhKNzlmUcPc+jNE35HLEsS1Ypk59XhjKohCI4cihDDnXiTP4PNfL8z0cBAF0wIzyAiF3XsWN+wsWZ+A/sdStYIbrhJTVNI13X+dq40t1ayBtwt2KKKEBomibPCkPGGH4ivNvbkxAKVVWlx+PB6jCjT4v8m50KHcchy7J4DWTCv5IqnwD/UQfCN+Avp/inv0UZAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;lastIteration&quot;
+        title=&quot;lastIteration&quot;
+        src=&quot;https://www.deepdevblog.com/static/c378a01084f38b3f703fc7adef705805/f058b/lastIteration.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/c378a01084f38b3f703fc7adef705805/c26ae/lastIteration.png 158w,
+https://www.deepdevblog.com/static/c378a01084f38b3f703fc7adef705805/6bdcf/lastIteration.png 315w,
+https://www.deepdevblog.com/static/c378a01084f38b3f703fc7adef705805/f058b/lastIteration.png 630w,
+https://www.deepdevblog.com/static/c378a01084f38b3f703fc7adef705805/0786c/lastIteration.png 663w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Here our counter equals 2 which equals k. With our current flow this would trigger our a subList reversal,
+however it shouldn’t since this is not a true subList with length 2. To handle this case, we will only trigger our process if:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;currentNode &lt;span class=&quot;token operator&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; counter &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; k&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Adding this will ensure that we get the desired behavior. Nice!&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/625743cbdcc25dfa8cfda7b634a8b4a8/a5c09/highFiveDog.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 66.45569620253164%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAMEBf/EABUBAQEAAAAAAAAAAAAAAAAAAAEA/9oADAMBAAIQAxAAAAHrwQHaij//xAAZEAEBAAMBAAAAAAAAAAAAAAABAAIDERL/2gAIAQEAAQUCtebkrem0LPe//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAGhAAAQUBAAAAAAAAAAAAAAAAAAECECExYf/aAAgBAQAGPwIXkus0/8QAHBAAAgICAwAAAAAAAAAAAAAAAAERITFBUaHh/9oACAEBAAE/IZhNiWqNuRCdkO+jMysfwH//2gAMAwEAAgADAAAAENA//8QAFxEAAwEAAAAAAAAAAAAAAAAAAAERIf/aAAgBAwEBPxBLCH//xAAWEQEBAQAAAAAAAAAAAAAAAAAAESH/2gAIAQIBAT8Quq//xAAcEAEAAgIDAQAAAAAAAAAAAAABABEhMUFRcaH/2gAIAQEAAT8QQhwXG7auybJx9lUQMLDnb0xF+JxomuBjpP/Z&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;highFiveDog&quot;
+        title=&quot;highFiveDog&quot;
+        src=&quot;https://www.deepdevblog.com/static/625743cbdcc25dfa8cfda7b634a8b4a8/828fb/highFiveDog.jpg&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/625743cbdcc25dfa8cfda7b634a8b4a8/ff44c/highFiveDog.jpg 158w,
+https://www.deepdevblog.com/static/625743cbdcc25dfa8cfda7b634a8b4a8/a6688/highFiveDog.jpg 315w,
+https://www.deepdevblog.com/static/625743cbdcc25dfa8cfda7b634a8b4a8/828fb/highFiveDog.jpg 630w,
+https://www.deepdevblog.com/static/625743cbdcc25dfa8cfda7b634a8b4a8/0ede0/highFiveDog.jpg 945w,
+https://www.deepdevblog.com/static/625743cbdcc25dfa8cfda7b634a8b4a8/3ac88/highFiveDog.jpg 1260w,
+https://www.deepdevblog.com/static/625743cbdcc25dfa8cfda7b634a8b4a8/a5c09/highFiveDog.jpg 5437w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;The Algorithm Plan&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Edge case handling&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If k === 1, return head. (Nothing needs to be processed in this case, return the list as is)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Global variables&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Declare leftPart initialize to null&lt;/li&gt;
+&lt;li&gt;Declare newHead initialize to null&lt;/li&gt;
+&lt;li&gt;Declare currentNode initialize to head&lt;/li&gt;
+&lt;li&gt;Declare startingNode initialize to head&lt;/li&gt;
+&lt;li&gt;Declare counter initialize to 1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Main loop&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Iterate through the list while currentNode !== null&lt;/li&gt;
+&lt;li&gt;Increment the counter in each iteration&lt;/li&gt;
+&lt;li&gt;If the counter === k and currentNode !== null
+&lt;ul&gt;
+&lt;li&gt;Declare rightPart, and initialize it to currentNode.next for next iteration&lt;/li&gt;
+&lt;li&gt;Disconnect and reverse
+&lt;ul&gt;
+&lt;li&gt;Set currentNode.next to null to disconnect the list&lt;/li&gt;
+&lt;li&gt;Reverse the list from the startingNode&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;If there is no head, set it to currentNode&lt;/li&gt;
+&lt;li&gt;Re connect
+&lt;ul&gt;
+&lt;li&gt;Connect to left: If there is a leftPart, connect it to currentNode&lt;/li&gt;
+&lt;li&gt;Connect to right: Set startingNode.next to rightPart&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Re set for next iteration
+&lt;ul&gt;
+&lt;li&gt;Set leftPart to startingNode&lt;/li&gt;
+&lt;li&gt;Set startingNode to rightPart&lt;/li&gt;
+&lt;li&gt;Set currentNode to rightPart&lt;/li&gt;
+&lt;li&gt;Set counter to 1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Return newHead&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Lets code it up!&lt;/p&gt;
+&lt;h3&gt;Code&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;reverseKGroup&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;head&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; k&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;// Handle edge case&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;k &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; head&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; leftPart &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; newHead &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; currentNode &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; head&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; startingNode &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; head&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; counter &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;currentNode&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        currentNode &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; currentNode&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;next&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        counter&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;currentNode &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; counter &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; k&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+            &lt;span class=&quot;token comment&quot;&gt;// Save right part for next iteration    &lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; rightPart &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; currentNode&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;next&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+            &lt;span class=&quot;token comment&quot;&gt;// Disconnect and reverse&lt;/span&gt;
+            currentNode&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;next &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;token function&quot;&gt;reverse&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;startingNode&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+            &lt;span class=&quot;token comment&quot;&gt;// Set newHead if needed&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;newHead &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                newHead &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; currentNode&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+            &lt;span class=&quot;token comment&quot;&gt;// Connect the list back&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;leftPart &lt;span class=&quot;token operator&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                leftPart&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;next &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; currentNode&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; 
+            startingNode&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;next &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; rightPart&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+            &lt;span class=&quot;token comment&quot;&gt;// Reset for the next iteration&lt;/span&gt;
+            leftPart &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; startingNode&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+            startingNode &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; rightPart&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+            currentNode &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; rightPart&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+            counter &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; newHead&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;reverse&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; prev &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; currentNode &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; node&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;currentNode&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; nextNode &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; currentNode&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;next&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        currentNode&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;next &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; prev&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        prev &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; currentNode&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        currentNode &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; nextNode&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; prev&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// returning for as a good practice, not needed in this problem&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Summary&lt;/h3&gt;
+&lt;p&gt;This algorithm runs in O(n) time where n is the number of nodes in the list, and
+O(1) space.&lt;/p&gt;
+&lt;p&gt;As you can see the code is fairly trivial. It’s very easy to get tripped up
+with all the different pointers that you have to keep track of. I sure did!&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Having a good mental model is key, and drawing things out really helps especially if your more visually inclined.
+In fact, I’d say that’s probably true for most problems.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Hope this was helpful!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[LeetCode 57. Insert Interval]]></title><description><![CDATA[Solving LeetCode 57, Insert Interval. Click here and try it out your self! LeetCode Problem Statement You are given an array of non…]]></description><link>https://www.deepdevblog.com/insert-interval/</link><guid isPermaLink="false">https://www.deepdevblog.com/insert-interval/</guid><pubDate>Sun, 20 Feb 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Solving LeetCode 57, Insert Interval. &lt;a href=&quot;https://leetcode.com/problems/insert-interval/&quot;&gt;Click here&lt;/a&gt; and try it out your self!&lt;/p&gt;
 &lt;h3&gt;LeetCode Problem Statement&lt;/h3&gt;
 &lt;p&gt;You are given an array of non-overlapping intervals intervals where intervals[i] = [starti, endi] represent the start and the end of the ith interval and intervals is sorted in ascending order by starti. You are also given an interval newInterval = [start, end] that represents the start and end of another interval.&lt;/p&gt;
 &lt;p&gt;Insert newInterval into intervals such that intervals is still sorted in ascending order by starti and intervals still does not have any overlapping intervals (merge overlapping intervals if necessary).&lt;/p&gt;
