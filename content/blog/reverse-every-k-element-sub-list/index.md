@@ -29,8 +29,7 @@ Output: [3,2,1,4,5]
 
 Linked Lists... For me, these problems are fairly easy to understand conceptually. The 
 challenging part here is figuring out the implementation. With Linked Lists problems, keeping
-track of pointers is key. And the less pointers you can keep track of, the easier it will be
-to implement.
+track of pointers is key.
 
 
 ### Breaking it down
@@ -147,8 +146,7 @@ Resulting in...
 
 ![](secondIterationComplete.png)
 
-Nice, our process should handle all the intermediate subLists. Next, lets take a look at how things will be handled
-at the end of the list. 
+Nice, our process should handle all the intermediate subLists.
 
 #### Handling the end of the list ####
 
@@ -181,16 +179,19 @@ Adding this will ensure that we get the desired behavior. Nice!
 * Iterate through the list while currentNode !== null
 * Increment the counter in each iteration
 * If the counter === k and currentNode !== null
-  * Declare rightPart, and initialize it to currentNode.next
-  * Set currentNode.next to null to disconnect the list
-  * Reverse the list from the startingNode
+  * Declare rightPart, and initialize it to currentNode.next for next iteration
+  * Disconnect and reverse
+    * Set currentNode.next to null to disconnect the list
+    * Reverse the list from the startingNode
   * If there is no head, set it to currentNode
-  * If there is a leftPart, connect it to currentNode
-  * Set leftPart to startingNode
-  * Set startingNode.next to rightPart
-  * Set startingNode to rightPart
-  * Set currentNode to rightPart
-  * Set counter to 1
+  * Re connect
+    * Connect to left: If there is a leftPart, connect it to currentNode
+    * Connect to right: Set startingNode.next to rightPart
+  * Re set for next iteration
+    * Set leftPart to startingNode
+    * Set startingNode to rightPart
+    * Set currentNode to rightPart
+    * Set counter to 1
 * Return newHead
 
 Lets code it up!
@@ -268,9 +269,8 @@ O(1) space.
 As you can see the code is fairly trivial. It's very easy to get tripped up 
 with all the different pointers that you have to keep track of. I sure did! 
 
-Drawing this out and understanding that up front makes all the difference. Once you have a good 
-mental model of the operations, coding this up is quite simple. In fact, I'd say that's probably 
-true for most problems. 
+> Having a good mental model is key, and drawing things out really helps especially if your more visually inclined. 
+> In fact, I'd say that's probably true for most problems. 
 
 Hope this was helpful!
 
