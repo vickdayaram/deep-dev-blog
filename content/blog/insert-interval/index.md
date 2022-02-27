@@ -146,6 +146,8 @@ const insert = (intervals, newInterval) => {
 
 ### Summary
 
+The time complexity of this algorithm is O(N), where N is the number of intervals in the list. The space complexity is O(N) since we are creating a new list.
+
 I remember when first attempting this, it was really hard to wrap my head around. The biggest thing that has helped me with interval problems in general is remembering the following:
 
 > Non overlapping cases are easier to identify than overlapping cases

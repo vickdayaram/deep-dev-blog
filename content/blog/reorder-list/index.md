@@ -220,6 +220,9 @@ const reverseList = (node) => {
 
 ### Summary
 
+The time complexity of this algorithm is O(N), where N is the number of nodes in the list. 
+The space complexity is O(1) since the variables we store remain the same, regardless of the size of the input.
+
 This was an interesting problem. The solution I am using here is from educative.io. Using two linked lists that point to the same node wasn't something that came to my mind. This data structure makes the algorithm slightly nicer though. 
 
 Without knowing that solution, disconnecting the lists is a more natural solution. The crux with that approach also reveals it self in the last iteration. You have to add some additional logic in the loop to handle some cases. 
