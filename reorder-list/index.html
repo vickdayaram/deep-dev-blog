@@ -498,6 +498,8 @@ secondHalf <span class="token operator">=</span> nextSecondHalf <span class="tok
     <span class="token keyword">return</span> prev<span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre></div>
 <h3>Summary</h3>
+<p>The time complexity of this algorithm is O(N), where N is the number of nodes in the list.
+The space complexity is O(1) since the variables we store remain the same, regardless of the size of the input.</p>
 <p>This was an interesting problem. The solution I am using here is from educative.io. Using two linked lists that point to the same node wasn’t something that came to my mind. This data structure makes the algorithm slightly nicer though.</p>
 <p>Without knowing that solution, disconnecting the lists is a more natural solution. The crux with that approach also reveals it self in the last iteration. You have to add some additional logic in the loop to handle some cases.</p>
 <p>I challenge you to give that a shot. Draw out a diagram and work through it slowly, iteration by iteration.</p>
