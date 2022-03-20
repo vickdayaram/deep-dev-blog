@@ -1,4 +1,234 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Deep Dev RSS Feed]]></title><description><![CDATA[A developer experience and learnings]]></description><link>https://www.deepdevblog.com</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 27 Feb 2022 21:13:59 GMT</lastBuildDate><item><title><![CDATA[LeetCode 25. Reverse Nodes in k-Group]]></title><description><![CDATA[Solving LeetCode 25. Reverse Nodes in k-Group. Click here and try it out your self! LeetCode Problem Statement Given the head of a linked…]]></description><link>https://www.deepdevblog.com/reverse-every-k-element-sub-list/</link><guid isPermaLink="false">https://www.deepdevblog.com/reverse-every-k-element-sub-list/</guid><pubDate>Sun, 27 Feb 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Solving LeetCode 25. Reverse Nodes in k-Group. &lt;a href=&quot;https://leetcode.com/problems/reverse-nodes-in-k-group/&quot;&gt;Click here&lt;/a&gt; and try it out your self!&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Deep Dev RSS Feed]]></title><description><![CDATA[A developer experience and learnings]]></description><link>https://www.deepdevblog.com</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 20 Mar 2022 16:48:27 GMT</lastBuildDate><item><title><![CDATA[LeetCode 102. Binary Tree Level Order Traversal]]></title><description><![CDATA[Solving LeetCode 102. Binary Tree Level Order Traversal. Click here and try it out your self! LeetCode Problem Statement Given the root of a…]]></description><link>https://www.deepdevblog.com/binary-tree-level-order-traversal/</link><guid isPermaLink="false">https://www.deepdevblog.com/binary-tree-level-order-traversal/</guid><pubDate>Sun, 20 Mar 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Solving LeetCode 102. Binary Tree Level Order Traversal. &lt;a href=&quot;https://leetcode.com/problems/binary-tree-level-order-traversal/&quot;&gt;Click here&lt;/a&gt; and try it out your self!&lt;/p&gt;
+&lt;h3&gt;LeetCode Problem Statement&lt;/h3&gt;
+&lt;p&gt;Given the root of a binary tree, return the level order traversal of its nodes’ values. (i.e., from left to right, level by level).&lt;/p&gt;
+&lt;p&gt;Example:&lt;/p&gt;
+&lt;p&gt;Example 1 Image:
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/02ac3d75217af49148c18279c63b9204/d0cc0/LeetCodeExample1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 97.46835443037975%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAYAAACQjC21AAAACXBIWXMAABYlAAAWJQFJUiTwAAAB8klEQVQ4y6VU266aUBDl//+h7/2Cpm9NrE3PKa1XFHu8IXcBUUGFsMF1MhOxiOZg0kkmbPaQNWutYW8pSVOM/75hOFbRV0awHRdCCJRxPp85y3VTSPTR8XRCHB8QxTGyLOPCbrdDGIY3wM+E9GjTdV1Oz/NgWdYd00aG9SQwTdOwXC6xXq+R5/nzkqsfls/FYgHHcZjhfD7/P4YUxMy2bc4q4DN+SvXum82GmVX9jKKI10VRNE5cqhdWqxV7Vu7Hccw+VqORYRAELG8ymTCjOuvRaATTNLnWyPB4PLJPqqpiOp1eAUkeBcmlRt1uF4qisCUfAu73e5ZJgPSr0HSrgNvtFrPZDK1Wi4F93/9w6izZMAwGI6ZJktwwSNMUnU4Huq6j1+txg0ZACgKq/sAlQ7KAjiC9E1g5oPrEy7VU71QU/9Z0SZAd1SAljyZ+Bax2KDeT5AQalus4fElUPSUPfd/jevHgSEr1TjQkWdHwa2zj9c/gThI1aMsKXhQDw4mG/HLV3UkuLhvjqY72wMKnz18hqw6iaH/D0HQ8/Byt8e33Aq+qh024u2l6x1A3XXzv6/jSViEP5xAiu6kHmxA/+ivIbyFeBhoOh8M9Q5HnyEQOkRfIRIb5ysJ4ZmC72zPzTAiuUxJTw3bRVxdwveBSz6/5DkuEwion39XlAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;LeetCodeExample1&quot;
+        title=&quot;LeetCodeExample1&quot;
+        src=&quot;https://www.deepdevblog.com/static/02ac3d75217af49148c18279c63b9204/f058b/LeetCodeExample1.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/02ac3d75217af49148c18279c63b9204/c26ae/LeetCodeExample1.png 158w,
+https://www.deepdevblog.com/static/02ac3d75217af49148c18279c63b9204/6bdcf/LeetCodeExample1.png 315w,
+https://www.deepdevblog.com/static/02ac3d75217af49148c18279c63b9204/f058b/LeetCodeExample1.png 630w,
+https://www.deepdevblog.com/static/02ac3d75217af49148c18279c63b9204/d0cc0/LeetCodeExample1.png 732w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;Example &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;
+Input&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; root &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+Output&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+
+Example &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;
+Input&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; root &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+Output&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+
+Example &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; 
+Input&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; root &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+Output&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Initial Thoughts&lt;/h3&gt;
+&lt;p&gt;Breadth First Search!&lt;/p&gt;
+&lt;h3&gt;Breaking it down&lt;/h3&gt;
+&lt;p&gt;We can use BFS to traverse the tree and collect all the nodes for a given level in a currentLevel array. We can store each of our currentLevel arrays in an results array. Once we finish our traversal our solution should be contained in results.&lt;/p&gt;
+&lt;p&gt;If your not familiar with how to implement BFS, continue to read on here. We’ll describe BFS implementation as it
+relates to this problem. If you are familiar feel free to skip.&lt;/p&gt;
+&lt;h4&gt;Implementing BFS&lt;/h4&gt;
+&lt;p&gt;We can use a queue, while loop, and for loop to implement BFS. Typically a queue and a while loop are required,
+however the for loop is optional depending on the problem. Also, remember this is just one way to do this.&lt;/p&gt;
+&lt;p&gt;To kick things off we will initialize a queue with the root node. We will continue to iterate through the queue
+while it’s not empty.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/8e427a739bad09aaddb3340b846915ab/c483d/BfsStartingPoint.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 63.291139240506325%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA9ElEQVQ4y5WSWQ6FIAxF3f/m/PHXDZg4z2NfDklJg+Nrglgop7eFSETkOA6xpn4435ndj9TZtk2GYXCzBunevu8yjqOs6yrLsriYvu+laZpT0kidtm2l6zoXGAYBLIpCkiRxI8sySdNU4jg+JfcKAdZ17eawFFWv8MeS+UzT5JRpafg2yAKtIqvMKwREOYAw+pTnuZRl6f5D4B3MA2ksUAZG06uqctB5nn0SC3yyiOwctNnoI2BNQis+A8MFDlIuRhtoB2vaklegrR+lwCgZ5VwOavF5Up8V2ufBQQZl6gPG/7vkqxtTA64X9JdCG3wFfoMB/AHKXQGz6uttnQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;BfsStartingPoint&quot;
+        title=&quot;BfsStartingPoint&quot;
+        src=&quot;https://www.deepdevblog.com/static/8e427a739bad09aaddb3340b846915ab/f058b/BfsStartingPoint.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/8e427a739bad09aaddb3340b846915ab/c26ae/BfsStartingPoint.png 158w,
+https://www.deepdevblog.com/static/8e427a739bad09aaddb3340b846915ab/6bdcf/BfsStartingPoint.png 315w,
+https://www.deepdevblog.com/static/8e427a739bad09aaddb3340b846915ab/f058b/BfsStartingPoint.png 630w,
+https://www.deepdevblog.com/static/8e427a739bad09aaddb3340b846915ab/c483d/BfsStartingPoint.png 751w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;As we iterate in our while loop we will capture the current length of the queue.
+This length represents the number of nodes at the current level. Looking at our example,
+for the first iteration currentLength will equal one. The next time it will equal two, and the
+last iteration it will equal two again. This will become more clear as we continue to work through the problem.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/61c2c927c724f7ffcf3051537300c047/a8a6f/BfsCurrentLength.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 62.0253164556962%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABYlAAAWJQFJUiTwAAAA/ElEQVQoz42S2QqFMAxE/f8PVBD01Rdx37dcTiEl1rsVYtMmncwkRiIi13WJXfasPnuY9+5tZB9s2ybneT4AuN/33fnEj+OQrutkmqZHrgck2LatDMPgEzQGWFVVEsexJEni/TzPHyw94DzP0jSN1HV9k6kMl2WRdV1lHEe3UwSzihwgH03kEh+WyNIFIHdFUThWWZZJmqaOgLbCA1KZfvBAA7DENJki2Kd1kwwgYH3fuwAS6GVZlq4NyhCzAwj7fBsK1W0V5MOOYtwj30r7ChjS1+GoVCYKe8vw24psFZggl/7pZGkHZ5X/EzBMshPHAFL7G/CfxPD3+AT4ApspsOAO6o/XAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;BfsCurrentLength&quot;
+        title=&quot;BfsCurrentLength&quot;
+        src=&quot;https://www.deepdevblog.com/static/61c2c927c724f7ffcf3051537300c047/f058b/BfsCurrentLength.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/61c2c927c724f7ffcf3051537300c047/c26ae/BfsCurrentLength.png 158w,
+https://www.deepdevblog.com/static/61c2c927c724f7ffcf3051537300c047/6bdcf/BfsCurrentLength.png 315w,
+https://www.deepdevblog.com/static/61c2c927c724f7ffcf3051537300c047/f058b/BfsCurrentLength.png 630w,
+https://www.deepdevblog.com/static/61c2c927c724f7ffcf3051537300c047/40601/BfsCurrentLength.png 945w,
+https://www.deepdevblog.com/static/61c2c927c724f7ffcf3051537300c047/78612/BfsCurrentLength.png 1260w,
+https://www.deepdevblog.com/static/61c2c927c724f7ffcf3051537300c047/a8a6f/BfsCurrentLength.png 1516w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Storing currentLength is critical here. That’s the information that lets us know the bounds of each level so we can operate on nodes on a level by level fashion.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Important Note. Make sure to save currentLevel as a variable, and don’t use queue.length. As you will
+see we are always adding child nodes to the queue so the length will change.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Every node we grab in the for loop will belong to the currentLevel. For this problem we are asked to collect
+each level and return it in an array. So every time we shift() from our queue, we can
+push the value to the currentLevel.&lt;/p&gt;
+&lt;p&gt;To collect the next level, we will check if the current node has children. If it does, we will push them to the queue.&lt;/p&gt;
+&lt;p&gt;Once the iteration finishes, our queue should have the next level and our result should have the first level.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/1df4f96b161c34b991e128ce1b1365af/166a3/BfsSecondIteration.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 50.632911392405056%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAAA7ElEQVQoz42SWwqFMAxEu//NuQQRBFFExPc7lxOIxNKPGwhN02aSmTaIiDzPI2YW+9w/ZveDBed5qvtD9tu2ybIssu+7zPOs8TRNchyH+nVdnyFewHEctYC95QCr61qKotCzqqokz3Np21aGYZAsy6QsyxdMAdnQhc44sRmAFDZNo2Bd1+k5067r+k74oWxFJO771iJyGEW40SQGgNXkiXVXQOgChvd9rw1sQnKxAWj5+BGD18yoQ8Wm85S8tqm8AvrO0GVaLrMybaoQDWma+l4h7sxl6FDAy3pq/jtxLwmYGtuL7TXycayhAf4At/8TM2k0bD0AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;BfsSecondIteration&quot;
+        title=&quot;BfsSecondIteration&quot;
+        src=&quot;https://www.deepdevblog.com/static/1df4f96b161c34b991e128ce1b1365af/f058b/BfsSecondIteration.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/1df4f96b161c34b991e128ce1b1365af/c26ae/BfsSecondIteration.png 158w,
+https://www.deepdevblog.com/static/1df4f96b161c34b991e128ce1b1365af/6bdcf/BfsSecondIteration.png 315w,
+https://www.deepdevblog.com/static/1df4f96b161c34b991e128ce1b1365af/f058b/BfsSecondIteration.png 630w,
+https://www.deepdevblog.com/static/1df4f96b161c34b991e128ce1b1365af/40601/BfsSecondIteration.png 945w,
+https://www.deepdevblog.com/static/1df4f96b161c34b991e128ce1b1365af/78612/BfsSecondIteration.png 1260w,
+https://www.deepdevblog.com/static/1df4f96b161c34b991e128ce1b1365af/166a3/BfsSecondIteration.png 1980w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Following these steps, we will collect all the levels! Nice.&lt;/p&gt;
+&lt;h3&gt;The Algorithm Plan&lt;/h3&gt;
+&lt;p&gt;Approach Overview&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If there is no root, return []&lt;/li&gt;
+&lt;li&gt;Initialize a queue with the root node&lt;/li&gt;
+&lt;li&gt;Initialize a results array&lt;/li&gt;
+&lt;li&gt;While the queue is not empty
+&lt;ul&gt;
+&lt;li&gt;Initialize a currentLevel array&lt;/li&gt;
+&lt;li&gt;Capture the currentLength of the queue&lt;/li&gt;
+&lt;li&gt;Declare a for loop, and iterate through the queue from 0 to the currentLength
+&lt;ul&gt;
+&lt;li&gt;Shift() from the queue&lt;/li&gt;
+&lt;li&gt;If node.left, push node.left to the queue&lt;/li&gt;
+&lt;li&gt;If node.right, push node.right to the queue&lt;/li&gt;
+&lt;li&gt;push node.val to the currentLevel&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;push currentLevel to results&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Return results&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Code&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;levelOrder&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;root&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; results &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; queue &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;root&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;queue&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; currentLength &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; queue&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; currentLevel &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+        &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; currentLength&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; node &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; queue&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;shift&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;node&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;left&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                queue&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;node&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;left&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;node&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;right&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                queue&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;node&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;right&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+            currentLevel&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;node&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;val&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+        results&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;currentLevel&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; results&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Summary&lt;/h3&gt;
+&lt;p&gt;The time complexity of this Algorithm is O(N) since we are visiting every node in the tree.
+The space complexity will be O(N) + O(K), where K is the level with the most nodes. This
+represents the biggest size that our queue could be.&lt;/p&gt;
+&lt;p&gt;Another interesting piece here is the queue that we are using. In my solution I am just using a
+normal JS array. This works like a queue in terms of the operations, but does not give us the
+performance we could get from a true queue implementation. Analyzing this piece is beyond the
+scope of this blog post, but it’s important to call it out.&lt;/p&gt;
+&lt;p&gt;Hope you found this helpful!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[LeetCode 25. Reverse Nodes in k-Group]]></title><description><![CDATA[Solving LeetCode 25. Reverse Nodes in k-Group. Click here and try it out your self! LeetCode Problem Statement Given the head of a linked…]]></description><link>https://www.deepdevblog.com/reverse-every-k-element-sub-list/</link><guid isPermaLink="false">https://www.deepdevblog.com/reverse-every-k-element-sub-list/</guid><pubDate>Sun, 27 Feb 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Solving LeetCode 25. Reverse Nodes in k-Group. &lt;a href=&quot;https://leetcode.com/problems/reverse-nodes-in-k-group/&quot;&gt;Click here&lt;/a&gt; and try it out your self!&lt;/p&gt;
 &lt;h3&gt;LeetCode Problem Statement&lt;/h3&gt;
 &lt;p&gt;Given the head of a linked list, reverse the nodes of the list k at a time, and return the modified list.&lt;/p&gt;
 &lt;p&gt;k is a positive integer and is less than or equal to the length of the linked list. If the number of nodes is not a multiple of k then left-out nodes, in the end, should remain as it is.&lt;/p&gt;
