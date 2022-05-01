@@ -1,4 +1,922 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Deep Dev RSS Feed]]></title><description><![CDATA[A developer experience and learnings]]></description><link>https://www.deepdevblog.com</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 03 Apr 2022 20:52:44 GMT</lastBuildDate><item><title><![CDATA[LeetCode 10. Regular Expression Matching]]></title><description><![CDATA[Solving LeetCode 10, Regular Expression Matching. Click here and try it out your self! LeetCode Problem Statement Given an input string s…]]></description><link>https://www.deepdevblog.com/regular-expression-matching/</link><guid isPermaLink="false">https://www.deepdevblog.com/regular-expression-matching/</guid><pubDate>Sun, 03 Apr 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Solving LeetCode 10, Regular Expression Matching. &lt;a href=&quot;https://leetcode.com/problems/regular-expression-matching/&quot;&gt;Click here&lt;/a&gt; and try it out your self!&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Deep Dev RSS Feed]]></title><description><![CDATA[A developer experience and learnings]]></description><link>https://www.deepdevblog.com</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 01 May 2022 21:03:56 GMT</lastBuildDate><item><title><![CDATA[LeetCode 10. Regular Expression Matching, Dynamic Programming Edition]]></title><description><![CDATA[Solving LeetCode 10, Regular Expression Matching with Dynamic Programming. Click here and try it out your self! To get the most out of this…]]></description><link>https://www.deepdevblog.com/regular-expression-matching-dp/</link><guid isPermaLink="false">https://www.deepdevblog.com/regular-expression-matching-dp/</guid><pubDate>Sun, 01 May 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Solving LeetCode 10, Regular Expression Matching with Dynamic Programming. &lt;a href=&quot;https://leetcode.com/problems/regular-expression-matching/&quot;&gt;Click here&lt;/a&gt; and try it out your self!&lt;/p&gt;
+&lt;p&gt;To get the most out of this post I recommend you read my &lt;a href=&quot;https://www.deepdevblog.com/regular-expression-matching/&quot;&gt;original post&lt;/a&gt; that covers the analysis and the recursive solution. We will use that analysis and focus on how we can implement a solution using Dynamic Programming.&lt;/p&gt;
+&lt;h3&gt;LeetCode Problem Statement&lt;/h3&gt;
+&lt;p&gt;Given an input string s and a pattern p, implement regular expression matching with support for ’.’ and ’*’ where:&lt;/p&gt;
+&lt;p&gt;’.’ Matches any single character.​​​​
+’*’ Matches zero or more of the preceding element.
+The matching should cover the entire input string (not partial).&lt;/p&gt;
+&lt;p&gt;Examples:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Input: s = &quot;aa&quot;, p = &quot;a&quot;
+Output: false
+Explanation: &quot;a&quot; does not match the entire string &quot;aa&quot;.
+
+Input: s = &quot;aa&quot;, p = &quot;a*&quot;
+Output: true
+Explanation: &apos;*&apos; means zero or more of the preceding element, &apos;a&apos;. Therefore, by repeating &apos;a&apos; once, it becomes &quot;aa&quot;.
+
+Input: s = &quot;ab&quot;, p = &quot;.*&quot;
+Output: true
+Explanation: &quot;.*&quot; means &quot;zero or more (*) of any character (.)&quot;.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Breaking it down&lt;/h3&gt;
+&lt;p&gt;Lets understand how we can apply Dynamic Programming to solve this problem. If you are not familiar with Dynamic Programming at all, I’d recommend that you learn the basics first before diving into this post.&lt;/p&gt;
+&lt;h4&gt;Analysis Recap&lt;/h4&gt;
+&lt;p&gt;When we have an exact match, move on to the next character. An exact match can happen in two ways:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Characters match exactly&lt;/li&gt;
+&lt;li&gt;Pattern contains a ”.”&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;If the next character ahead is a ”*” we have to asses the remainder of the string in one of two ways:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Match zero characters of the preceding character in the pattern&lt;/li&gt;
+&lt;li&gt;Match one or more characters of the preceding character in the pattern&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4&gt;Applying Dynamic Programming&lt;/h4&gt;
+&lt;p&gt;Dynamic Programming is described as solving a problem bottom up. The core strategy is as follows:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Identify your base cases (Solutions for small sub problems that you already know)&lt;/li&gt;
+&lt;li&gt;Build solutions for small sub problems from base cases&lt;/li&gt;
+&lt;li&gt;Use the previous solutions to build solutions for more complex cases, and so on&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This will become more clear as we get into the implementation of the algorithm.&lt;/p&gt;
+&lt;p&gt;To keep track of all of these sub problems we will use a matrix. We’ll refer to this as our DP table. Using a matrix is fairly common in Dynamic Programming although other data structures could be used as well.&lt;/p&gt;
+&lt;h4&gt;Example one&lt;/h4&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 479px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/46d5e9de98cb224a4f5402474b1f53df/a9b70/Input.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 32.278481012658226%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAAAsTAAALEwEAmpwYAAAArUlEQVQY04VRTQuFIBDs//8gj9I5EjpFdOkSKEFSdkiwmscuKNbr8QYW1pnZD7UAgOu6UuTnX/lbRL14Gs/zREQIIeVRe3pynVDEJMc0TfDec26txbIsX551XeGcw77vmOf5vmHTNOi6Dm3boqoqHMeBsiwhpWSeQMXEUbEQgrm6rqGUYv+todYafd/ztG3bWKRGZDbGpK1pAF03bjSOI4Zh+H/lJ/fmyd8x/5QP7mDQ5iBeXaYAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Input&quot;
+        title=&quot;Input&quot;
+        src=&quot;https://www.deepdevblog.com/static/46d5e9de98cb224a4f5402474b1f53df/a9b70/Input.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/46d5e9de98cb224a4f5402474b1f53df/c26ae/Input.png 158w,
+https://www.deepdevblog.com/static/46d5e9de98cb224a4f5402474b1f53df/6bdcf/Input.png 315w,
+https://www.deepdevblog.com/static/46d5e9de98cb224a4f5402474b1f53df/a9b70/Input.png 479w&quot;
+        sizes=&quot;(max-width: 479px) 100vw, 479px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h5&gt;Structuring our DP Table&lt;/h5&gt;
+&lt;p&gt;To structure our table we need to answer the following:&lt;/p&gt;
+&lt;p&gt;What are our base cases? They will be the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Empty Pattern, Empty String&lt;/li&gt;
+&lt;li&gt;Empty Pattern&lt;/li&gt;
+&lt;li&gt;Empty String&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;What kind of values will our table store? We can build a table of
+boolean values. If the sub string and sub pattern match, we can tag it with True,
+otherwise False&lt;/p&gt;
+&lt;p&gt;As we iterate through we will be referencing our table for solutions to previous sub problems. We will use those solutions to solve our current problems, and use solutions to current problems to solve the next problems, and so on. Working in a bottom up fashion!&lt;/p&gt;
+&lt;p&gt;With that in mind, this is what our table would look like:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 535px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/10800f427f480b259ab49b1162a2a4a6/b5245/DpTable.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 65.18987341772153%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA4klEQVQ4y6WS2QqDQAxF/f/f8t1PcAFRcN/F9ZYbSKlttVUDwWHMnDlDYgDAuq6SjL7vEYYh4jjGMAyo6xrvNUdh6EKLCQiCAGVZYhxHFEWxAe6l1hivGzRSM9/34bru5rKj0BoxXJZFnkoIjdq2hed5sG1bTPM8380sy6T+aciNrusQRZH8nKZJLtDg+ldunuw4jgCbphG7eZ5PNeHjyQSpUVVVH8B/82lIIA0ty5KGKPyM3WZsCGRXOXtpmt4HJkkiHWYQztm7BWRnORqmacpX4ZeBephmHJnbht8OXoUR+ABH4P+payRpjQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;DpTable&quot;
+        title=&quot;DpTable&quot;
+        src=&quot;https://www.deepdevblog.com/static/10800f427f480b259ab49b1162a2a4a6/b5245/DpTable.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/10800f427f480b259ab49b1162a2a4a6/c26ae/DpTable.png 158w,
+https://www.deepdevblog.com/static/10800f427f480b259ab49b1162a2a4a6/6bdcf/DpTable.png 315w,
+https://www.deepdevblog.com/static/10800f427f480b259ab49b1162a2a4a6/b5245/DpTable.png 535w&quot;
+        sizes=&quot;(max-width: 535px) 100vw, 535px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Important Note: I chose to place the pattern on the X axis and the string in the Y axis.
+You can orient the table however you want, but be mindful of how you orient your inputs since it will affect
+how you search your table.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5&gt;Populating our base cases&lt;/h5&gt;
+&lt;p&gt;Before iterating through and solving for sub problems we need to initialize our table with the
+solutions to our base cases. These cases represent the small sub problems that we already know the
+answer to. Just like in a recursive algorithm, dynamic programming will build our solution based on
+these sub problems.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Base Case 1:&lt;/strong&gt; Empty String, Empty Pattern &lt;br/&gt;
+If we have an empty string and an empty pattern, that should evaluate to true. Which would look like this:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 528px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/c146e995af5bd9d20a4964cc03ef433f/4af8e/BaseCaseOne.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 75.31645569620254%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA/UlEQVQ4y6WUWQqFMAxFu/+NCe5A/FD0Q0Vxnqc8bqClKH1YvRAc2hxz06AgTed5kkn/1nQJuVkm7PtOfd/TPM+0bRsty6LWnkBvQEDCMKQgCGhdV0qShD+i7zMFA/UHqGkaKsuSYUVRkI3AURWisqqqGAJYFEXkOA4dx8H2p2m6xTiOHLhXFSIZsLquGZZlGVeJ3uH9NRkxDIMK9BtXBUS/kAAYFvM8Z+AbseU0TbkSCNYAfXIAxkMBDDbatlUWrkAbCcAAcV2XUC3sX0fJCth1nbKMg9ArfCMRxzHb9X1f2f4ElGPjeR6Pjm75FfD6AoP8CSibD5DNT8AE/AGPIJ5YSHYBbgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;BaseCaseOne&quot;
+        title=&quot;BaseCaseOne&quot;
+        src=&quot;https://www.deepdevblog.com/static/c146e995af5bd9d20a4964cc03ef433f/4af8e/BaseCaseOne.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/c146e995af5bd9d20a4964cc03ef433f/c26ae/BaseCaseOne.png 158w,
+https://www.deepdevblog.com/static/c146e995af5bd9d20a4964cc03ef433f/6bdcf/BaseCaseOne.png 315w,
+https://www.deepdevblog.com/static/c146e995af5bd9d20a4964cc03ef433f/4af8e/BaseCaseOne.png 528w&quot;
+        sizes=&quot;(max-width: 528px) 100vw, 528px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Base Case 2:&lt;/strong&gt; Empty Pattern &lt;br/&gt;
+If we have an empty pattern, and a non empty string, that would look like this:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 591px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/d0e8a4632f27acb52295ecd32599f1cb/e4c9a/BaseCaseTwo.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 65.18987341772153%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA5UlEQVQ4y51T1wrEMAzL//9hodD50kH3XjoUyJGW5q6NwcQkWJZsRwDAcRzS9Vh3df/ExDVh2zb4vo8wDDGOI7IsMxa6IyL0S1rf9yjLEl3XoaqqR6z0fKGCfd9R17VktCwLPM+D4zhY1xXDMBh9nuczQ0qkNLJK0xRFUciYjyzCBBbgeecseAKkxCiK5ANltm2LaZrwxk6SyZAgSjbZ/hvCz6FQDhm5riudg0iS5NWqnNZGSWUyTzb6upuvANlYMiKzPM+lfNUCK0D2kB4EAeI4RtM0csrWgKaJ2YB9v57p39ow/AB/7gEa0fkE9gAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;BaseCaseTwo&quot;
+        title=&quot;BaseCaseTwo&quot;
+        src=&quot;https://www.deepdevblog.com/static/d0e8a4632f27acb52295ecd32599f1cb/e4c9a/BaseCaseTwo.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/d0e8a4632f27acb52295ecd32599f1cb/c26ae/BaseCaseTwo.png 158w,
+https://www.deepdevblog.com/static/d0e8a4632f27acb52295ecd32599f1cb/6bdcf/BaseCaseTwo.png 315w,
+https://www.deepdevblog.com/static/d0e8a4632f27acb52295ecd32599f1cb/e4c9a/BaseCaseTwo.png 591w&quot;
+        sizes=&quot;(max-width: 591px) 100vw, 591px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Base Case 3:&lt;/strong&gt; Empty String &lt;br/&gt;
+If we have an empty string, and a non empty pattern, that would look like this:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 593px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/b8ac1868474c90bac7aff3c5e048b1df/0b5b1/BaseCaseThree.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 65.18987341772153%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA5klEQVQ4y52SiQqDMBBE8//f5h+IIoooKiLe95RZMKTWlqQLSzzCy8xOFACc5ynNmqYJwzBgWRZ5Po4D1x6bUndgXdeIogjzPKNpGgGbe57aPFCZH7dtQ1EUAgvDELZlqtcK13VFnudis21b+L4vK+2b3fe9br7fR6Joiz+yLENVVbJyc1mWYpdqf/WH5TRNdQhd12EcRzmV0L8s0yJnx6JFgs1TbfpNIdVRmed5oiqOY5nnPX3bUoRcACp8suEEZBC8e0EQyCyZtHn3nIEMgIAkSfSV2ff9f6BNck7Aa/BU+i05F+ALkuQATtn8VrEAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;BaseCaseThree&quot;
+        title=&quot;BaseCaseThree&quot;
+        src=&quot;https://www.deepdevblog.com/static/b8ac1868474c90bac7aff3c5e048b1df/0b5b1/BaseCaseThree.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/b8ac1868474c90bac7aff3c5e048b1df/c26ae/BaseCaseThree.png 158w,
+https://www.deepdevblog.com/static/b8ac1868474c90bac7aff3c5e048b1df/6bdcf/BaseCaseThree.png 315w,
+https://www.deepdevblog.com/static/b8ac1868474c90bac7aff3c5e048b1df/0b5b1/BaseCaseThree.png 593w&quot;
+        sizes=&quot;(max-width: 593px) 100vw, 593px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h5&gt;Iterating through&lt;/h5&gt;
+&lt;p&gt;Once our table is set up, we can start to iterate through and
+populate the rest of our table. Once we are done, our answer should exist
+in &lt;code class=&quot;language-text&quot;&gt;dp[s.length][p.length]&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;For Dynamic Programming problems, I find it incredibly helpful to have your
+core logic written out ahead of time. This way as you are manually stepping
+through you can validate it, and make adjustments if necessary.&lt;/p&gt;
+&lt;p&gt;With that said, our core logic should look like this:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/f5a16c0353748c545cfd148b0af236b2/eac55/CoreLogic.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 55.06329113924051%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsTAAALEwEAmpwYAAABIUlEQVQoz5VS2YqEQAzs//8qYcBHRRF8UdHxvq9RmfHIUgEHGXZHtyGdptNdqUoi6I+1bdvbH89nS+DR/X6nNE0pz3P2z+eTg+u6/htY4JPjOFQUBQOWVcVAZ8y/Mqyqipk1TUNBEFAcx5QkCVvbtjSOI83zfI0hNkiUZZkkSSJFUeh2u5GqqnxnGAYDI9myLOeACIJB13U0DAMzeb1e/Bln2FHub3ZMwgxRO13XmZXneSzftm0qy5Lquv7K6BNY7AEAaJrGwJBtWRaZpsnedV2apokVoKYoUd/3fPcJLvbxwOigIWAXhiF3HQzRIChALMsy9vt4If54PDjRXl+xI+MhQJEZTYiiiOUCHEAAADgSwXCHGP75vv9mK65M/9UFyT8EXFLsekAtXwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;CoreLogic&quot;
+        title=&quot;CoreLogic&quot;
+        src=&quot;https://www.deepdevblog.com/static/f5a16c0353748c545cfd148b0af236b2/f058b/CoreLogic.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/f5a16c0353748c545cfd148b0af236b2/c26ae/CoreLogic.png 158w,
+https://www.deepdevblog.com/static/f5a16c0353748c545cfd148b0af236b2/6bdcf/CoreLogic.png 315w,
+https://www.deepdevblog.com/static/f5a16c0353748c545cfd148b0af236b2/f058b/CoreLogic.png 630w,
+https://www.deepdevblog.com/static/f5a16c0353748c545cfd148b0af236b2/eac55/CoreLogic.png 887w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;DP solutions can be very unreadable sometimes when everything is being read directly from the table. I’ve added variables here to help with that. This makes things a bit more verbose but I hope that it makes it clearer.&lt;/p&gt;
+&lt;p&gt;You should be able to come up with the core logic from the initial analysis of the problem. The challenging part will be figuring out where to look in the table. If you are still getting used to Dynamic Programming like I am, the best way to understand where to look is to work out a few problems. In this case I have done that ahead of time.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Lets start looping through:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;i = 1
+j = 1
+
+sChar = s[i - 1] // a
+pchar = p[j - 1] // a&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Notice how we are looking at the previous character. This makes things a bit
+more convenient to populate our table. This is because our table is taking into account the
+base cases which adds a character to the string and the pattern respectively.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Ok, so we have a match! Lets check our DPTable to check the solution to the previous sub problem.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/c72f3f08af0b0ed3630f97a3a9d1020b/c7dcc/IterationOne.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 106.32911392405065%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAVCAYAAABG1c6oAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB90lEQVQ4y42V6a7qMAyE+/7PxV9ASIDY933fd/DVZ2mqNrfnHCIFp206nrGnITIz+3w+PhmXy8VWq5Vdr1df677iXyMSmOZkMrHZbOaA5/PZwufhDJNFSXQYAUKsVCqWZP8taPR+v+3xeNh+v3dmo9HINpuNbbfbVAJNro/Ho51Op2yG1AsANi0WC+v1eg7M+vl82u12iycgy+XS1ut1nBRCKYZkpV4MQFnz8uFw8AgoCpi73c76/b4nQwmJX69XqjTeFICazaZnZBPyYQHo/X53YCJDkiX7P4Zk4IFYcc0myVTtYE55WMMU6YCHoBE35/O5M1MdkZk1eA5YtVq1QqFgw+HQVWl/LBkm1ARwsQwtw+BFAFUC9surMeBPjg8toZgsB40K90cUHxPDsNvtuuQkw/DTzEqcYkhdAJVpw/olgWAlmVlgzpDu4S1sU6/XrVwu+7pWqzljmkUnScpMdjSLtdcQ3+VyOe9eo9GwUqnkgMVi0ZPRCBRksQ5BI/mL9stTbKKO4ebfDoZYMp0aj8eWz+ed2WAwSMnFwJL5W1NiQH5g1mq1HAjZnU7HJwcFwJyRSFYD9fklbZPyIXKxDkyn06m1222PuoY1tuLLkLW4JhEKOHmkwgFxPQ9pDtZQTWFBpCk6MIgoIgLGZL+8G337X/HNQPI/hARb2ON47AkAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;IterationOne&quot;
+        title=&quot;IterationOne&quot;
+        src=&quot;https://www.deepdevblog.com/static/c72f3f08af0b0ed3630f97a3a9d1020b/f058b/IterationOne.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/c72f3f08af0b0ed3630f97a3a9d1020b/c26ae/IterationOne.png 158w,
+https://www.deepdevblog.com/static/c72f3f08af0b0ed3630f97a3a9d1020b/6bdcf/IterationOne.png 315w,
+https://www.deepdevblog.com/static/c72f3f08af0b0ed3630f97a3a9d1020b/f058b/IterationOne.png 630w,
+https://www.deepdevblog.com/static/c72f3f08af0b0ed3630f97a3a9d1020b/c7dcc/IterationOne.png 641w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;As we can see in this case, we have hit our base case, Empty String, Empty Pattern. So we can tag this cell with True.&lt;/p&gt;
+&lt;p&gt;After the update our table would look like this:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/66c8a51f1a441ebfb2a49b1719dd0ef2/68de2/IterationOneUpdate.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 60.75949367088608%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsTAAALEwEAmpwYAAABFElEQVQoz42SCaqEQAxE+/6X8wai4L7vu2Z4DT2M/h7mCyHRJJVURXVdl/DgTWzeP/1/H/VsTtNUsiyTvu9lGIbbsKfZBqrP5Lqu0rat1HUt4zj+3MYGqkwAWFEUMk2TxHEsURTJvu8yz/PNlmXR/jgO+4bQwsqylCAIxPO8N2WG0LxtmwYg7rpOM2CwTXsFkKFH3DSNVFWlGwEgZ8z3fa0xg2FA/gmqzvPUGwKEoWGe53pLisgbo45hGHV8+6MhVEiGYfg+hqGFXlDDjDRsRb3R9HkYBQDN6AWQ7boUA04eyo7j6MMxgL4bIJek0HVdPRkdn/+eeWdwkiS6xvgnbWX7r77FeBZgKy5v1dC2ybf41zAAX8JIqy6ddu8iAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;IterationOneUpdate&quot;
+        title=&quot;IterationOneUpdate&quot;
+        src=&quot;https://www.deepdevblog.com/static/66c8a51f1a441ebfb2a49b1719dd0ef2/f058b/IterationOneUpdate.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/66c8a51f1a441ebfb2a49b1719dd0ef2/c26ae/IterationOneUpdate.png 158w,
+https://www.deepdevblog.com/static/66c8a51f1a441ebfb2a49b1719dd0ef2/6bdcf/IterationOneUpdate.png 315w,
+https://www.deepdevblog.com/static/66c8a51f1a441ebfb2a49b1719dd0ef2/f058b/IterationOneUpdate.png 630w,
+https://www.deepdevblog.com/static/66c8a51f1a441ebfb2a49b1719dd0ef2/68de2/IterationOneUpdate.png 677w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Nice!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Moving on to the next iteration&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Since we don’t have any more characters in the pattern, we would move on to&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;i = 2
+p = 1&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This is what it would look like from the table perspective:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/fb718baf39bb987296add481f572c82e/7762d/IterationTwo.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 57.59493670886076%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsTAAALEwEAmpwYAAABG0lEQVQoz42T2YqFMBBE/f/P8+Ui+OKGoLjvaw+nIRLvOIyBMpqkq6q7o3OepzCY53mWaZpkXVfZtu1aN2feDMcOKIpCoihS0rIsL7K/YARvhLY7SIZhkDiOX7l5cu4cxyF1XUuSJNJ1nWRZJr7vK7FB3/cK9kHbtlqWR4ccSNNUqqpSjOMoTdPoJmImPd5t2CnbpA4EDIhNoFF/k/J3LR1qBxkp4Qwy0rQDbAd0HxP7vj/W0qEenudpXfI81wCb0A5ClL1lWZSU718OTcpcFVTZ4N3UyaxBhBiiruvqFTPEN0IOfD6f67qQPl3nCpmOAtY4GwSBIgxD/Yb0RsiDugHTFFSfGoNzQN0x8O3u+lP+66LdGARxxfzUuB/L2a0OYA9acwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;IterationTwo&quot;
+        title=&quot;IterationTwo&quot;
+        src=&quot;https://www.deepdevblog.com/static/fb718baf39bb987296add481f572c82e/f058b/IterationTwo.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/fb718baf39bb987296add481f572c82e/c26ae/IterationTwo.png 158w,
+https://www.deepdevblog.com/static/fb718baf39bb987296add481f572c82e/6bdcf/IterationTwo.png 315w,
+https://www.deepdevblog.com/static/fb718baf39bb987296add481f572c82e/f058b/IterationTwo.png 630w,
+https://www.deepdevblog.com/static/fb718baf39bb987296add481f572c82e/7762d/IterationTwo.png 649w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;s[i - 1] === p[j - 1] ? 
+&quot;a&quot; === &quot;a&quot; ?&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We have a match! Lets check our DPTable to check the solution to the previous sub problem.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/9f3e9a56a0a4997e95202490223d290e/1b747/IterationTwoLookBack.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 103.79746835443038%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAVCAYAAABG1c6oAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB+ElEQVQ4y62UWasCMQyF+///lfggCCqICyiM+77vu7l8gQxjp3O9D7cQpp22J+ckadz7/RaM8Xq95Hq9yu12k/v9rmuG7f9luCTg8/mU4XAou91OjsejghtgyELOXHLjcDjI6XSS8XisgL+NLFBnUrfbraxWK2UF4Hq9lvP5rA58w1lWONxyuVRms9lMpTLni/wkE9YA7fd72Ww2ChwCdTCxDS6QDFjCju/lctHLAHU6HZlMJjIYDGQ0Gsnj8UjJdwDAiMNI7ff7egkAss0lOww4Z9nDggxhwkVkwBY2oTJBMozZxyHg3PVBHYkgjnzxbiVjDLmE4ZD49no9qVQqKpk1Zz4AmQBAUjjAHBbMCQeS7UslmAoI4DQVw281FpKefEWpGLLRbrc1LiTEmFp9+i/jW3E7PAIEfWQgx8rBHzggZlbgITXKEKAoipRls9mUVqulZYRNp9P4BfEljiY5xN6Zl2q1KsViUQFLpZLU63XNJmsyaln3Jae6jb1jmFAaVpfWwjBfdlbXwRQQIOoLqbQv2HS73bjYfWZZyVFA+1mr1SSfz0uhUJBcLqfrcrksjUZD51Z/i8UifnoWzw/JJmM+n+tha2P2YgCywucfr4qznEMBexaimCGAdBDr1jQJQsBlMs8aY59Y4xgHrCk5wsP6o2P/x4DhD3WcXLNriFOrAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;IterationTwoLookBack&quot;
+        title=&quot;IterationTwoLookBack&quot;
+        src=&quot;https://www.deepdevblog.com/static/9f3e9a56a0a4997e95202490223d290e/f058b/IterationTwoLookBack.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/9f3e9a56a0a4997e95202490223d290e/c26ae/IterationTwoLookBack.png 158w,
+https://www.deepdevblog.com/static/9f3e9a56a0a4997e95202490223d290e/6bdcf/IterationTwoLookBack.png 315w,
+https://www.deepdevblog.com/static/9f3e9a56a0a4997e95202490223d290e/f058b/IterationTwoLookBack.png 630w,
+https://www.deepdevblog.com/static/9f3e9a56a0a4997e95202490223d290e/1b747/IterationTwoLookBack.png 679w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Our DPTable indicates that our previous sub problem was not solved successfully. We hit our base case 2(Empty Pattern). So we would tag this cell with False.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/5c994d2c107a033c7491265c5e1992e2/1f083/IterationTwoUpdate.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 58.22784810126582%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsTAAALEwEAmpwYAAABL0lEQVQoz42TCY6DMAxFuf/JOAOqQAWxtKxtWcvi0bMUVJhoppGsQLCfv+3gbNsmGGtZFun7XqZpknme93Ozf7OcT2DTNOL7vkIfj4dCDdBmtmSOOVjXVcqyVJWXy+UrVTaoAlF0v98lz3Np21bCMFSFr9frYF3X7fap/qCwrmtVxp5lmQIBoxRDOQaAlhjDj/NfClHCer/fMo6jPhMMbBiGXRl+9JdK4jiWNE31/LPHCjTlVlWlAUmSSBRF8nw+NQFwkqEGAJUURaEJrApxut1u6sROAuN4HgDfSIJynok9Qx1AxglV3EF6RKmUbco3Z0EQiOu6cr1e9d20aQcS4HmeDoLhAOWd0lFBEAMgIeUCxocWYSQ7AP+6X+dlBkUi7Azb7yF9sP0Btj/jv8v9Ayz/qO6AfXncAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;IterationTwoUpdate&quot;
+        title=&quot;IterationTwoUpdate&quot;
+        src=&quot;https://www.deepdevblog.com/static/5c994d2c107a033c7491265c5e1992e2/f058b/IterationTwoUpdate.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/5c994d2c107a033c7491265c5e1992e2/c26ae/IterationTwoUpdate.png 158w,
+https://www.deepdevblog.com/static/5c994d2c107a033c7491265c5e1992e2/6bdcf/IterationTwoUpdate.png 315w,
+https://www.deepdevblog.com/static/5c994d2c107a033c7491265c5e1992e2/f058b/IterationTwoUpdate.png 630w,
+https://www.deepdevblog.com/static/5c994d2c107a033c7491265c5e1992e2/1f083/IterationTwoUpdate.png 660w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;At this point we would break out from our loops, since i == 3. Our answer will exist in &lt;code class=&quot;language-text&quot;&gt;dp[s.length][p.length]&lt;/code&gt; and as we can see it’s False as we expected.&lt;/p&gt;
+&lt;p&gt;Nice!&lt;/p&gt;
+&lt;h4&gt;Example Two&lt;/h4&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 539px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/df68f778a354763e96d67e766e2f648b/10f9a/Input.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 29.11392405063291%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAAAsTAAALEwEAmpwYAAAApUlEQVQY04WQTQrEIAyFvf+Fuuq6ByhoqW0Xgi6F4kLs3xsSUGyHzjzQJH7hkSgA4DxPXNfFMeuZ/+LEskRdkLZtKw37vvN54ymlYpzfBF3LsmBdV0zTxFFKCWMM1zFGOOfgvcc8z8yVUhjHEcMwFLObYdd1sNZyI6nvezRNA601Qgick2k2IN62LbO/Kz9rWrl+e+u/TZhHzv9B8TiOL6M3Xk/4AU7R0gncrKdyAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Input&quot;
+        title=&quot;Input&quot;
+        src=&quot;https://www.deepdevblog.com/static/df68f778a354763e96d67e766e2f648b/10f9a/Input.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/df68f778a354763e96d67e766e2f648b/c26ae/Input.png 158w,
+https://www.deepdevblog.com/static/df68f778a354763e96d67e766e2f648b/6bdcf/Input.png 315w,
+https://www.deepdevblog.com/static/df68f778a354763e96d67e766e2f648b/10f9a/Input.png 539w&quot;
+        sizes=&quot;(max-width: 539px) 100vw, 539px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Ok, working through example two, we should learn how to handle the ”*” character. Lets
+get started by building our table with our base cases:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 585px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/adab37cbd16f59bb8f1c342117bbe47f/78a22/DpTable.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 64.55696202531645%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA5UlEQVQ4y6VSSQ6DMAzk/4/jBgdOHBBCLGLfl6nGUlBKowZaS0OiYI/Hi3McBwiaOq9m+6+boxyVc5IkCMMQXdehqirs+w7dxwQ9maNn5b0sSyGb5xnLsmDbNqsqnUMUUsW6rsjz/ITrukLo+74E0MeED4VUME2TlBfHMYZhQNM0qOtalLZtK29E3/fnG30IvSVCSBI6pGkqAbbGW3vI8pQx47fG3+rhOI6iMMsyKUvPeBdvCklYFAWCIADvT3bOuIdUpoLZ8L8JOd0oiuB5nkz7OrXHhPxwB1ku9+5vhabAX8lI+AJihgGeq7dBVgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;DpTable&quot;
+        title=&quot;DpTable&quot;
+        src=&quot;https://www.deepdevblog.com/static/adab37cbd16f59bb8f1c342117bbe47f/78a22/DpTable.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/adab37cbd16f59bb8f1c342117bbe47f/c26ae/DpTable.png 158w,
+https://www.deepdevblog.com/static/adab37cbd16f59bb8f1c342117bbe47f/6bdcf/DpTable.png 315w,
+https://www.deepdevblog.com/static/adab37cbd16f59bb8f1c342117bbe47f/78a22/DpTable.png 585w&quot;
+        sizes=&quot;(max-width: 585px) 100vw, 585px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Populating our base cases&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Base Case 1:&lt;/strong&gt; Empty Pattern, and Empty String&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 609px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/367f0a805bf56761b758ef04b6bab12d/d0d8c/DpBaseCaseOne.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 61.39240506329114%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsTAAALEwEAmpwYAAAA0klEQVQoz62TyQqEQAxE+///zaMHD3rw6L5vqDVUwKGNjThLIDTSyevKogGAfd9hn7bZd657bUYHp2mKMAzR9z2KojjBXK7zjf2xbRvKssQ4jgJc1xVt294q0qrfCpmcJIkAsyyD53noug5BEGCaJnnE9mEYMM/zVeGyLBJAGD3Pcwkm5EjiqZ0VOIFxHEsAS6Oiuq7xiV1KJoS9ozVNcwp84s6Sqcr3fVF5wJ+uyWVt2AtCeWrgN2Y4iKqqZCB/AXJd2McoimQ4PwP1xO5+wyfAF4BpsejMdUHNAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;DpBaseCaseOne&quot;
+        title=&quot;DpBaseCaseOne&quot;
+        src=&quot;https://www.deepdevblog.com/static/367f0a805bf56761b758ef04b6bab12d/d0d8c/DpBaseCaseOne.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/367f0a805bf56761b758ef04b6bab12d/c26ae/DpBaseCaseOne.png 158w,
+https://www.deepdevblog.com/static/367f0a805bf56761b758ef04b6bab12d/6bdcf/DpBaseCaseOne.png 315w,
+https://www.deepdevblog.com/static/367f0a805bf56761b758ef04b6bab12d/d0d8c/DpBaseCaseOne.png 609w&quot;
+        sizes=&quot;(max-width: 609px) 100vw, 609px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Base Case 2:&lt;/strong&gt; Empty String&lt;/p&gt;
+&lt;p&gt;How does an empty string match with a single ”*” pattern?&lt;/p&gt;
+&lt;p&gt;Remembering the definition of ”*”, we can match zero or more of the preceding character. Since our base case is an empty string it eliminates the option of matching one or more of the preceding character. That leaves us with matching zero characters. To do that we would look at the value in &lt;code class=&quot;language-text&quot;&gt;dp[i][j - 2]&lt;/code&gt; which is our base case (Empty String, Empty Pattern). So we would tag this cell with True.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;We will have to remember to add this logic when building our base cases&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/5a20ab2a096df2d23e3d2239b7e0e02e/30d16/DpBaseCaseTwo.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 108.22784810126582%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAWCAYAAADAQbwGAAAACXBIWXMAAAsTAAALEwEAmpwYAAACEUlEQVQ4y42V6arCMBCF8/7v5Q/FBUQRUaz7vtV9H/kGpuTGem0gpJmm55w5maROROT1eiX9cDjIbreTy+Ui1+tV/PdZmvMXP59P6ff7slqt5HQ6yfl8lpAwrftrnI++3+/lfr/LZDKR+Xwui8VCY79U+nFVSHrb7VYGg4GMRiMFWq/XMpvNFPh4PKoVjJvNRmMQYUmYhVsul7oojmMZj8cSRZEQ4+PpdKpqAcMCSBixpFar6TvmdAN1fHi73TTAZsAKAMzE/XTIBNButyvtdls74L5K93g8NNhqtRTIGmAwQ2gp0wG0dOl47nvpYDWVLAzNJ4YdWIG3POM3Qnwg+8bBism9Xk8VpJUDhNhhKlH+rXSc7w1juMAaNUp6Yd19FPa3iv/vQ38evnPIJ102htRRarv+62SkHj28AZDao5CZk14W5SGpAuIbJ8ROx3A41JEYJFabkHwD+TjLlEEul5NCoSD1el0qlYoWbalUkk6no8cREiuVEAjCRKGVBcrwkDojdRQz4q2pC28mTgjr/5wUNgAPKVxAOdfUGiNlYnei3wCD3IA+Umani8Wi5PN5KZfL2qvVqjQaDU0dItKFABAjIhbaoIAsMoVcsLbrqOAGonOz2BWHHbzHjrDYE8Bms6mL2VVG22VIuMbYGLsvmQNq5Nw+zBOFeEL54CfPjFYqPKOCbmmnPVvqLuvPJ0sj5Tf0DKtqGb0CrAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;DpBaseCaseTwo&quot;
+        title=&quot;DpBaseCaseTwo&quot;
+        src=&quot;https://www.deepdevblog.com/static/5a20ab2a096df2d23e3d2239b7e0e02e/f058b/DpBaseCaseTwo.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/5a20ab2a096df2d23e3d2239b7e0e02e/c26ae/DpBaseCaseTwo.png 158w,
+https://www.deepdevblog.com/static/5a20ab2a096df2d23e3d2239b7e0e02e/6bdcf/DpBaseCaseTwo.png 315w,
+https://www.deepdevblog.com/static/5a20ab2a096df2d23e3d2239b7e0e02e/f058b/DpBaseCaseTwo.png 630w,
+https://www.deepdevblog.com/static/5a20ab2a096df2d23e3d2239b7e0e02e/30d16/DpBaseCaseTwo.png 672w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;It’s easy to get tripped up on this piece, I sure did! Let’s dive a little deeper to make sure that this makes
+sense by looking at an example.&lt;/p&gt;
+&lt;p&gt;The pattern “a*” is looking to match strings that:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Have one or more “a”s&lt;/li&gt;
+&lt;li&gt;Have zero “a”s&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Empty strings, have zero “a”s. So this checks out.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Tip: Dive deeper when you get tripped up. Understanding the details will set you up for success. Brushing over them could leave you blind sided in the next steps!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Base Case 3:&lt;/strong&gt; Empty Pattern&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 624px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/98f7c1b9bd81b838cb7fe401584428fd/39c09/DpBaseCaseThree.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 59.49367088607595%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsTAAALEwEAmpwYAAAA30lEQVQoz51SSQ6EMAzr/5/HhSMHkBDrgX33yJGCShlGdCKF0pA4doIBgOM4Tl+WBeu6Yt/3M6Y5b8zYgLSyLBHHMfq+R13XcBu67tYb+0JmRVGgaRqkaSps2eCXucxPhtM0Cdg8z6iqClEUoW1bYctG4zhKjjrvjN8YsqjrOmRZJhKTJJFkMqNsbcKY7cMwfAckkH4kuCYxpmPwksw5UQJPAvLkhu1kr6WQAWcWBIEsI89zbNt2S3z923BOdBoBn6S8NaMLCcNQJPPdHrY3IB+cGcF0lr4yL4BPRf9K/gD9bLFARjHY8wAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;DpBaseCaseThree&quot;
+        title=&quot;DpBaseCaseThree&quot;
+        src=&quot;https://www.deepdevblog.com/static/98f7c1b9bd81b838cb7fe401584428fd/39c09/DpBaseCaseThree.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/98f7c1b9bd81b838cb7fe401584428fd/c26ae/DpBaseCaseThree.png 158w,
+https://www.deepdevblog.com/static/98f7c1b9bd81b838cb7fe401584428fd/6bdcf/DpBaseCaseThree.png 315w,
+https://www.deepdevblog.com/static/98f7c1b9bd81b838cb7fe401584428fd/39c09/DpBaseCaseThree.png 624w&quot;
+        sizes=&quot;(max-width: 624px) 100vw, 624px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Nice, table is ready!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Iteration One&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Starting point will be:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;i = 1
+j = 1 
+
+s[i - 1] === p[j - 1] ? 
+&quot;a&quot; === &quot;a&quot;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We have a match. Lets check our DPTable to check the solution to the previous sub problem.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/f8f79cc984e481acb4e0ebbe1c1e9ae9/aec65/DpIterationOne.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 115.18987341772151%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAXCAYAAAALHW+jAAAACXBIWXMAAAsTAAALEwEAmpwYAAACHUlEQVQ4y52V144CMQxF5/+/ixcQEogmuigz9Db07tWx5CgMZdm1ZFImdq6v7RDc73cx8edJ+fTNl8AOm8F6vZYwDGW73cp+v5fFYqFz/5yvSfvAXyDL5VJ1t9vpGmd/Qe4Q3m43RTebzdRZLpfTdbPZlNPpJMfjUUdfL5fLM8Lr9Srn81lDm8/n0u/3ZbVaOZTMcYay5tx0OtWzh8Ph2eFwOFSjzWYjcRxLq9VSAwwxmEwmigSt1+vCeb6Px2MZjUZP3AY4Aj4CApBgbElhzh5zKOAiaEkidBxaONVqVR1yO5e02201NEoQnDNnBAQO7ZtDaJuE66PCOd9MoYUzjJlMRgqFgiLGhoSa04BNlCTgDCNQJQUjnIEa7uAW9ctKHYIOBLVaTUe4MU6TBcxFVj6MnPfRuTr8VLDvuuJVy7osF4tFiaJIi5hy8IlO1tm7fYcQ2GSWMODDwk2GglhxJyl5aD0ySrFWKhVpNBqSz+e1gCkjFOQkjMTBryXsXX8rh6BMp9NSKpXUGX1MkhipRzJvRfxryMC3YqZsXpWM7+jd8+UQwhWhZLNZSaVSiqxcLitaHgoU7l6Faa/Uw+PADyi73a5ySMgo3LHX6/V0JGGoFTM9bcnxLwjsUQDZYDBQg06no682VLCHcxyHUaSI2TOla/xSC6wDMIZ8wtOejWPXimQYjmk9LgehrakARuM++PbP5xtxIb/K3n8UhD9zkfmPRISc+wAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;DpIterationOne&quot;
+        title=&quot;DpIterationOne&quot;
+        src=&quot;https://www.deepdevblog.com/static/f8f79cc984e481acb4e0ebbe1c1e9ae9/f058b/DpIterationOne.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/f8f79cc984e481acb4e0ebbe1c1e9ae9/c26ae/DpIterationOne.png 158w,
+https://www.deepdevblog.com/static/f8f79cc984e481acb4e0ebbe1c1e9ae9/6bdcf/DpIterationOne.png 315w,
+https://www.deepdevblog.com/static/f8f79cc984e481acb4e0ebbe1c1e9ae9/f058b/DpIterationOne.png 630w,
+https://www.deepdevblog.com/static/f8f79cc984e481acb4e0ebbe1c1e9ae9/aec65/DpIterationOne.png 687w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;As we can see we hit our base case 1 (Empty String, Empty Pattern). We can tag this cell with True.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Iteration Two&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;i = 1
+j = 2
+
+s[i - 1] === p[j - 1] ? 
+&quot;a&quot; === &quot;*&quot;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Our first star case! Lets check our DPTable to check the solution to the previous sub problem.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/61358b0383967fe2d0777bd4fab737af/7131f/DpIterationTwo.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 107.59493670886076%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAWCAYAAADAQbwGAAAACXBIWXMAAAsTAAALEwEAmpwYAAACMklEQVQ4y42V54oDMQyE9/0fK79CIAQS0nvvvVcdn2DMZrlczuDYa8vj0UhyotfrZTSNn9q3fbUobvx4PGwwGNhoNLLr9Wr7/d6Wy6Xv/9XjGFH85tPp5AAAAXg4HLx/Yx4HjbQBAGCwbLfbznQ2m/na8/m02+3m/X6/u83lcvF5UpKIjePx6Afn87ltNhvvq9XKptOpjcdj2263obPe7/dtOBz6hYvFwskEhr1ez87ns+12u3CIb4zEkDnskAS7yWRizWbTKpWKg7OGF84QvdSYSxMM0A/28Yab6/XavaHrwsCQm9Gr0Wg4/VKp5C5zCHeJuBgDhj0yiS179AAICyYYY4AhawIhAIzSGg2xKRQKls1mnSXfYhlhwCIB0AGaNAMomVoKBl5wDt2DhvywgRG3JDUDGMYAAcw3NnigPH3LQ1yKC85NySqgAaAA4BHRZVQBBIZskDp0cgv6nyoCjWmkS7FYdFAIAShiEVrgrpJWqSK34h4wZx332VMAVTEhbVqtlt9YLpc9epQeLLrdrrMmjQhOsn7jkoTS44dDuVzO3a5Wq1av161Wq/lIwLhU6SPGn16cSKFHH1UNAPGG4AQgmUK/sXWGnU7HUqmUpdNpy+fzlslkvGJgyB7MxA5wNEtmxNvzRVAodtyk4zoPAFJQlswRH09gSvDwLB6wN4ZEGiYcIgDUMIdURQBS05qTj9joQs68MUQbwDSiJSmhB0DpIRt9k0J63QPgf/98vjW5/AOTN6U9Jpa3QAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;DpIterationTwo&quot;
+        title=&quot;DpIterationTwo&quot;
+        src=&quot;https://www.deepdevblog.com/static/61358b0383967fe2d0777bd4fab737af/f058b/DpIterationTwo.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/61358b0383967fe2d0777bd4fab737af/c26ae/DpIterationTwo.png 158w,
+https://www.deepdevblog.com/static/61358b0383967fe2d0777bd4fab737af/6bdcf/DpIterationTwo.png 315w,
+https://www.deepdevblog.com/static/61358b0383967fe2d0777bd4fab737af/f058b/DpIterationTwo.png 630w,
+https://www.deepdevblog.com/static/61358b0383967fe2d0777bd4fab737af/7131f/DpIterationTwo.png 710w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;In this case we can see that &lt;code class=&quot;language-text&quot;&gt;matchZero&lt;/code&gt; hits our base case 2 (Empty Pattern), which is not a successful solution.&lt;/p&gt;
+&lt;p&gt;Since &lt;code class=&quot;language-text&quot;&gt;previousCharMatch&lt;/code&gt; is true, we can explore &lt;code class=&quot;language-text&quot;&gt;matchingOneOrMore&lt;/code&gt; which was solved successfully. So we can tag with cell with True.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Iteration Three&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;i = 2
+j = 1
+
+s[i - 1] === p[j - 1] ? 
+&quot;a&quot; === &quot;a&quot;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We have a match. Lets check our DPTable to check the solution to the previous sub problem.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/278f1c8f987e0321e4d8ec8f4cded96c/748f4/DpIterationThree.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 115.18987341772151%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAXCAYAAAALHW+jAAAACXBIWXMAAAsTAAALEwEAmpwYAAACQklEQVQ4y42V56pCMRCE8/6Ppf8Eu9h77723vXwLG+JRvAaWxJwtM5NNdCIiz+dTwvnT+PYtHM6cLeB0OslgMJD5fC7n81k2m42uQ7+ohQVduMk4HA6yWCx0ZpD0eDx+RRXGO1vc73fZ7/cymUzkcrlILpeT2Wwmw+FQ9xi32039zB6Px2eEfATRdDqV3W6niJbLpWy3W1mv17qHFOzjR2GMfYqHcjjoEUQC5tVqpbqxxpkggv8bHiEJLIDgbwOKIVLWGAwtqTMn9AIZM2a0oE0hnPk9Ho+lXC5LtVqVSqWiMrFvSR1CU42PJKJlOAjWyAAD0xNjTVISWTdgPiFtgSPjer0qHVCjH8ijlEFDUtPZ0HvKBIEimUyqEy1CI1s/EkQhzOQBhJ08hfntE4Z9SAASMHDE+E0Aa5BRqNfrSTwel0KhoIkxT5kk6IUj1KFkvRUdJCcp/rCAgcV6hFAplUpKtdPpqENUu7DPSMp34ozFi4ZAHY1GWg10zGjJjLZUNxnsViEBvrb/dvUQPpPJSCqVknw+r9ZoNPQ+t1ot6ff7vn2MAUnDhn45FBY0Kg1LQL1el3a7rTMJ0RY06P3tpfGUQUCi8N6ajtGHNfoOvlG24EQiIbFYTNLptGSzWe3LYrEozWZTb4/RM5QkYG3mXxtz6na7esrQrNVqelAY6PnGdQM97cIaNrCKtpizVkBD0CC+JeEQmLm3zDQ0BmKS4oexR3FYeIS0CsnsseDkkcKa3R4Be4Cx8DViJo/79d/s1/EHRhPzhX2MwOUAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;DpIterationThree&quot;
+        title=&quot;DpIterationThree&quot;
+        src=&quot;https://www.deepdevblog.com/static/278f1c8f987e0321e4d8ec8f4cded96c/f058b/DpIterationThree.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/278f1c8f987e0321e4d8ec8f4cded96c/c26ae/DpIterationThree.png 158w,
+https://www.deepdevblog.com/static/278f1c8f987e0321e4d8ec8f4cded96c/6bdcf/DpIterationThree.png 315w,
+https://www.deepdevblog.com/static/278f1c8f987e0321e4d8ec8f4cded96c/f058b/DpIterationThree.png 630w,
+https://www.deepdevblog.com/static/278f1c8f987e0321e4d8ec8f4cded96c/748f4/DpIterationThree.png 656w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;We would tag this cell with False since we hit base case 3 (Empty Pattern).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Iteration Four&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;i = 2
+j = 2
+
+s[i - 1] === p[j - 1] ? 
+&quot;a&quot; === &quot;*&quot;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;”*” Pattern again! Lets check our DPTable to check the solution to the previous sub problem.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/a46a5efebc0419b6ee94f8c95122c415/160a3/DpIterationFour.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 107.59493670886076%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAWCAYAAADAQbwGAAAACXBIWXMAAAsTAAALEwEAmpwYAAACRklEQVQ4y42V524CMRCE7/0fDAn4AUj03nvvfaNvpUHmCFEsOTb2eXZmdu1Ez+fT6LT7/W6Hw8FOp5Pdbje7XC7+W/sa/2pR+CEg/X7fZrOZz4/Hoy0WCw+k7+I9XHdATR6Ph63Xa9tutzadTm21Wtlut/O1v1qctTO8Xq/OarlcutxWq2XD4dDm87lNJhNnS6D9fu99s9l4MNY/GLLJx0iDFSOgyD2fz+4h6wRMJpOWSqWsWCx6MDwOWTJGMMAjRWeOfAABarfb1mw2HZgRjwkKEZTFpUccVEIApAHSaDSs2+3aaDQy2YKfsmMwGLzUhEmKkFUulx0EwEKhYJ1Ox22AIYDMARMg39Lla1gFEYtiSDQsQDINj2DGh+xxmGSoY0PoowNiLtEYx+Ox1Wo1PwgwI6xQQRMoQBBhDNm9ygYvJItswooOAOskgD0lKpvNeoIIBFMpennIhEjIVsR40fIdYL1ezxOGKql4K5tqteqlQCLIHGy+3QYY4xlBGfn9IZko3BCoA0ZEpNE5JDlqAEhN/NFwhnhDIiqVit8AyobSEHNqjkCq1/jdjT8QnpR6vW7pdNr9yefzXpelUskD8FAAFt6Kb2AumaySZQ5RBqrJ3w6zTnLwLsxsyNqzjMxEImGZTMbLIZfLOWuuHgFpeEuW8U+VQQf4jSF/yC4+IlVXD/l4SYmoPMLXiETqloQqHBAmui0kATDVHAxJDp3A7HOjmDPSAVf5OCCH2UAKGQVYN4c9PQzM9cDyG7b0N8D//OP5b0PyD0eOoA9svbtxAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;DpIterationFour&quot;
+        title=&quot;DpIterationFour&quot;
+        src=&quot;https://www.deepdevblog.com/static/a46a5efebc0419b6ee94f8c95122c415/f058b/DpIterationFour.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/a46a5efebc0419b6ee94f8c95122c415/c26ae/DpIterationFour.png 158w,
+https://www.deepdevblog.com/static/a46a5efebc0419b6ee94f8c95122c415/6bdcf/DpIterationFour.png 315w,
+https://www.deepdevblog.com/static/a46a5efebc0419b6ee94f8c95122c415/f058b/DpIterationFour.png 630w,
+https://www.deepdevblog.com/static/a46a5efebc0419b6ee94f8c95122c415/160a3/DpIterationFour.png 682w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Just like Iteration Two:&lt;/p&gt;
+&lt;p&gt;We can see that &lt;code class=&quot;language-text&quot;&gt;matchZero&lt;/code&gt; hits our base case 2 (Empty Pattern), which is not a successful solution.&lt;/p&gt;
+&lt;p&gt;Since &lt;code class=&quot;language-text&quot;&gt;previousCharMatch&lt;/code&gt; is true, we can explore &lt;code class=&quot;language-text&quot;&gt;matchingOneOrMore&lt;/code&gt; which was solved successfully. So we can tag with cell with True.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Final Table&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Our final table will look like:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 531px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;https://www.deepdevblog.com/static/1a2f795aec50dae970329fe20394d405/d4713/DpFinalTable.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 73.41772151898735%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAAsTAAALEwEAmpwYAAABKUlEQVQ4y52UWauEMAyF/f9/TsQn3wQXZNRxZ8Y1wxeoFJGZ3hsIXTxNz0lSPRGR4zjEHu/s2zfbPAM2B5ZlkaqqpCxLmedZpmmSdV3livtTwCzLJM9z2bZNg9ssv7kGtBf7vkvbtlLXtQaOokj3Gd/v90+5xDkZcuDxeKgblkEQqOQkSaTve50Pw6DO2njXdWdaPEDkqmka/YDEoigUwB6yuYQLmbN/dQickuM4ltfrpTLtmwESCCMNLlVWyYBhiDGa+V27OBUFKXiapsoElkjFqDRA2I/j6NSPmkMC+r6vuTNVxsgpBoa0OAfEMQKbg7TQf16LR+JhFYahVvj5fKpUDMakgD0wTgwBwIZqmxwaxubZ2cVyenquPwMnyabksLy2wF1b/GL4AWY2mVeGakKQAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;DpFinalTable&quot;
+        title=&quot;DpFinalTable&quot;
+        src=&quot;https://www.deepdevblog.com/static/1a2f795aec50dae970329fe20394d405/d4713/DpFinalTable.png&quot;
+        srcset=&quot;https://www.deepdevblog.com/static/1a2f795aec50dae970329fe20394d405/c26ae/DpFinalTable.png 158w,
+https://www.deepdevblog.com/static/1a2f795aec50dae970329fe20394d405/6bdcf/DpFinalTable.png 315w,
+https://www.deepdevblog.com/static/1a2f795aec50dae970329fe20394d405/d4713/DpFinalTable.png 531w&quot;
+        sizes=&quot;(max-width: 531px) 100vw, 531px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Our answer will be in &lt;code class=&quot;language-text&quot;&gt;dp[s.length][p.length]&lt;/code&gt;, and as we can see it’s True as expected.&lt;/p&gt;
+&lt;p&gt;Nice!&lt;/p&gt;
+&lt;h4&gt;Example 3&lt;/h4&gt;
+&lt;p&gt;I’ll leave it to you to work out example three. You should follow the same pattern we did in
+the previous two examples. The new character you will have to account for is ”.” which matches any
+single character once.&lt;/p&gt;
+&lt;p&gt;The best way to do this is to have the core logic available, and step through populating the table
+cell by cell. This is precisely what our algorithm will do. A solid understanding of this process will make implementing the algorithm a breeze!&lt;/p&gt;
+&lt;h3&gt;The Algorithm Plan&lt;/h3&gt;
+&lt;p&gt;Solve with Dynamic Programming&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Create DP table. Matrix of s.length + 1 by p.length + 1. Initialize with false values.&lt;/li&gt;
+&lt;li&gt;Populate base cases
+&lt;ul&gt;
+&lt;li&gt;Empty String, Empty Pattern&lt;/li&gt;
+&lt;li&gt;Empty String&lt;/li&gt;
+&lt;li&gt;Empty Pattern&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Write nested for loop
+&lt;ul&gt;
+&lt;li&gt;Outer loop starting from 1 &amp;#x3C;= s.length&lt;/li&gt;
+&lt;li&gt;Inner loop starting from 1 &amp;#x3C;= p.length
+&lt;ul&gt;
+&lt;li&gt;In each iteration
+&lt;ul&gt;
+&lt;li&gt;If we have match
+&lt;ul&gt;
+&lt;li&gt;Check the previous string so far at &lt;code class=&quot;language-text&quot;&gt;dp[i - 1][j - 1]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;If the previous is True, tag this cell as True&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;If we have a ”*”
+&lt;ul&gt;
+&lt;li&gt;MatchZero: &lt;code class=&quot;language-text&quot;&gt;dp[i][j - 2]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;If PreviousMatchChar
+&lt;ul&gt;
+&lt;li&gt;MatchZero or MatchOneOrMore: &lt;code class=&quot;language-text&quot;&gt;dp[i - 1][j]&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;If either of these is True tag the cell as True. Otherwise False&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Once you break from the loop return &lt;code class=&quot;language-text&quot;&gt;dp[s.length][p.length]&lt;/code&gt; for the solution&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Code&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;array&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;n&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;fill&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;isMatch&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;s&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; p&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    
+    &lt;span class=&quot;token comment&quot;&gt;// Adding one to account for base cases&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; dp &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;s&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;p&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;// Base cases&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// Empty String Empty Pattern&lt;/span&gt;
+    dp&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;// Empty String&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;&amp;lt;=&lt;/span&gt; p&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; pChar &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; p&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;i &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;pChar &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;*&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            dp&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;i&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dp&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;i &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;// Empty Pattern&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// We handle this by pre populating our matrix with false values&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;// Iteration&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;&amp;lt;=&lt;/span&gt; s&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; j &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; j &lt;span class=&quot;token operator&quot;&gt;&amp;lt;=&lt;/span&gt; p&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; j&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; sChar &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; s&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;i &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; pChar &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; p&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;j &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; stringMatchSoFar &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dp&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;i &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;j &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; currentMatch &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; sChar &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; pChar &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt; pChar &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;.&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;currentMatch&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                dp&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;i&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;j&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; stringMatchSoFar&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+            
+            &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;pChar &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;*&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; matchZero &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dp&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;i&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;j &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+                &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; previousMatch &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; sChar &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; p&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;j &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt; p&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;j &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;.&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+                &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; matchOneOrMore &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dp&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;i &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;j&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+                dp&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;i&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;j&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; matchZero &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;previousMatch &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; matchOneOrMore&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; dp&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;s&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;p&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Summary&lt;/h3&gt;
+&lt;p&gt;The time complexity of this algorithm is O(S * P) where S is the length of the string and P is the length of the pattern. The space complexity will be O(S * P) since we are storing solutions to sub problems in a matrix. Although Dynamic Programming solutions can be hard to think about the time complexity analysis is quite simple as you can see.&lt;/p&gt;
+&lt;p&gt;Key takeaways:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Lay out your core logic ahead of time&lt;/li&gt;
+&lt;li&gt;Build your DP table manually by stepping through the problem and test your core logic&lt;/li&gt;
+&lt;li&gt;Make adjustments to your core logic as needed as you step through&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Once your core logic is solid, the rest of the implementation is fairly trivial as you can see.&lt;/p&gt;
+&lt;p&gt;Hope you found this helpful!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[LeetCode 10. Regular Expression Matching]]></title><description><![CDATA[Solving LeetCode 10, Regular Expression Matching. Click here and try it out your self! LeetCode Problem Statement Given an input string s…]]></description><link>https://www.deepdevblog.com/regular-expression-matching/</link><guid isPermaLink="false">https://www.deepdevblog.com/regular-expression-matching/</guid><pubDate>Sun, 03 Apr 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Solving LeetCode 10, Regular Expression Matching. &lt;a href=&quot;https://leetcode.com/problems/regular-expression-matching/&quot;&gt;Click here&lt;/a&gt; and try it out your self!&lt;/p&gt;
 &lt;h3&gt;LeetCode Problem Statement&lt;/h3&gt;
 &lt;p&gt;Given an input string s and a pattern p, implement regular expression matching with support for ’.’ and ’*’ where:&lt;/p&gt;
 &lt;p&gt;’.’ Matches any single character.​​​​
